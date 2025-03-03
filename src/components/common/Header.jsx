@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ThemeToggleButton from '../ThemeToggleButton';
 import { Link } from 'react-router-dom';
 import ShoppingCart from '../ShoppingCart';
+import { BiUser } from 'react-icons/bi';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -32,9 +33,7 @@ const Header = () => {
           <div className="flex items-center gap-2">
             {/* 테마 버튼 */}
             <div className="dropdown dropdown-end">
-              <div className="btn btn-ghost btn-circle">
-                <ThemeToggleButton />
-              </div>
+              <ThemeToggleButton />
             </div>
 
             {/* 장바구니 버튼 */}
@@ -67,13 +66,8 @@ const Header = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                  />
-                </div>
+                className="btn btn-ghost btn-circle fill-current">
+                <BiUser className="h-5 w-5" />
               </div>
 
               {/* Avatar 드롭다운 내용 */}

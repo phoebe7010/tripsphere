@@ -16,12 +16,6 @@ const Banner = () => {
             TRIPSPHERE와 함께 꿈의 여행을 떠나세요
           </h1>
 
-          <p className="mt-8 text-sm font-medium text-gray-50">
-            지금 예약하고, 평생 잊지 못할 여행을 시작하세요. 다양한 여행지,
-            특별한 경험이 여러분을 기다리고 있습니다. 지금 바로 여행 예약을 통해
-            최고의 여행을 만나보세요!
-          </p>
-
           <Filter />
         </div>
       </div>
