@@ -3,10 +3,6 @@ import React from 'react';
 const List = () => {
   return (
     <ul className="list bg-base-100 rounded-box shadow-md">
-      <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">
-        Most played songs this week
-      </li>
-
       <li className="list-row">
         <div>
           <img

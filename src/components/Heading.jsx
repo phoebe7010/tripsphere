@@ -1,4 +1,4 @@
-import { BiShareAlt, BiCart } from 'react-icons/bi';
+import { BiShareAlt, BiCart, BiHeart } from 'react-icons/bi';
 
 const Heading = () => {
   return (
@@ -30,6 +30,18 @@ const Heading = () => {
               className="mr-1.5 -ml-0.5 size-5 text-gray-400"
             />
             장바구니
+          </button>
+        </span>
+
+        <span className="ml-3 hidden sm:block">
+          <button
+            type="button"
+            className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
+            <BiHeart
+              aria-hidden="true"
+              className="mr-1.5 -ml-0.5 size-5 text-gray-400"
+            />
+            찜하기
           </button>
         </span>
       </div>

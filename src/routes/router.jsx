@@ -10,6 +10,8 @@ import ProductDetail from '../pages/product/ProductDetail';
 import Profile from '../pages/user/Profile';
 import MyPage from '../pages/user/MyPage';
 import OrderHistory from '../pages/order/OrderHistory';
+import Checkout from '../pages/order/Checkout';
+import OrderConfirmation from '../pages/order/OrderConfirmation';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,8 @@ const router = createBrowserRouter([
       { path: 'profile', element: <Profile /> },
       { path: 'mypage', element: <MyPage /> },
       { path: 'orderhistory', element: <OrderHistory /> },
+      { path: 'checkout', element: <Checkout /> },
+      { path: 'orderconfirmation', element: <OrderConfirmation /> },
     ],
   },
   {

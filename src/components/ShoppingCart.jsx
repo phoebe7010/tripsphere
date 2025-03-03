@@ -5,6 +5,7 @@ import {
   DialogTitle,
 } from '@headlessui/react';
 import { BiX } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 const products = [
   {
@@ -132,11 +133,11 @@ const ShoppingCart = ({ open, setOpen }) => {
                     <p>26200원</p>
                   </div>
                   <div className="mt-6">
-                    <a
-                      href="#"
+                    <Link
+                      to="/checkout"
                       className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700">
                       주문하기
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
