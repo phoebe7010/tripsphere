@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const ThemeToggleButton = () => {
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  };
+
   return (
     <label className="swap swap-rotate">
       <input
         type="checkbox"
-        className="theme-controller"
-        value="synthwave"
+        checked={theme === 'dark'}
+        onChange={toggleTheme}
       />
 
       {/* 해 아이콘 */}
