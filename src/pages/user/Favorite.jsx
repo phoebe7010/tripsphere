@@ -2,14 +2,12 @@ import React from 'react';
 import List from '../../components/List';
 import { useNavigate } from 'react-router-dom';
 
-const OrderHistory = () => {
+const Favorite = () => {
   const navigate = useNavigate();
 
   return (
     <div className="max-w-[700px] mx-auto py-[40px]">
-      <h2 className="text-base/7 font-semibold text-gray-900 mb-10">
-        주문 내역
-      </h2>
+      <h2 className="text-base/7 font-semibold text-gray-900 mb-10">찜 목록</h2>
 
       <List />
 
@@ -25,4 +23,4 @@ const OrderHistory = () => {
   );
 };
 
-export default OrderHistory;
+export default Favorite;

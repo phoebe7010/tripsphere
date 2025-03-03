@@ -8,6 +8,7 @@ const MyPage = () => {
   return (
     <div className="max-w-[700px] mx-auto">
       <UserProfile />
+
       <State />
 
       <ul className="mt-8 list bg-base-100 rounded-box shadow-md">
@@ -17,7 +18,7 @@ const MyPage = () => {
           </p>
 
           <Link
-            to="/"
+            to="/favorite"
             className="text-primary font-bold">
             더 보기
           </Link>
