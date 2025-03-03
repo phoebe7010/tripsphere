@@ -47,13 +47,6 @@ const SignIn = () => {
                 className="block text-sm font-medium text-gray-900">
                 비밀번호
               </label>
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-semibold text-indigo-600 hover:text-indigo-500">
-                  비밀번호를 잊어버렸나요?
-                </a>
-              </div>
             </div>
             <div className="mt-2">
               <input
