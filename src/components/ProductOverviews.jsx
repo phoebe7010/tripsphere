@@ -53,7 +53,7 @@ const product = {
 
 const ProductOverviews = () => {
   return (
-    <div className="bg-white">
+    <div>
       <div className="pt-6">
         <nav aria-label="Breadcrumb">
           <ol

@@ -86,7 +86,7 @@ const ProductDetail = () => {
           <div className="card bg-base-100 w-96 shadow-sm">
             <div className="card-body">
               <h2 className="card-title">Card title!</h2>
-              <fieldset className="fieldset w-xs bg-base-200 border border-base-300 p-4 rounded-box">
+              <fieldset className="fieldset bg-base-200 border border-base-300 p-4 rounded-box">
                 <label className="fieldset-label">체크인</label>
                 <input
                   type="date"
@@ -107,7 +107,11 @@ const ProductDetail = () => {
                 />
               </fieldset>
               <div className="card-actions justify-end">
-                <button className="btn btn-primary">예약하기</button>
+                <button
+                  type="submit"
+                  class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
+                  주문하기
+                </button>
               </div>
             </div>
           </div>

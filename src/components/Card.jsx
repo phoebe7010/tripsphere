@@ -25,7 +25,7 @@ const Card = () => {
             <span className="hidden sm:block">
               <button
                 type="button"
-                className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
+                className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
                 <BiShareAlt
                   aria-hidden="true"
                   className="size-5 text-gray-400"
@@ -36,7 +36,7 @@ const Card = () => {
             <span className="hidden sm:block">
               <button
                 type="button"
-                className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
+                className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
                 <BiCart
                   aria-hidden="true"
                   className="size-5 text-gray-400"
