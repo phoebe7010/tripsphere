@@ -23,6 +23,10 @@
 | **zustand**                    | `npm install zustand`                  | |
 | **@tanstack/react-query**      | `npm install @tanstack/react-query`    | |
 | **firebase**                   | `npm install firebase`                 | |
+| **react-date-range**           | `npm install --save react-date-range`      |  [React Date Range](https://github.com/hypeserver/react-date-range) |
+| **date-fns**                   | `npm install --save date-fns`              | |
+| **react-use**                  | `npm install react-use`                    | |
+
 
 <br/>
 
