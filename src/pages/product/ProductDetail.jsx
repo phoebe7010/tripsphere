@@ -60,12 +60,14 @@ const ProductDetail = () => {
 
   return (
     <div className="max-w-[1200px] mx-auto px-[20px] py-[40px]">
+      {/* 상품 헤더 */}
       <div className="lg:flex lg:items-center lg:justify-between">
         <div className="min-w-0 flex-1">
           <h2 className="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
             여행 상품 제목
           </h2>
         </div>
+
         <div className="mt-5 flex lg:mt-0 lg:ml-4">
           <span className="hidden sm:block">
             <button
@@ -104,8 +106,10 @@ const ProductDetail = () => {
           </span>
         </div>
       </div>
+
       <div>
         <div className="pt-6">
+          {/* Breadcrumb */}
           <nav aria-label="Breadcrumb">
             <ol
               role="list"
@@ -169,6 +173,7 @@ const ProductDetail = () => {
         </div>
       </div>
 
+      {/* 상품 상세 정보 */}
       <div className="flex space-y-6 gap-10 py-[30px]">
         <div>
           <div className="px-4 sm:px-0">
@@ -279,6 +284,7 @@ const ProductDetail = () => {
         </div>
       </div>
 
+      {/* 위치 */}
       <div>
         <div className="flex space-y-6 gap-10 max-w-[1200px] mx-auto py-[20px] px-[20px]">
           <div className="w-full">

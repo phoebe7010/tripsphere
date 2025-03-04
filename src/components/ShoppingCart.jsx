@@ -13,7 +13,7 @@ const products = [
     name: 'Throwback Hip Bag',
     href: '#',
     color: 'Salmon',
-    price: '$90.00',
+    price: '10000',
     quantity: 1,
     imageSrc:
       'https://tailwindui.com/plus-assets/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
@@ -25,7 +25,7 @@ const products = [
     name: 'Medium Stuff Satchel',
     href: '#',
     color: 'Blue',
-    price: '$32.00',
+    price: '20000',
     quantity: 1,
     imageSrc:
       'https://tailwindui.com/plus-assets/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
@@ -100,7 +100,7 @@ const ShoppingCart = ({ open, setOpen }) => {
                                   <h3>
                                     <a href={product.href}>{product.name}</a>
                                   </h3>
-                                  <p className="ml-4">{product.price}</p>
+                                  <p className="ml-4">{product.price}원</p>
                                 </div>
                                 <p className="mt-1 text-sm text-gray-500">
                                   {product.color}
@@ -115,7 +115,7 @@ const ShoppingCart = ({ open, setOpen }) => {
                                   <button
                                     type="button"
                                     className="font-medium text-indigo-600 hover:text-indigo-500">
-                                    Remove
+                                    제거
                                   </button>
                                 </div>
                               </div>
@@ -130,7 +130,7 @@ const ShoppingCart = ({ open, setOpen }) => {
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>주문 합계 금액</p>
-                    <p>26200원</p>
+                    <p>30000원</p>
                   </div>
 
                   <div className="mt-6">

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   BiShareAlt,
   BiCart,
@@ -11,6 +10,7 @@ import { Link } from 'react-router-dom';
 const ProductList = () => {
   return (
     <div className="max-w-[1200px] mx-auto py-[20px] px-[20px]">
+      {/* 카드 목록 */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {[1, 2, 3, 4, 5, 6].map(() => (
           <Link to="/product/0">
@@ -70,6 +70,7 @@ const ProductList = () => {
         ))}
       </div>
 
+      {/* 페이지네이션 */}
       <div className="flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6">
         <div className="flex flex-1 justify-between sm:hidden">
           <a

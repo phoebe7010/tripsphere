@@ -8,6 +8,7 @@ const MyPage = () => {
 
   return (
     <div className="max-w-[700px] mx-auto">
+      {/* 유저 정보 */}
       <div className="flex py-6">
         <div className="w-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
           <img
@@ -35,14 +36,15 @@ const MyPage = () => {
         </div>
       </div>
 
+      {/* stats */}
       <div className="stats shadow flex">
         <div className="stat flex-1">
           <div className="stat-figure text-primary">
             <BiCoin className="inline-block h-8 stroke-current" />
           </div>
           <div className="stat-title">포인트</div>
-          <div className="stat-value text-primary">25.6K</div>
-          <div className="stat-desc">21% more than last month</div>
+          <div className="stat-value text-primary">25</div>
+          <div className="stat-desc">보유한 포인트</div>
         </div>
 
         <Link
@@ -52,24 +54,21 @@ const MyPage = () => {
             <BiShoppingBag className="inline-block h-8 stroke-current" />
           </div>
           <div className="stat-title">주문내역</div>
-          <div className="stat-value text-secondary">2.6M</div>
-          <div className="stat-desc">21% more than last month</div>
+          <div className="stat-value text-secondary">2</div>
+          <div className="stat-desc">주문한 내역</div>
         </Link>
 
         <div className="stat flex-1">
-          <div className="stat-figure text-secondary">
-            <div className="avatar online">
-              <div className="w-16 rounded-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-              </div>
-            </div>
+          <div className="stat-figure text-accent">
+            <BiHeart className="inline-block h-8 stroke-current" />
           </div>
-          <div className="stat-value">86%</div>
-          <div className="stat-title">Tasks done</div>
-          <div className="stat-desc text-secondary">31 tasks remaining</div>
+          <div className="stat-title">찜 내역</div>
+          <div className="stat-value text-accent">25</div>
+          <div className="stat-desc">찜한 상품</div>
         </div>
       </div>
 
+      {/* 찜 목록 */}
       <ul className="mt-8 list bg-base-100 rounded-box shadow-md">
         <li className="p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
           <p className="flex items-center gap-2">
@@ -96,36 +95,6 @@ const MyPage = () => {
               Remaining Reason
             </div>
           </div>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M6 3L20 12 6 21 6 3z"></path>
-              </g>
-            </svg>
-          </button>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-              </g>
-            </svg>
-          </button>
         </li>
 
         <li className="list-row">
@@ -141,36 +110,6 @@ const MyPage = () => {
               Bears of a fever
             </div>
           </div>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M6 3L20 12 6 21 6 3z"></path>
-              </g>
-            </svg>
-          </button>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-              </g>
-            </svg>
-          </button>
         </li>
 
         <li className="list-row">
@@ -186,36 +125,6 @@ const MyPage = () => {
               Cappuccino
             </div>
           </div>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M6 3L20 12 6 21 6 3z"></path>
-              </g>
-            </svg>
-          </button>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-              </g>
-            </svg>
-          </button>
         </li>
       </ul>
     </div>

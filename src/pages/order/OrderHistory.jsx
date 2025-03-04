@@ -10,6 +10,7 @@ const OrderHistory = () => {
         주문 내역
       </h2>
 
+      {/* 주문 내역 목록 */}
       <ul className="list bg-base-100 rounded-box shadow-md">
         <li className="list-row">
           <div>
@@ -162,6 +163,7 @@ const OrderHistory = () => {
         </li>
       </ul>
 
+      {/* 뒤로 가기 버튼 */}
       <div className="mt-6 flex items-center justify-end gap-x-6">
         <button
           type="button"

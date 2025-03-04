@@ -12,6 +12,8 @@ const NotFound = () => {
         <p className="mt-6 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
           찾고 계신 페이지를 찾을 수 없습니다.
         </p>
+
+        {/* 홈으로 돌아가기 링크 */}
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <Link
             to="/"

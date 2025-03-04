@@ -7,6 +7,7 @@ const Checkout = () => {
   return (
     <div className="max-w-[1200px] mx-auto px-[20px] py-[40px]">
       <div className="flex space-y-6 gap-10 py-[30px]">
+        {/* 주문 결제 정보 */}
         <div>
           <div className="px-4 sm:px-0">
             <h3 className="text-base/7 font-semibold text-gray-900">
@@ -16,6 +17,7 @@ const Checkout = () => {
               결제한 정보를 확인해 주세요.
             </p>
           </div>
+
           <div className="mt-6 border-t border-gray-100">
             <dl className="divide-y divide-gray-100">
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
@@ -79,6 +81,7 @@ const Checkout = () => {
           </div>
         </div>
 
+        {/* 최종 결제 금액 */}
         <div>
           <div className="card bg-base-100 w-96 shadow-sm">
             <div className="card-body">
