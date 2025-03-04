@@ -1,15 +1,74 @@
 import React from 'react';
-import State from '../../components/State';
-import UserProfile from '../../components/UserProfile';
 import { Link } from 'react-router-dom';
-import { BiHeart } from 'react-icons/bi';
+import { BiHeart, BiCog, BiCoin, BiShoppingBag } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 const MyPage = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="max-w-[700px] mx-auto">
-      <UserProfile />
+      <div className="flex py-6">
+        <div className="w-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
+          <img
+            src="https://tailwindui.com/plus-assets/img/ecommerce-images/shopping-cart-page-04-product-01.jpg"
+            alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+            className="w-full object-cover"
+          />
+        </div>
 
-      <State />
+        <div className="ml-4 flex flex-1 flex-col">
+          <div>
+            <div className="flex justify-between text-base font-medium text-gray-900">
+              <h3>
+                <a href="#">김혜란</a>
+              </h3>
+              <button
+                type="button"
+                onClick={() => navigate('/profile')}
+                className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
+                <BiCog />
+              </button>
+            </div>
+            <p className="mt-1 text-sm text-gray-500">(닉네임)</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="stats shadow flex">
+        <div className="stat flex-1">
+          <div className="stat-figure text-primary">
+            <BiCoin className="inline-block h-8 stroke-current" />
+          </div>
+          <div className="stat-title">포인트</div>
+          <div className="stat-value text-primary">25.6K</div>
+          <div className="stat-desc">21% more than last month</div>
+        </div>
+
+        <Link
+          to="/orderhistory"
+          className="stat flex-1">
+          <div className="stat-figure text-secondary">
+            <BiShoppingBag className="inline-block h-8 stroke-current" />
+          </div>
+          <div className="stat-title">주문내역</div>
+          <div className="stat-value text-secondary">2.6M</div>
+          <div className="stat-desc">21% more than last month</div>
+        </Link>
+
+        <div className="stat flex-1">
+          <div className="stat-figure text-secondary">
+            <div className="avatar online">
+              <div className="w-16 rounded-full">
+                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+              </div>
+            </div>
+          </div>
+          <div className="stat-value">86%</div>
+          <div className="stat-title">Tasks done</div>
+          <div className="stat-desc text-secondary">31 tasks remaining</div>
+        </div>
+      </div>
 
       <ul className="mt-8 list bg-base-100 rounded-box shadow-md">
         <li className="p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">

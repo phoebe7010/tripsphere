@@ -41,6 +41,7 @@ const Modal = ({ open, setOpen, text, type, onNavigate }) => {
                     className={`size-6 text-${type}`}
                   />
                 </div>
+
                 <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                   <DialogTitle
                     as="h3"
@@ -53,6 +54,7 @@ const Modal = ({ open, setOpen, text, type, onNavigate }) => {
                 </div>
               </div>
             </div>
+
             <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
               <button
                 type="button"

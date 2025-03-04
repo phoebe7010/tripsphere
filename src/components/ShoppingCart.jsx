@@ -132,6 +132,7 @@ const ShoppingCart = ({ open, setOpen }) => {
                     <p>주문 합계 금액</p>
                     <p>26200원</p>
                   </div>
+
                   <div className="mt-6">
                     <Link
                       to="/checkout"
