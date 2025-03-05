@@ -7,7 +7,8 @@ import {
 } from 'react-icons/bi';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { FaMapLocationDot } from 'react-icons/fa6';
-import { IoMdTime } from 'react-icons/io';
+import { IoIosMan, IoMdTime } from 'react-icons/io';
+import { MdChildCare } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Aside from './ProductListCompo/aside';
 
@@ -68,10 +69,10 @@ const ProductList = () => {
                     className="grid grid-cols-[3fr_1fr] h-4/5 "
                     title="패키지 상세정보들">
                     <div>
-                      <div className="flex gap-x-1">
-                        <FaMapLocationDot />
-                        <span className="font-bold">장소 :</span>{' '}
-                        <span>천국</span>{' '}
+                      <div className="flex gap-x-1  items-center">
+                        <FaMapLocationDot className="text-base" />
+                        <span className="font-bold">장소</span>{' '}
+                        <span>대한민국</span>{' '}
                       </div>
                       <div
                         title="일정"
@@ -79,24 +80,24 @@ const ProductList = () => {
                         <div className="flex gap-2.5">
                           <div
                             title="startTime"
-                            className="flex gap-1">
-                            <FaRegCalendarAlt />
+                            className="flex gap-1 items-center">
+                            <FaRegCalendarAlt className="text-base" />
                             <p className="font-bold">시작일자</p>
                             <time datetime="2025-04-01">2025-04-01</time>
                           </div>
 
                           <div
                             title="endTime"
-                            className="flex gap-1">
-                            <FaRegCalendarAlt />
+                            className="flex gap-1 items-center">
+                            <FaRegCalendarAlt className="text-base" />
                             <p className="font-bold">종료일자</p>
                             <time datetime="2025-04-03">2025-04-03</time>
                           </div>
                         </div>
                         <div>
-                          <div className="flex gap-1">
-                            <IoMdTime />
-                            <span className="font-bold">총 소요일수 : </span>
+                          <div className="flex gap-1 items-center">
+                            <IoMdTime className="text-base" />
+                            <span className="font-bold">총 소요 일 수 </span>
                             <span>3일</span>
                           </div>
                         </div>
@@ -105,7 +106,10 @@ const ProductList = () => {
                       <p
                         className=""
                         title="패키지 설명">
-                        여기는 천국. 파라다이스. 한번오면 빠져나가지 못해. 극 락
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Assumenda, maiores nam, officiis earum id, perspiciatis
+                        inventore beatae eligendi tempore deleniti quos
+                        repudiandae eius ipsam ex. Quam animi qui atque dolor.
                       </p>
                     </div>
                     <div
@@ -133,11 +137,19 @@ const ProductList = () => {
                       {/* 참여 가능인원 */}
                       <div className="flex flex-col items-end">
                         <span>잔여 티켓</span>
-                        <div>
-                          어른 : <span>15명</span>
+                        <div className="flex gap-x-1 items-center">
+                          <span>
+                            <IoIosMan className="text-base" />
+                          </span>
+                          <span>성인 :</span>
+                          <span>15명</span>
                         </div>
-                        <div>
-                          어린이 : <span>15명</span>
+                        <div className="flex gap-x-1 items-center">
+                          <span>
+                            <MdChildCare className="text-base" />
+                          </span>
+                          <span>청소년 : </span>
+                          <span>15명</span>
                         </div>
                       </div>
                     </div>

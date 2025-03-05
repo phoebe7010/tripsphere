@@ -1,3 +1,5 @@
+import { CiCircleMinus, CiCirclePlus } from 'react-icons/ci';
+
 const Aside = () => {
   return (
     <>
@@ -8,8 +10,8 @@ const Aside = () => {
             <h2 className="text-lg font-semibold">검색하기</h2>
             <button
               type="button"
-              className="text-sm text-red-500 hover:text-red-700 focus:outline-none">
-              옵션 지우기
+              className="text-sm text-red-500 hover:text-red-700 focus:outline-none border-1 p-1 rounded-md hover:bg-red-100">
+              전부 지우기
             </button>
           </div>
 
@@ -21,7 +23,7 @@ const Aside = () => {
                 <label
                   htmlFor={ele}
                   key={ele}
-                  className="flex items-center space-x-2 cursor-pointer">
+                  className="flex items-center space-x-2 cursor-pointer hover:bg-gray-300">
                   <input
                     type="checkbox"
                     id={ele}
@@ -42,7 +44,7 @@ const Aside = () => {
                 <label
                   htmlFor={ele}
                   key={ele}
-                  className="flex items-center space-x-2 cursor-pointer">
+                  className="flex items-center space-x-2 cursor-pointer hover:bg-gray-300">
                   <input
                     type="checkbox"
                     id={ele}
@@ -87,40 +89,32 @@ const Aside = () => {
             <div className="mb-2 flex items-center">
               <label className="w-1/2">성인</label>
               <div className="flex w-1/2 items-center justify-end">
-                <button
-                  type="button"
-                  className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 focus:outline-none">
-                  -
+                <button type="button">
+                  <CiCircleMinus className="text-3xl text-gray-300 hover:text-green-500" />
                 </button>
                 <input
                   type="number"
                   className="mx-2 w-10 rounded border border-gray-300 p-1 text-center focus:border-green-500 focus:outline-none"
                   min="0"
                 />
-                <button
-                  type="button"
-                  className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 focus:outline-none">
-                  +
+                <button type="button">
+                  <CiCirclePlus className="text-3xl text-gray-300 hover:text-green-500" />
                 </button>
               </div>
             </div>
             <div className="flex items-center">
               <label className="w-1/2">어린이</label>
               <div className="flex w-1/2 items-center justify-end">
-                <button
-                  type="button"
-                  className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 focus:outline-none">
-                  -
+                <button type="button">
+                  <CiCircleMinus className="text-3xl text-gray-300 hover:text-green-500" />
                 </button>
                 <input
                   type="number"
                   className="mx-2 w-10 rounded border border-gray-300 p-1 text-center focus:border-green-500 focus:outline-none"
                   min="0"
                 />
-                <button
-                  type="button"
-                  className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 focus:outline-none">
-                  +
+                <button type="button">
+                  <CiCirclePlus className="text-3xl text-gray-300 hover:text-green-500" />
                 </button>
               </div>
             </div>
