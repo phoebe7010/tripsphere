@@ -2,183 +2,152 @@ const Aside = () => {
   return (
     <>
       {/* 검색 옵션 패널 */}
-      <aside
-        className=""
-        style={{
-          position: 'fixed',
-          left: '4rem',
-          top: '8rem',
-          border: '1px solid green',
-          borderRadius: '30px',
-        }}>
-        <form
-          className=""
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            rowGap: '20px',
-            padding: '10px',
-            // backgroundColor: 'pink',
-            // border: '1px solid lightgreen',
-            // borderRadius: '50px',
-          }}>
-          <div
-            style={{
-              diplay: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}>
-            <h2 style={{ width: '50%' }}>검색하기</h2>
+      <aside className="fixed left-16 top-16 z-10 rounded-[30px] border border-green-500 bg-white p-4 shadow-md">
+        <form className="flex flex-col gap-y-5 p-2.5">
+          <div className="flex flex-row items-center justify-between">
+            <h2 className="text-lg font-semibold">검색하기</h2>
             <button
               type="button"
-              style={{ color: '#ff1111ff' }}>
-              {' '}
-              검색 옵션 지우기{' '}
+              className="text-sm text-red-500 hover:text-red-700 focus:outline-none">
+              옵션 지우기
             </button>
           </div>
+
           {/* 여행 장소 선택 */}
-          <fieldset
-            className=""
-            style={{ display: 'flex', flexDirection: 'column' }}>
-            <legend>여행 장소</legend>
-            {/* <select
-              name="travel-spot"
-              style={{ border: '1px solid black ' }}>
-              {['a', 'b', 'c', 'd', '...'].map(ele => (
-                <option>{ele}</option>
-              ))}
-            </select> */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+          <fieldset className="rounded-lg border border-gray-200 p-3">
+            <legend className="px-2 font-medium">여행 장소</legend>
+            <div className="grid grid-cols-2 gap-2">
               {['서울', '대전', '대구', '부산', '찍고', '아하'].map(ele => (
-                <label htmlFor={ele}>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id={ele}
-                      name={ele}
-                    />
-                    {ele}
-                  </div>
+                <label
+                  htmlFor={ele}
+                  key={ele}
+                  className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id={ele}
+                    name={ele}
+                    className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                  />
+                  <span>{ele}</span>
                 </label>
               ))}
             </div>
           </fieldset>
 
           {/* 숙박 장소 선택 */}
-          <fieldset
-            className=""
-            style={{ display: 'flex', flexDirection: 'column' }}>
-            <legend>숙박 장소</legend>
-            {/* 
-            <div>
-              <select
-                name="travel-spot"
-                style={{ border: '1px solid black ' }}>
-                {['a', 'b', 'c', 'd', '...'].map(ele => (
-                  <option>{ele}</option>
-                ))}
-              </select>
-            </div>
-             */}
-
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                columnGap: '10px',
-                rowGap: '5px',
-              }}>
+          <fieldset className="rounded-lg border border-gray-200 p-3">
+            <legend className="px-2 font-medium">숙박 장소</legend>
+            <div className="grid grid-cols-2 gap-x-3 gap-y-2">
               {['호텔', '펜션', '게스트하우스', '노숙'].map(ele => (
-                <label htmlFor={ele}>
-                  <div>
-                    <input
-                      type="checkbox"
-                      id={ele}
-                      name={ele}
-                    />
-                    {ele}
-                  </div>
+                <label
+                  htmlFor={ele}
+                  key={ele}
+                  className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id={ele}
+                    name={ele}
+                    className="h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+                  />
+                  <span>{ele}</span>
                 </label>
               ))}
             </div>
           </fieldset>
 
           {/* 예산 범위 선택 */}
-          <fieldset
-            className=""
-            style={{ display: 'flex', flexDirection: 'column' }}>
-            <legend> 가격 </legend>
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-              <label htmlFor="minbudget">
+          <fieldset className="rounded-lg border border-gray-200 p-3">
+            <legend className="px-2 font-medium">가격</legend>
+            <div className="flex items-center justify-between">
+              <label
+                htmlFor="minbudget"
+                className="flex items-center">
                 <input
                   id="minbudget"
-                  className=""
-                  style={{ border: '1px solid black', width: '50px' }}
+                  className="w-16 rounded border border-gray-300 p-1 text-center focus:border-green-500 focus:outline-none"
                 />
-                만원
+                <span className="ml-1">만원</span>
               </label>
-              ~
-              <label htmlFor="maxbudget">
+              <span className="mx-2">~</span>
+              <label
+                htmlFor="maxbudget"
+                className="flex items-center">
                 <input
                   id="maxbudget"
-                  className=""
-                  style={{ border: '1px solid black', width: '50px' }}
+                  className="w-16 rounded border border-gray-300 p-1 text-center focus:border-green-500 focus:outline-none"
                 />
-                만원
+                <span className="ml-1">만원</span>
               </label>
             </div>
           </fieldset>
 
           {/* 인원 수정 */}
-          <fieldset className="">
-            <legend>인원</legend>
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-              <label style={{ width: '50%' }}>성인</label>
-              <div style={{ display: 'flex', width: '50%' }}>
-                <button>-</button>
+          <fieldset className="rounded-lg border border-gray-200 p-3">
+            <legend className="px-2 font-medium">인원</legend>
+            <div className="mb-2 flex items-center">
+              <label className="w-1/2">성인</label>
+              <div className="flex w-1/2 items-center justify-end">
+                <button
+                  type="button"
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 focus:outline-none">
+                  -
+                </button>
                 <input
                   type="number"
-                  style={{ width: '30px' }}
+                  className="mx-2 w-10 rounded border border-gray-300 p-1 text-center focus:border-green-500 focus:outline-none"
+                  min="0"
                 />
-                <button>+</button>
+                <button
+                  type="button"
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 focus:outline-none">
+                  +
+                </button>
               </div>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-              <label style={{ width: '50%' }}>어린이</label>
-              <div style={{ display: 'flex', width: '50%' }}>
-                <button>-</button>
+            <div className="flex items-center">
+              <label className="w-1/2">어린이</label>
+              <div className="flex w-1/2 items-center justify-end">
+                <button
+                  type="button"
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 focus:outline-none">
+                  -
+                </button>
                 <input
                   type="number"
-                  style={{ width: '30px' }}
+                  className="mx-2 w-10 rounded border border-gray-300 p-1 text-center focus:border-green-500 focus:outline-none"
+                  min="0"
                 />
-                <button>+</button>
+                <button
+                  type="button"
+                  className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 focus:outline-none">
+                  +
+                </button>
               </div>
             </div>
           </fieldset>
 
           {/* 여행 기간 선택 */}
-          <fieldset>
-            <legend>여행 기간 선택</legend>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <label>시작</label>
-              <input type="date" />
+          <fieldset className="rounded-lg border border-gray-200 p-3">
+            <legend className="px-2 font-medium">여행 기간 선택</legend>
+            <div className="mb-2 flex items-center justify-between">
+              <label className="w-1/4">시작</label>
+              <input
+                type="date"
+                className="w-3/4 rounded border border-gray-300 p-1.5 focus:border-green-500 focus:outline-none"
+              />
             </div>
-
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <label>종료</label>
-              <input type="date" />
+            <div className="flex items-center justify-between">
+              <label className="w-1/4">종료</label>
+              <input
+                type="date"
+                className="w-3/4 rounded border border-gray-300 p-1.5 focus:border-green-500 focus:outline-none"
+              />
             </div>
           </fieldset>
 
           <button
             type="submit"
-            className=""
-            style={{
-              width: '100%',
-              backgroundColor: '#dfd',
-              border: '1px solid brown',
-              borderRadius: '10px',
-            }}>
+            className="mt-2 w-full rounded-lg bg-green-100 py-2.5 font-medium text-green-800 border border-green-600 hover:bg-green-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
             옵션 수정 적용
           </button>
         </form>

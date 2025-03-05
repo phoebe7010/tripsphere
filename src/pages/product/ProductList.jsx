@@ -5,147 +5,97 @@ import {
   BiHeart,
   BiShareAlt,
 } from 'react-icons/bi';
+import { FaRegCalendarAlt } from 'react-icons/fa';
+import { FaMapLocationDot } from 'react-icons/fa6';
+import { IoMdTime } from 'react-icons/io';
 import { Link } from 'react-router-dom';
-
-import SearchPannel from './ProductListCompo/Aside.jsx';
 
 const ProductList = () => {
   return (
     <div>
-      <div
-        className="max-w-[1200px] mx-auto py-[20px] px-[20px]"
-        style={{ marginBottom: '30px' }}>
-        <nav>
+      <div className="max-w-[1200px] mx-auto py-[20px] px-[20px] mb-[30px]">
+        <nav className="mb-[30px]">
           <Link to="/">Home</Link> &gt;&gt; Search
         </nav>
         <div
           title="검색결과"
-          style={{ fontSize: '70px' }}>
+          className="text-6xl">
           여행 패키지 검색 결과
         </div>
       </div>
+
       {/* 검색 옵션 패널 */}
-      <SearchPannel />
+      {/* <Aside /> */}
 
       {/* 본문 : 상품페이지 (여행패키지) + 페이지네이션 목록 */}
       <main className="max-w-[1200px] mx-auto py-[20px] px-[20px]">
         {/* <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"> */}
         {/* 상품 (여행패키지) 페이지 */}
         <section
-          className=""
-          style={{ display: 'flex', flexDirection: 'column', rowGap: '2rem' }}>
+          className="flex flex-col gap-y-[1rem]"
+          // style={{ display: 'flex', flexDirection: 'column', rowGap: '2rem' }}
+        >
           {[1, 2, 3, 4, 5, 6].map(() => (
             <Link to="/product/0">
               {/* 각 여행패키지 정보*/}
-              <article
-                className="card bg-base-100 shadow-sm"
-                // className=""
-                style={{
-                  width: '100%',
-                  // height: '300px',
-                  display: 'grid',
-                  border: '1px solid black',
-                  gridTemplateColumns: '2fr 5fr',
-                  gap: '10px',
-                }}>
+              <article className="group card bg-base-100 hover:shadow-xl transition-all shadow-sm w-full grid grid-cols-[2fr_5fr]">
                 {/* 패키지 사진 영역*/}
-                <figure
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: '100%',
-                    padding: '10px',
-                  }}>
-                  <div
-                    style={{
-                      height: '100%',
-                      overflow: 'hidden',
-                      position: 'relative',
-                    }}>
-                    <div
-                      className="badge badge-secondary"
-                      style={{
-                        position: 'absolute',
-                        top: '10px',
-                        left: '10px',
-                      }}>
+                <figure className="p-2.5">
+                  <div className="h-full overflow-hidden relative">
+                    <div className="badge badge-secondary absolute top-2.5 left-2.5">
                       NEW
                     </div>
                     <img
                       src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                      alt="Shoes"
-                      style={{
-                        height: '100%',
-                        objectFit: 'cover',
-                      }}
+                      alt=""
+                      className="h-full object-cover rounded-md"
                     />
                   </div>
                   {/* <figcaption>여행 패키지 상품 사진</figcaption> */}
                 </figure>
 
-                <div
-                  className="card-body"
-                  style={{ display: 'flex', flexDirection: 'column' }}>
+                <div className="card-body flex flex-col">
                   {/* 패키지 이름 */}
                   <h2
-                    className="card-title"
-                    title="여행 패키지 이름"
-                    style={{
-                      fontSize: '40px',
-                      height: '20%',
-                      marginBottom: '15px',
-                    }}>
+                    className="group-hover:text-amber-500 transition-colors card-title text-5xl mb-3.5"
+                    title="여행 패키지 이름">
                     Trip Package Name Here
                   </h2>
 
                   {/* 패키지 정보 */}
                   <div
-                    className=""
-                    title="패키지 상세정보들"
-                    style={{
-                      display: 'grid',
-                      gridTemplateColumns: '3fr 1fr',
-                      columnGap: '3rem',
-                      height: '70%',
-                    }}>
-                    <div
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                      }}>
-                      <div>
-                        <span style={{ fontWeight: 'bolder' }}>위치 : </span>
-                        <span>천국</span>
+                    className="grid grid-cols-[3fr_1fr] h-4/5 "
+                    title="패키지 상세정보들">
+                    <div>
+                      <div className="flex gap-x-1">
+                        <FaMapLocationDot />
+                        <span className="font-bold">장소 :</span>{' '}
+                        <span>천국</span>{' '}
                       </div>
                       <div
                         title="일정"
-                        style={{
-                          display: 'flex',
-                          flexDirection: 'column',
-                          marginBottom: '10px',
-                        }}>
-                        <div style={{ display: 'flex', gap: '10px' }}>
+                        className="flex flex-col mb-2.5">
+                        <div className="flex gap-2.5">
                           <div
                             title="startTime"
-                            style={{ display: 'flex', gap: '10px' }}>
-                            <p style={{ fontWeight: 'bolder' }}>시작일자</p>
+                            className="flex gap-1">
+                            <FaRegCalendarAlt />
+                            <p className="font-bold">시작일자</p>
                             <time datetime="2025-04-01">2025-04-01</time>
                           </div>
 
                           <div
                             title="endTime"
-                            style={{ display: 'flex', gap: '10px' }}>
-                            <p style={{ fontWeight: 'bolder' }}>종료일자</p>
+                            className="flex gap-1">
+                            <FaRegCalendarAlt />
+                            <p className="font-bold">종료일자</p>
                             <time datetime="2025-04-03">2025-04-03</time>
                           </div>
                         </div>
-                        <div
-                        // style={{ display: 'flex' }}
-                        >
-                          <div>
-                            <span style={{ fontWeight: 'bolder' }}>
-                              총 소요일수 :{' '}
-                            </span>
+                        <div>
+                          <div className="flex gap-1">
+                            <IoMdTime />
+                            <span className="font-bold">총 소요일수 : </span>
                             <span>3일</span>
                           </div>
                         </div>
@@ -154,49 +104,34 @@ const ProductList = () => {
                       <p
                         className=""
                         title="패키지 설명">
-                        여행 패키지 설명. 배낭 불필요. 여기는 천국. 파라다이스
-                        오래있지마라. 한번오면 빠져나가질 못해. 오지마라
-                        오지마라 아무도 오지마라 나만갈거야
+                        여기는 천국. 파라다이스. 한번오면 빠져나가지 못해. 극 락
                       </p>
                     </div>
                     <div
-                      className=""
-                      title="여행 패키지 정보"
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                      }}>
+                      className="flex flex-col "
+                      title="여행 패키지 정보">
                       {/* 가격정보 */}
                       <div
                         title="가격정보"
-                        style={{ display: 'flex', marginBottom: '10px' }}>
+                        className="flex flex-col justify-around items-start">
                         <div title="가격할인">
                           <p
-                            className=""
-                            style={{
-                              textDecorationLine: 'line-through',
-                              color: 'red',
-                            }}
+                            className="line-through text-red-600"
                             title="정가">
                             500000\
                           </p>
                           <p
-                            className=""
-                            style={{
-                              textDecorationLine: 'underline',
-                              fontSize: '25px',
-                              fontWeight: 'bolder',
-                            }}
+                            className="underline font-bold text-3xl group-hover:text-amber-500 transition-colors"
                             title="할인가">
                             300000\
                           </p>
                         </div>
-                        <span> 40% 할인 </span>
+                        <span> -40% </span>
                       </div>
 
                       {/* 참여 가능인원 */}
-                      <div>
-                        <span>현재 참여 가능인원</span>
+                      <div className="flex flex-col items-end">
+                        <span>잔여 티켓</span>
                         <div>
                           어른 : <span>15명</span>
                         </div>
