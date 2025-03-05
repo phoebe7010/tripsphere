@@ -9,6 +9,7 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 import { FaMapLocationDot } from 'react-icons/fa6';
 import { IoMdTime } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import Aside from './ProductListCompo/aside';
 
 const ProductList = () => {
   return (
@@ -25,7 +26,7 @@ const ProductList = () => {
       </div>
 
       {/* 검색 옵션 패널 */}
-      {/* <Aside /> */}
+      <Aside />
 
       {/* 본문 : 상품페이지 (여행패키지) + 페이지네이션 목록 */}
       <main className="max-w-[1200px] mx-auto py-[20px] px-[20px]">
@@ -38,11 +39,11 @@ const ProductList = () => {
           {[1, 2, 3, 4, 5, 6].map(() => (
             <Link to="/product/0">
               {/* 각 여행패키지 정보*/}
-              <article className="group card bg-base-100 hover:shadow-xl transition-all shadow-sm w-full grid grid-cols-[2fr_5fr]">
+              <article className="group card bg-base-100 hover:shadow-xl transition-shadow shadow-sm w-full grid grid-cols-[2fr_5fr]">
                 {/* 패키지 사진 영역*/}
                 <figure className="p-2.5">
                   <div className="h-full overflow-hidden relative">
-                    <div className="badge badge-secondary absolute top-2.5 left-2.5">
+                    <div className="badge badge-secondary absolute top-2.5 left-2.5 group-hover:shadow-xl transition-shadow shadow-sm">
                       NEW
                     </div>
                     <img
@@ -57,7 +58,7 @@ const ProductList = () => {
                 <div className="card-body flex flex-col">
                   {/* 패키지 이름 */}
                   <h2
-                    className="group-hover:text-amber-500 transition-colors card-title text-5xl mb-3.5"
+                    className="group-hover:text-amber-500 transition-colors card-title text-5xl pb-3.5 border-b-4 border-gray-200"
                     title="여행 패키지 이름">
                     Trip Package Name Here
                   </h2>
@@ -108,7 +109,7 @@ const ProductList = () => {
                       </p>
                     </div>
                     <div
-                      className="flex flex-col "
+                      className="flex flex-col border-l-2 pl-2.5 border-l-gray-200"
                       title="여행 패키지 정보">
                       {/* 가격정보 */}
                       <div
