@@ -10,11 +10,12 @@ import { Link } from 'react-router-dom';
 const products = [
   {
     id: 1,
-    name: 'Throwback Hip Bag',
+    name: '[베스트셀러/W트립]괌 오전출발 5일 두짓비치,전일자유일정진에어항공',
     href: '#',
     color: 'Salmon',
-    price: '10000',
-    quantity: 1,
+    price: '1,002,000',
+    person: 2,
+    date: '2025-04-15 출발',
     imageSrc:
       'https://tailwindui.com/plus-assets/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
     imageAlt:
@@ -22,11 +23,12 @@ const products = [
   },
   {
     id: 2,
-    name: 'Medium Stuff Satchel',
+    name: '[베스트셀러] 방콕/파타야 5일, 추가비용없는 NO옵션,NO가이드경비,요트+차오프라야강 크루즈 탑승',
     href: '#',
     color: 'Blue',
-    price: '20000',
-    quantity: 1,
+    price: '659,000',
+    person: 1,
+    date: '2025-04-15 출발',
     imageSrc:
       'https://tailwindui.com/plus-assets/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
     imageAlt:
@@ -47,10 +49,10 @@ const ShoppingCart = ({ open, setOpen }) => {
 
       <div className="fixed inset-0 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+          <div className="fixed inset-0 flex items-center justify-center">
             <DialogPanel
               transition
-              className="pointer-events-auto w-screen max-w-md transform transition duration-500 ease-in-out data-closed:translate-x-full sm:duration-700">
+              className="w-[70%] h-[90%] bg-white shadow-xl rounded-lg transform transition duration-500 ease-in-out">
               <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                 <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                   <div className="flex items-start justify-between">
@@ -76,11 +78,11 @@ const ShoppingCart = ({ open, setOpen }) => {
                     <div className="flow-root">
                       <ul
                         role="list"
-                        className="-my-6 divide-y divide-gray-200">
+                        className="flex flex-wrap gap-4">
                         {products.map(product => (
                           <li
                             key={product.id}
-                            className="flex py-6">
+                            className="flex w-[48%] h-auto py-6 border border-gray-200 rounded-lg p-4">
                             <input
                               type="checkbox"
                               defaultChecked
@@ -95,27 +97,26 @@ const ShoppingCart = ({ open, setOpen }) => {
                             </div>
 
                             <div className="ml-4 flex flex-1 flex-col">
-                              <div>
-                                <div className="flex justify-between text-base font-medium text-gray-900">
-                                  <h3>
-                                    <a href={product.href}>{product.name}</a>
-                                  </h3>
-                                  <p className="ml-4">{product.price}원</p>
-                                </div>
-                                <p className="mt-1 text-sm text-gray-500">
-                                  {product.color}
+                              <h3 className="text-lg font-bold text-gray-900">
+                                <a href={product.href}>{product.name}</a>
+                              </h3>
+
+                              <div className="flex flex-1 flex-col justify-end">
+                                <p className="text-sm text-gray-500">
+                                  여행 날짜: {product.date}
                                 </p>
-                              </div>
-                              <div className="flex flex-1 items-end justify-between text-sm">
-                                <p className="text-gray-500">
-                                  Qty {product.quantity}
+                                <p className="text-sm text-gray-500 mt-1">
+                                  성인: {product.person}명
                                 </p>
 
-                                <div className="flex">
+                                <div className="mt-4 flex items-center justify-between">
+                                  <p className="text-lg font-medium text-gray-900">
+                                    {product.price}원
+                                  </p>
                                   <button
                                     type="button"
-                                    className="font-medium text-indigo-600 hover:text-indigo-500">
-                                    제거
+                                    className="font-medium bg-indigo-600 text-white px-3 py-1 rounded-md hover:bg-purple-300">
+                                    DELETE
                                   </button>
                                 </div>
                               </div>
@@ -130,7 +131,7 @@ const ShoppingCart = ({ open, setOpen }) => {
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>주문 합계 금액</p>
-                    <p>30000원</p>
+                    <p>1,661,000원</p>
                   </div>
 
                   <div className="mt-6">

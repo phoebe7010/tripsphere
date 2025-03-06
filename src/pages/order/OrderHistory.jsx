@@ -6,172 +6,74 @@ const OrderHistory = () => {
 
   return (
     <div className="max-w-[700px] mx-auto py-[40px]">
-      <h2 className="text-base/7 font-semibold text-gray-900 mb-10">
-        주문 내역
-      </h2>
-
+      <div className="flex">
+        <button
+          type="button"
+          onClick={() => navigate('/mypage')}
+          className="text-base/7 font-semibold text-gray-900 mb-10 pr-3">
+          마이페이지
+        </button>
+        <h2 className="text-base/7 font-semibold text-gray-900 mb-10 pr-3">
+          &gt;
+        </h2>
+        <h2 className="text-base/7 font-semibold text-gray-900 mb-10">
+          내 예약
+        </h2>
+      </div>
       {/* 주문 내역 목록 */}
-      <ul className="list bg-base-100 rounded-box shadow-md">
-        <li className="list-row">
-          <div>
+      <ul className="list bg-base-100 border-1 border-gray-100 rounded-box shadow-md">
+        <li className="flex flex-col mb-2">
+          <div className="flex">
+            <h3 className="p-4">예약번호 : 12121212</h3>
+            <h3 className="p-4">|</h3>
+            <h3 className="p-4">예약 날짜 : 2024년 12월 20일</h3>
+          </div>
+
+          <div className="flex mb-3">
             <img
-              className="size-10 rounded-box"
+              className="mx-4 size-20 rounded-box"
               src="https://img.daisyui.com/images/profile/demo/1@94.webp"
             />
-          </div>
-          <div>
-            <div>Dio Lupa</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              Remaining Reason
+
+            <div className="flex flex-col flex-1">
+              <div className="flex justify-between mx-5 text-2xl">
+                <div>서울 - 파리</div>
+                <div>1,200,000원</div>
+              </div>
+              <div className="mx-5 pt-7">
+                2024년 04월 01일 - 2024년 04월 07일
+              </div>
             </div>
           </div>
-          <p className="list-col-wrap text-xs">
-            "Remaining Reason" became an instant hit, praised for its haunting
-            sound and emotional depth. A viral performance brought it widespread
-            recognition, making it one of Dio Lupa’s most iconic tracks.
-          </p>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M6 3L20 12 6 21 6 3z"></path>
-              </g>
-            </svg>
-          </button>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-              </g>
-            </svg>
-          </button>
         </li>
 
-        <li className="list-row">
-          <div>
-            <img
-              className="size-10 rounded-box"
-              src="https://img.daisyui.com/images/profile/demo/4@94.webp"
-            />
+        <li className="flex flex-col mb-2">
+          <div className="flex">
+            <h3 className="p-4">예약번호 : 12121212</h3>
+            <h3 className="p-4">|</h3>
+            <h3 className="p-4">예약 날짜 : 2024년 12월 20일</h3>
           </div>
-          <div>
-            <div>Ellie Beilish</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              Bears of a fever
-            </div>
-          </div>
-          <p className="list-col-wrap text-xs">
-            "Bears of a Fever" captivated audiences with its intense energy and
-            mysterious lyrics. Its popularity skyrocketed after fans shared it
-            widely online, earning Ellie critical acclaim.
-          </p>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M6 3L20 12 6 21 6 3z"></path>
-              </g>
-            </svg>
-          </button>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-              </g>
-            </svg>
-          </button>
-        </li>
 
-        <li className="list-row">
-          <div>
+          <div className="flex mb-3">
             <img
-              className="size-10 rounded-box"
-              src="https://img.daisyui.com/images/profile/demo/3@94.webp"
+              className="mx-4 size-20 rounded-box"
+              src="https://img.daisyui.com/images/profile/demo/1@94.webp"
             />
-          </div>
-          <div>
-            <div>Sabrino Gardener</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              Cappuccino
+
+            <div className="flex flex-col flex-1">
+              <div className="flex justify-between mx-5 text-2xl">
+                <div>서울 - 뉴욕</div>
+                <div>1,500,000원</div>
+              </div>
+              <div className="mx-5 pt-7">
+                2024년 04월 01일 - 2024년 04월 07일
+              </div>
             </div>
           </div>
-          <p className="list-col-wrap text-xs">
-            "Cappuccino" quickly gained attention for its smooth melody and
-            relatable themes. The song’s success propelled Sabrino into the
-            spotlight, solidifying their status as a rising star.
-          </p>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M6 3L20 12 6 21 6 3z"></path>
-              </g>
-            </svg>
-          </button>
-          <button className="btn btn-square btn-ghost">
-            <svg
-              className="size-[1.2em]"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24">
-              <g
-                strokeLinejoin="round"
-                strokeLinecap="round"
-                strokeWidth="2"
-                fill="none"
-                stroke="currentColor">
-                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-              </g>
-            </svg>
-          </button>
         </li>
       </ul>
 
       {/* 뒤로 가기 버튼 */}
-      <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button
-          type="button"
-          onClick={() => navigate('/mypage')}
-          className="text-sm/6 font-semibold text-gray-900">
-          뒤로 가기
-        </button>
-      </div>
     </div>
   );
 };
