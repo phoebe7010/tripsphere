@@ -10,12 +10,17 @@ const MyPage = () => {
     <div className="max-w-[700px] mx-auto">
       {/* 유저 정보 */}
       <div className="flex py-6">
-        <div className="w-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
+        {/* <div className="w-24 shrink-0 overflow-hidden rounded-md border border-gray-200">
           <img
             src="https://tailwindui.com/plus-assets/img/ecommerce-images/shopping-cart-page-04-product-01.jpg"
             alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
             className="w-full object-cover"
           />
+        </div> */}
+        <div className="avatar">
+          <div className="w-16 rounded-full">
+            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          </div>
         </div>
 
         <div className="ml-4 flex flex-1 flex-col">
@@ -31,7 +36,7 @@ const MyPage = () => {
                 <BiCog />
               </button>
             </div>
-            <p className="mt-1 text-sm text-gray-500">(닉네임)</p>
+            <p className="mt-1 text-sm text-gray-500">hyeran</p>
           </div>
         </div>
       </div>
@@ -65,6 +70,26 @@ const MyPage = () => {
           <div className="stat-title">찜 내역</div>
           <div className="stat-value text-accent">25</div>
           <div className="stat-desc">찜한 상품</div>
+        </div>
+      </div>
+
+      <div
+        tabIndex={0}
+        className="collapse collapse-plus bg-base-100 border-base-300 border ">
+        <div className="collapse-title font-semibold">포인트 내역</div>
+        <div className="collapse-content text-sm">
+          Click the "Sign Up" button in the top right corner and follow the
+          registration process.
+        </div>
+      </div>
+
+      <div
+        tabIndex={1}
+        className="collapse collapse-plus bg-base-100 border-base-300 border  ">
+        <div className="collapse-title font-semibold">주문 내역</div>
+        <div className="collapse-content text-sm">
+          Click the "Sign Up" button in the top right corner and follow the
+          registration process.
         </div>
       </div>
 
