@@ -1,17 +1,29 @@
 import { CiCircleMinus, CiCirclePlus } from 'react-icons/ci';
+import { MdOutlineCancel } from 'react-icons/md';
 
 const Aside = () => {
+  let bgClassName = `group fixed left-16 top-16 z-10 rounded-[30px] border bg-white  border-green-500 p-4 shadow-md`;
+
+  function updateTheme() {
+    let setTheme = `
+    group fixed left-16 top-16 z-10 rounded-[30px] border 
+    ${theme === 'light' ? 'bg-white' : 'bg-black'} 
+    border-green-500 p-4 shadow-md
+    `;
+    bgClassName = setTheme;
+  }
+
   return (
     <>
       {/* 검색 옵션 패널 */}
-      <aside className="fixed left-16 top-16 z-10 rounded-[30px] border border-green-500 bg-white p-4 shadow-md">
+      <aside className={bgClassName}>
         <form className="flex flex-col gap-y-5 p-2.5">
           <div className="flex flex-row items-center justify-between">
             <h2 className="text-lg font-semibold">검색하기</h2>
             <button
               type="button"
-              className="text-sm text-red-500 hover:text-red-700 focus:outline-none border-1 p-1 rounded-md hover:bg-red-100">
-              전부 지우기
+              onClick={() => {}}>
+              <MdOutlineCancel className="text-2xl text-red-500 hover:text-red-700 " />
             </button>
           </div>
 

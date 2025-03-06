@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   BiCart,
   BiChevronLeft,
@@ -7,12 +8,16 @@ import {
 } from 'react-icons/bi';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import { FaMapLocationDot } from 'react-icons/fa6';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { HiOutlineX } from 'react-icons/hi';
 import { IoIosMan, IoMdTime } from 'react-icons/io';
 import { MdChildCare } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Aside from './ProductListCompo/aside';
 
 const ProductList = () => {
+  const [isOnPannel, setIsOnPannel] = useState(false);
+
   return (
     <div>
       <div className="max-w-[1200px] mx-auto py-[20px] px-[20px] mb-[30px]">
@@ -26,8 +31,18 @@ const ProductList = () => {
         </div>
       </div>
 
+      <div
+        className="fixed z-10 bg-white left-3 top-20 w-[5rem] h-[5rem] border-2
+       p-2 cursor-pointer flex justify-center items-center rounded-2xl"
+        onClick={() => {
+          setIsOnPannel(!isOnPannel);
+        }}>
+        {!isOnPannel && <GiHamburgerMenu className="text-5xl" />}
+        {isOnPannel && <HiOutlineX className="text-5xl" />}
+      </div>
+
       {/* 검색 옵션 패널 */}
-      <Aside />
+      {isOnPannel && <Aside />}
 
       {/* 본문 : 상품페이지 (여행패키지) + 페이지네이션 목록 */}
       <main className="max-w-[1200px] mx-auto py-[20px] px-[20px]">
@@ -48,7 +63,7 @@ const ProductList = () => {
                       NEW
                     </div>
                     <img
-                      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                      src="https://i.ibb.co/JjbW5yMn/andrew-ruiz-fmz-B9-At9i-Q-unsplash-1024x357.jpg"
                       alt=""
                       className="h-full object-cover rounded-md"
                     />
@@ -83,7 +98,7 @@ const ProductList = () => {
                             className="flex gap-1 items-center">
                             <FaRegCalendarAlt className="text-base" />
                             <p className="font-bold">시작일자</p>
-                            <time datetime="2025-04-01">2025-04-01</time>
+                            <time dateTime="2025-04-01">2025-04-01</time>
                           </div>
 
                           <div
@@ -91,7 +106,7 @@ const ProductList = () => {
                             className="flex gap-1 items-center">
                             <FaRegCalendarAlt className="text-base" />
                             <p className="font-bold">종료일자</p>
-                            <time datetime="2025-04-03">2025-04-03</time>
+                            <time dateTime="2025-04-03">2025-04-03</time>
                           </div>
                         </div>
                         <div>
