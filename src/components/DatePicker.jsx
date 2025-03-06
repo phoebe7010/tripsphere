@@ -20,7 +20,7 @@ const DatePicker = ({ openDate, setOpenDate }) => {
   return (
     <div
       ref={ref}
-      className="relative z-50">
+      className="relative">
       <input
         type="text"
         className="input bg-base-200 w-full"

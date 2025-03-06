@@ -1,6 +1,7 @@
 import { BiTv, BiMap } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { BiShareAlt, BiCart, BiHeart } from 'react-icons/bi';
+import KakaoMap from '../../components/KakaoMap';
 
 const product = {
   name: 'Basic Tee 6-Pack',
@@ -63,8 +64,8 @@ const ProductDetail = () => {
       {/* 상품 헤더 */}
       <div className="lg:flex lg:items-center lg:justify-between">
         <div className="min-w-0 flex-1">
-          <h2 className="text-2xl/7 font-bold text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-            여행 상품 제목
+          <h2 className="text-2xl/7 font-bold sm:truncate sm:text-3xl sm:tracking-tight">
+            양평 독채 풀빌라 스테이호은
           </h2>
         </div>
 
@@ -109,141 +110,141 @@ const ProductDetail = () => {
 
       <div>
         <div className="pt-6">
-          {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb">
-            <ol
-              role="list"
-              className="mx-auto flex max-w-2xl items-center space-x-2   lg:max-w-7xl">
-              {product.breadcrumbs.map(breadcrumb => (
-                <li key={breadcrumb.id}>
-                  <div className="flex items-center">
-                    <a
-                      href={breadcrumb.href}
-                      className="mr-2 text-sm font-medium text-gray-900">
-                      {breadcrumb.name}
-                    </a>
-                    <svg
-                      fill="currentColor"
-                      width={16}
-                      height={20}
-                      viewBox="0 0 16 20"
-                      aria-hidden="true"
-                      className="h-5 w-4 text-gray-300">
-                      <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                    </svg>
-                  </div>
-                </li>
-              ))}
-              <li className="text-sm">
-                <a
-                  href={product.href}
-                  aria-current="page"
-                  className="font-medium text-gray-500 hover:text-gray-600">
-                  {product.name}
-                </a>
-              </li>
-            </ol>
-          </nav>
-
           {/* 이미지 갤러리*/}
-          <div className="mx-auto mt-6 max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 ">
+          <div className="mx-auto mt-6 max-w-2xl lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-2">
             <img
               alt={product.images[0].alt}
               src={product.images[0].src}
-              className="hidden size-full rounded-lg object-cover lg:block"
+              className="hidden size-full rounded-l-lg object-cover lg:block"
             />
-            <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
+            <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-2">
               <img
                 alt={product.images[1].alt}
                 src={product.images[1].src}
-                className="aspect-3/2 w-full rounded-lg object-cover"
+                className="aspect-3/2 w-full object-cover"
               />
               <img
                 alt={product.images[2].alt}
                 src={product.images[2].src}
-                className="aspect-3/2 w-full rounded-lg object-cover"
+                className="aspect-3/2 w-full object-cover"
               />
             </div>
             <img
               alt={product.images[3].alt}
               src={product.images[3].src}
-              className="aspect-4/5 size-full object-cover sm:rounded-lg lg:aspect-auto"
+              className="aspect-4/5 size-full object-cover sm:rounded-r-lg lg:aspect-auto"
             />
           </div>
         </div>
       </div>
 
       {/* 상품 상세 정보 */}
-      <div className="flex space-y-6 gap-10 py-[30px]">
-        <div>
+      <div className="flex space-y-6 gap-10 mt-[30px]">
+        <div className="flex-1">
           <div className="px-4 sm:px-0">
             <h3 className="text-base/7 font-semibold text-gray-900">
-              가평군, 한국의 집 전체
+              양평군, 한국의 별장 전체
             </h3>
             <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">
-              최대 인원 4명침실 1개침대 1개욕실 1개
+              최대 인원 8명침실 2개침대 2개욕실 2개
             </p>
           </div>
           <div className="mt-6 border-t border-gray-100">
-            <dl className="divide-y divide-gray-100">
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm/6 font-medium text-gray-900">숙소명</dt>
-                <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  가평군/가족/리버뷰/바베큐#29638
-                </dd>
-              </div>
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm/6 font-medium text-gray-900">
-                  호스트 연락처
-                </dt>
-                <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  020-0000-0000
-                </dd>
-              </div>
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm/6 font-medium text-gray-900">소개</dt>
-                <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-                  incididunt cillum culpa consequat. Excepteur qui ipsum aliquip
-                  consequat sint. Sit id mollit nulla mollit nostrud in ea
-                  officia proident. Irure nostrud pariatur mollit ad adipisicing
-                  reprehenderit deserunt qui eu.
-                </dd>
-              </div>
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm/6 font-medium text-gray-900">서비스</dt>
-                <dd className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                  <ul
-                    role="list"
-                    className="divide-y divide-gray-100 rounded-md border border-gray-200">
-                    <li className="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6">
-                      <div className="flex w-0 flex-1 items-center">
-                        <div className="ml-4 flex min-w-0 flex-1 gap-2 items-center">
-                          <span className="shrink-0 text-gray-400">
-                            <BiTv />
-                          </span>
-                          <span className="truncate font-medium">
-                            최고의 전망
-                          </span>
-                        </div>
+            <div className="divide-y divide-gray-100">
+              <div className="px-4 py-6 gap-4 sm:px-0 text-sm/6 text-gray-70">
+                <ul
+                  role="list"
+                  className="grid grid-cols-2 divide-y divide-gray-100 rounded-md border border-gray-200">
+                  <div className="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6">
+                    <div className="flex w-0 flex-1 items-center">
+                      <div className="ml-4 flex min-w-0 flex-1 gap-2 items-center">
+                        <span className="shrink-0 text-gray-400">
+                          <BiTv className="text-xl" />
+                        </span>
+                        <span className="truncate font-medium">
+                          최고의 전망
+                        </span>
                       </div>
-                    </li>
-                    <li className="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6">
-                      <div className="flex w-0 flex-1 items-center">
-                        <div className="ml-4 flex min-w-0 flex-1 gap-2 items-center">
-                          <span className="shrink-0 text-gray-400">
-                            <BiMap />
-                          </span>
-                          <span className="truncate font-medium">
-                            최고의 위치
-                          </span>
-                        </div>
+                    </div>
+                  </div>
+                  <li className="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6">
+                    <div className="flex w-0 flex-1 items-center">
+                      <div className="ml-4 flex min-w-0 flex-1 gap-2 items-center">
+                        <span className="shrink-0 text-gray-400">
+                          <BiMap className="text-xl" />
+                        </span>
+                        <span className="truncate font-medium">
+                          최고의 위치
+                        </span>
                       </div>
-                    </li>
-                  </ul>
-                </dd>
+                    </div>
+                  </li>
+                  <li className="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6">
+                    <div className="flex w-0 flex-1 items-center">
+                      <div className="ml-4 flex min-w-0 flex-1 gap-2 items-center">
+                        <span className="shrink-0 text-gray-400">
+                          <BiMap className="text-xl" />
+                        </span>
+                        <span className="truncate font-medium">
+                          최고의 위치
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
-            </dl>
+              <div className="px-4 py-6 gap-4 sm:px-0 text-sm/6 text-gray-70">
+                <ul className="list">
+                  <li className="list-row px-0 py-0">
+                    <div>
+                      <img
+                        className="size-10 rounded-box"
+                        src="https://img.daisyui.com/images/profile/demo/1@94.webp"
+                      />
+                    </div>
+                    <div>
+                      <div className="font-bold">호스트: 홍길동</div>
+                      <div className="text-xs uppercase opacity-60">
+                        호스트 경력 3년
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div className="px-4 py-6 gap-4 sm:px-0 text-sm/6 text-gray-70">
+                <div className="mb-4 line-clamp-3">
+                  예약 전 숙소 이용 안내 및 이용 수칙을 반드시 읽어주세요.
+                  "일상에서 벗어난 단 하루, 나만의 은신처에서 온전한 휴식을…"
+                  '호젓한 은신처'를 의미하는 '호은'. 예약 전 숙소 이용 안내 및
+                  이용 수칙을 반드시 읽어주세요. "일상에서 벗어난 단 하루,
+                  나만의 은신처에서 온전한 휴식을…" '호젓한 은신처'를 의미하는
+                  '호은'.
+                </div>
+
+                <button
+                  className="btn"
+                  onClick={() =>
+                    document.getElementById('my_modal_1').showModal()
+                  }>
+                  더 보기
+                </button>
+                <dialog
+                  id="my_modal_1"
+                  className="modal">
+                  <div className="modal-box">
+                    <h3 className="font-bold text-lg">Hello!</h3>
+                    <p className="py-4">
+                      Press ESC key or click the button below to close
+                    </p>
+                    <div className="modal-action">
+                      <form method="dialog">
+                        <button className="btn">Close</button>
+                      </form>
+                    </div>
+                  </div>
+                </dialog>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -275,7 +276,7 @@ const ProductDetail = () => {
                 <button
                   type="submit"
                   onClick={() => navigate('/checkout')}
-                  class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
+                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
                   주문하기
                 </button>
               </div>
@@ -291,12 +292,14 @@ const ProductDetail = () => {
             <div className="px-4 sm:px-0">
               <h3 className="text-base/7 font-semibold text-gray-900">위치</h3>
               <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">
-                가평군, 경기도, 한국
+                양평군, 경기도, 한국
               </p>
             </div>
             <div className="mt-6 border-t border-gray-100">
               <div className="divide-y divide-gray-100">
-                <div className="py-4">카카오맵</div>
+                <div className="py-4">
+                  <KakaoMap />
+                </div>
               </div>
             </div>
           </div>
