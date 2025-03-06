@@ -26,6 +26,7 @@
 | **react-date-range**           | `npm install --save react-date-range`      |  [React Date Range](https://github.com/hypeserver/react-date-range) |
 | **date-fns**                   | `npm install --save date-fns`              | |
 | **react-use**                  | `npm install react-use`                    | |
+| **kakao-map**                  | `npm install react-kakao-maps-sdk`     | [Kakao maps sdk](https://react-kakao-maps-sdk.jaeseokim.dev/docs/sample/) |
 
 
 <br/>
