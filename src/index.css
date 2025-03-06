@@ -8,3 +8,7 @@
 .rdrDateDisplayWrapper {
   display: none;
 }
+
+.rdrDateRangePickerWrapper {
+  z-index: 1;
+}

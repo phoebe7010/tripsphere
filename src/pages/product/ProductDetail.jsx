@@ -1,16 +1,19 @@
 import { BiTv, BiMap } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
-import { BiShareAlt, BiCart, BiHeart } from 'react-icons/bi';
+import { BiCart, BiHeart } from 'react-icons/bi';
 import KakaoMap from '../../components/KakaoMap';
+import DateSelector from '../../components/DateSelector';
+import PeopleSelector from '../../components/PeopleSelector';
+import { useState } from 'react';
+import { formatNumber } from '../../utils/format';
+import KakaoShareButton from '../../components/KakaoShareButton';
 
 const product = {
-  name: 'Basic Tee 6-Pack',
-  price: '$192',
-  href: '#',
-  breadcrumbs: [
-    { id: 1, name: 'Men', href: '#' },
-    { id: 2, name: 'Clothing', href: '#' },
-  ],
+  name: '양평 독채 풀빌라 스테이호은',
+  totalPrice: '120000',
+  productPrice: '40000',
+  serviceFee: '80000',
+  location: '양평군, 경기도, 한국',
   images: [
     {
       src: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
@@ -29,35 +32,18 @@ const product = {
       alt: 'Model wearing plain white basic tee.',
     },
   ],
-  colors: [
-    { name: 'White', class: 'bg-white', selectedClass: 'ring-gray-400' },
-    { name: 'Gray', class: 'bg-gray-200', selectedClass: 'ring-gray-400' },
-    { name: 'Black', class: 'bg-gray-900', selectedClass: 'ring-gray-900' },
-  ],
-  sizes: [
-    { name: 'XXS', inStock: false },
-    { name: 'XS', inStock: true },
-    { name: 'S', inStock: true },
-    { name: 'M', inStock: true },
-    { name: 'L', inStock: true },
-    { name: 'XL', inStock: true },
-    { name: '2XL', inStock: true },
-    { name: '3XL', inStock: true },
-  ],
-  description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
-  highlights: [
-    'Hand cut and sewn locally',
-    'Dyed with our proprietary colors',
-    'Pre-washed & pre-shrunk',
-    'Ultra-soft 100% cotton',
-  ],
-  details:
-    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+  description: `  예약 전 숙소 이용 안내 및 이용 수칙을 반드시 읽어주세요.
+                  "일상에서 벗어난 단 하루, 나만의 은신처에서 온전한 휴식을…"
+                  '호젓한 은신처'를 의미하는 '호은'. 예약 전 숙소 이용 안내 및
+                  이용 수칙을 반드시 읽어주세요. "일상에서 벗어난 단 하루,
+                  나만의 은신처에서 온전한 휴식을…" '호젓한 은신처'를 의미하는
+                  '호은'.`,
 };
 
 const ProductDetail = () => {
   const navigate = useNavigate();
+  const [openDate, setOpenDate] = useState(false);
+  const [productId, setProductId] = useState(0);
 
   return (
     <div className="max-w-[1200px] mx-auto px-[20px] py-[40px]">
@@ -65,21 +51,19 @@ const ProductDetail = () => {
       <div className="lg:flex lg:items-center lg:justify-between">
         <div className="min-w-0 flex-1">
           <h2 className="text-2xl/7 font-bold sm:truncate sm:text-3xl sm:tracking-tight">
-            양평 독채 풀빌라 스테이호은
+            {product.name}
           </h2>
         </div>
 
         <div className="mt-5 flex lg:mt-0 lg:ml-4">
           <span className="hidden sm:block">
-            <button
-              type="button"
-              className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
-              <BiShareAlt
-                aria-hidden="true"
-                className="mr-1.5 -ml-0.5 size-5 text-gray-400"
-              />
-              공유하기
-            </button>
+            <KakaoShareButton
+              hasText
+              title={product.name}
+              description={product.description}
+              imageUrl={product.images[0].src}
+              pageUrl={window.location.origin + '/product/' + productId}
+            />
           </span>
 
           <span className="ml-3 hidden sm:block">
@@ -212,14 +196,7 @@ const ProductDetail = () => {
                 </ul>
               </div>
               <div className="px-4 py-6 gap-4 sm:px-0 text-sm/6 text-gray-70">
-                <div className="mb-4 line-clamp-3">
-                  예약 전 숙소 이용 안내 및 이용 수칙을 반드시 읽어주세요.
-                  "일상에서 벗어난 단 하루, 나만의 은신처에서 온전한 휴식을…"
-                  '호젓한 은신처'를 의미하는 '호은'. 예약 전 숙소 이용 안내 및
-                  이용 수칙을 반드시 읽어주세요. "일상에서 벗어난 단 하루,
-                  나만의 은신처에서 온전한 휴식을…" '호젓한 은신처'를 의미하는
-                  '호은'.
-                </div>
+                <div className="mb-4 line-clamp-3">{product.description}</div>
 
                 <button
                   className="btn"
@@ -232,10 +209,8 @@ const ProductDetail = () => {
                   id="my_modal_1"
                   className="modal">
                   <div className="modal-box">
-                    <h3 className="font-bold text-lg">Hello!</h3>
-                    <p className="py-4">
-                      Press ESC key or click the button below to close
-                    </p>
+                    <h3 className="font-bold text-lg">{product.name}</h3>
+                    <p className="py-4">{product.description}</p>
                     <div className="modal-action">
                       <form method="dialog">
                         <button className="btn">Close</button>
@@ -251,32 +226,44 @@ const ProductDetail = () => {
         <div>
           <div className="card bg-base-100 w-96 shadow-sm">
             <div className="card-body">
-              <h2 className="card-title">Card title!</h2>
-              <fieldset className="fieldset bg-base-200 border border-base-300 p-4 rounded-box">
-                <label className="fieldset-label">체크인</label>
-                <input
-                  type="date"
-                  className="input"
+              <h2 className="card-title">예약 정보</h2>
+              <fieldset className="fieldset border border-base-300 p-4 rounded-box">
+                <DateSelector
+                  openDate={openDate}
+                  setOpenDate={setOpenDate}
                 />
 
-                <label className="fieldset-label">체크아웃</label>
-                <input
-                  type="date"
-                  className="input"
-                />
-
-                <label className="fieldset-label">인원</label>
-                <input
-                  type="text"
-                  className="input"
-                  placeholder="Name"
-                />
+                <PeopleSelector />
               </fieldset>
+
+              <div className="flex justify-between py-2">
+                <p>주문 금액</p>
+                <p className="flex justify-end">
+                  {formatNumber(product.productPrice)}원
+                </p>
+              </div>
+
+              <div className="flex justify-between py-2">
+                <p>TRIPSPHERE 서비스 수수료</p>
+                <p className="flex justify-end">
+                  {formatNumber(product.serviceFee)}원
+                </p>
+              </div>
+
+              <div className="border-t border-gray-200">
+                <div className="flex justify-between py-4">
+                  <p>주문 합계 금액</p>
+                  <p className="flex justify-end">
+                    {formatNumber(product.totalPrice)}원
+                  </p>
+                </div>
+              </div>
+
               <div className="card-actions justify-end">
                 <button
                   type="submit"
                   onClick={() => navigate('/checkout')}
-                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
                   주문하기
                 </button>
               </div>
@@ -292,7 +279,7 @@ const ProductDetail = () => {
             <div className="px-4 sm:px-0">
               <h3 className="text-base/7 font-semibold text-gray-900">위치</h3>
               <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">
-                양평군, 경기도, 한국
+                {product.location}
               </p>
             </div>
             <div className="mt-6 border-t border-gray-100">
