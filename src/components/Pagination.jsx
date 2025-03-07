@@ -1,4 +1,5 @@
 import React from 'react';
+import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
 const Pagination = () => {
   return (
