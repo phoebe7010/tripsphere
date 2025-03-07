@@ -1,23 +1,20 @@
 import React from 'react';
-import {
-  BiCart,
-  BiHeart,
-  BiShareAlt,
-  BiCalendarAlt,
-  BiTime,
-} from 'react-icons/bi';
+import { BiCart, BiHeart, BiCalendarAlt, BiTime } from 'react-icons/bi';
 import { IoIosMan } from 'react-icons/io';
 import { MdChildCare } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import KakaoShareButton from './KakaoShareButton';
+import { formatNumber } from '../utils/format';
+import { calculateDiscountedPrice } from '../utils/discountedPrice';
 
-const ProductCard = ({ index, array }) => {
+const ProductCard = ({ index, product }) => {
   return (
     <Link to="/product/0">
       {/* 각 여행패키지 정보*/}
       <article
         className={`group card bg-base-100 transition-shadow grid grid-cols-[2fr_5fr] gap-[20px] ${
           index === 0 ? 'pb-[30px]' : 'py-[30px]'
-        } ${index !== array.length - 1 ? 'border-b border-gray-200' : ''}`}>
+        } ${index !== product.length - 1 ? 'border-b border-gray-200' : ''}`}>
         {/* 패키지 사진 영역*/}
         <figure>
           <div className="h-full relative">
@@ -41,14 +38,12 @@ const ProductCard = ({ index, array }) => {
             </div>
             <div class="flex gap-2">
               <span className="hidden sm:block">
-                <button
-                  type="button"
-                  className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
-                  <BiShareAlt
-                    aria-hidden="true"
-                    className="size-5 text-gray-400"
-                  />
-                </button>
+                <KakaoShareButton
+                  title={product.name}
+                  description={product.description}
+                  imageUrl={product.images[0].src}
+                  pageUrl={window.location.origin + '/product/0'}
+                />
               </span>
 
               <span className="hidden sm:block">
@@ -77,7 +72,7 @@ const ProductCard = ({ index, array }) => {
           <h2
             className=" transition-colors card-title text-2xl pb-3.5 border-b-1 border-gray-200"
             title="여행 패키지 이름">
-            Trip Package Name Here
+            {product.name}
           </h2>
 
           {/* 패키지 정보 */}
@@ -116,10 +111,7 @@ const ProductCard = ({ index, array }) => {
               <p
                 className="line-clamp-2"
                 title="패키지 설명">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Assumenda, maiores nam, officiis earum id, perspiciatis
-                inventore beatae eligendi tempore deleniti quos repudiandae eius
-                ipsam ex. Quam animi qui atque dolor.
+                {product.description}
               </p>
             </div>
 
@@ -134,19 +126,25 @@ const ProductCard = ({ index, array }) => {
                   <p
                     className="line-through text-red-600"
                     title="정가">
-                    500000원
+                    {formatNumber(product.totalPrice)}원
                   </p>
                   <p
                     className="underline font-bold text-2xl transition-colors"
                     title="할인가">
-                    300000원
+                    {formatNumber(
+                      calculateDiscountedPrice(
+                        product.totalPrice,
+                        product.discount,
+                      ),
+                    )}
+                    원
                   </p>
                 </div>
-                <span> -40% </span>
+                <span> -{product.discount}% </span>
               </div>
 
               {/* 참여 가능인원 */}
-              <div className="flex flex-col items-end">
+              {/* <div className="flex flex-col items-end">
                 <span>잔여 티켓</span>
                 <div className="flex gap-x-1 items-center">
                   <span>
@@ -162,7 +160,7 @@ const ProductCard = ({ index, array }) => {
                   <span>어린이 : </span>
                   <span>15명</span>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

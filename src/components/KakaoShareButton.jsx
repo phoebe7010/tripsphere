@@ -22,7 +22,9 @@ const KakaoShareButton = ({
     document.head.appendChild(script);
   }, []);
 
-  const handleShareClick = () => {
+  const handleShareClick = e => {
+    e.preventDefault();
+
     if (window.Kakao && isKakaoLoaded) {
       window.Kakao.Link.sendDefault({
         objectType: 'feed',

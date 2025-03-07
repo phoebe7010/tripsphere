@@ -40,6 +40,7 @@ const product = {
     career: '3',
   },
 };
+
 const ProductDetail = () => {
   const [productId, setProductId] = useState(0);
 
