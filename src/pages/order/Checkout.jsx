@@ -89,34 +89,28 @@ const Checkout = () => {
   const [openDate, setOpenDate] = useState(false);
 
   return (
-    <div className="max-w-[1200px] mx-auto px-[20px] py-[40px]">
+    <div className="max-w-[1200px] mx-auto px-[20px] py-[40px] dark:text-gray-200">
       <div className="flex space-y-6 gap-10 py-[30px] max-lg:flex-col max-lg:items-center">
         {/* 주문 결제 정보 */}
         <div className="flex-10/12 max-lg:w-full">
           <div className="px-4 sm:px-0">
-            <h3 className="text-base/7 font-semibold text-gray-900">
-              주문 결제
-            </h3>
-            <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">
+            <h3 className="text-base/7 font-semibold">주문 결제</h3>
+            <p className="mt-1 max-w-2xl text-sm/6 text-gray-500 dark:text-gray-400">
               결제 정보를 확인해 주세요.
             </p>
           </div>
 
-          <div className="mt-6 border-t border-gray-900">
+          <div className="mt-6 border-t ">
             <dl className="divide-y divide-gray-100">
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm/6 font-medium text-gray-900">
-                  여행 패키지
-                </dt>
-                <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
+                <dt className="text-sm/6 font-medium">여행 패키지</dt>
+                <dd className="mt-1 text-sm/6  sm:col-span-2 sm:mt-0">
                   {receiveData.accommodations.name}
                 </dd>
               </div>
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm/6 font-medium text-gray-900">
-                  예약 정보
-                </dt>
-                <dd className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                <dt className="text-sm/6 font-medium ">예약 정보</dt>
+                <dd className="mt-2 text-sm sm:col-span-2 sm:mt-0">
                   <ul
                     role="list"
                     className="divide-y divide-gray-200 rounded-md border border-gray-200">
@@ -153,24 +147,22 @@ const Checkout = () => {
                 </dd>
               </div>
 
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm/6 font-medium text-gray-900">
-                  호스트 연락처
-                </dt>
-                <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
+              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 ">
+                <dt className="text-sm/6 font-medium">호스트 연락처</dt>
+                <dd className="mt-1 text-sm/6 sm:col-span-2 sm:mt-0">
                   {receiveData.accommodations.host.contact}
                 </dd>
               </div>
 
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm/6 font-medium text-gray-900">소개</dt>
-                <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
+                <dt className="text-sm/6 font-medium ">숙소 소개</dt>
+                <dd className="mt-1 text-sm/6 sm:col-span-2 sm:mt-0">
                   {receiveData.accommodations.description}
                 </dd>
               </div>
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm/6 font-medium text-gray-900">서비스</dt>
-                <dd className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                <dt className="text-sm/6 font-medium">서비스</dt>
+                <dd className="mt-2 text-sm sm:col-span-2 sm:mt-0">
                   <ul
                     role="list"
                     className="divide-y divide-gray-100 rounded-md border border-gray-200">

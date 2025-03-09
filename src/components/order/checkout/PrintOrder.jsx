@@ -1,6 +1,6 @@
 const PrintOrder = ({ receiveData }) => {
   return (
-    <>
+    <div className="dark:font-bold">
       <h2 className="card-title mb-2">최종 결제 금액</h2>
 
       <div className="flex justify-between py-2">
@@ -24,7 +24,7 @@ const PrintOrder = ({ receiveData }) => {
             {receiveData.reservation.order_info.order_total}원
           </p>
         </div>
-        <div className="flex justify-between py-4 text-red-600">
+        <div className="flex justify-between py-4 text-red-600 dark:text-red-400">
           <p>사용 포인트</p>
           <p className="flex justify-end">
             {receiveData.user.points >=
@@ -50,7 +50,7 @@ const PrintOrder = ({ receiveData }) => {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
