@@ -35,7 +35,7 @@ const ProductCard = ({ index, product }) => {
               <div className="badge badge-soft badge-secondary">NEW</div>
               <div className="badge badge-soft badge-info">서울</div>
             </div>
-            <div class="flex gap-2">
+            <div className="flex gap-2">
               <span className="hidden sm:block">
                 <KakaoShareButton
                   title={product.name}
