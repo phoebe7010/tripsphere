@@ -13,11 +13,13 @@ const products = [
     location: '양평군, 경기도, 한국',
     images: [
       {
-        src: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
+        src: 'https://imgur.com/a/PpgWsfW',
+        // src: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
         alt: 'Two each of gray, white, and black shirts laying flat.',
       },
       {
-        src: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
+        src: 'https://imgur.com/a/r6B59wX',
+        // src: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
         alt: 'Model wearing plain black basic tee.',
       },
       {
@@ -51,11 +53,13 @@ const products = [
     location: '양평군, 경기도, 한국',
     images: [
       {
-        src: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
+        src: 'https://imgur.com/a/PpgWsfW',
+        // src: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
         alt: 'Two each of gray, white, and black shirts laying flat.',
       },
       {
-        src: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
+        src: 'https://imgur.com/a/r6B59wX',
+        // src: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
         alt: 'Model wearing plain black basic tee.',
       },
       {
@@ -94,6 +98,7 @@ const ProductList = () => {
         <div className="content flex-1">
           {products.map((product, index) => (
             <ProductCard
+              key={index}
               index={index}
               product={product}
             />
