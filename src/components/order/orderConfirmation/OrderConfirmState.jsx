@@ -25,9 +25,7 @@ const OrderState = ({ order }) => {
   return (
     <div className="flex flex-col justify-center items-center gap-4 h-83 ">
       <State size={50} />
-      <h1 className="text-4xl font-semibold tracking-tight text-gray-900 ">
-        {message}
-      </h1>
+      <h1 className="text-4xl font-semibold tracking-tight">{message}</h1>
 
       <div className="p-5 text-sm font-semibold">
         <p>주문 번호 : {order.order_id}</p>

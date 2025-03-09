@@ -10,14 +10,15 @@ const RecommandProduct = ({ products }) => {
         <Link to="/">
           <li
             key={index}
-            className="w-50 max-[53rem]:w-full shadow-xl rounded-2xl p-3 flex flex-col gap-3 hover:-translate-1 transition-transform hover:cursor-pointer">
+            className="group w-50 max-[53rem]:w-full shadow-lg rounded-2xl p-3 flex flex-col gap-3 hover:-translate-1 transition-transform hover:cursor-pointer
+            dark:shadow-gray-700 hover:shadow-2xl dark:hover:shadow-gray-500">
             <img
               src={product.images[0].src}
               alt={product.images[0].alt}
               className="object-cover h-40 rounded-2xl"
             />
-            <div className="flex flex-col gap-1.5">
-              <p>{product.name}</p>
+            <div className="flex flex-col gap-1.5 font-semibold">
+              <p className="group-hover:font-extrabold">{product.name}</p>
               <div className="flex flex-col justify-between max-[53rem]:flex-row">
                 <div className="flex justify-between max-[53rem]:flex-col max-[53rem]:justify-around mb-1">
                   <div className="flex justify-start items-center text-yellow-500 max-[53rem]:text-2xl ">
