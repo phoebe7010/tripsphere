@@ -56,7 +56,7 @@ const SideFilter = () => {
                 <label
                   htmlFor={ele}
                   key={ele}
-                  className="flex items-center space-x-2 cursor-pointer hover:bg-gray-200 transition-colors">
+                  className="flex items-center space-x-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                   <input
                     type="checkbox"
                     defaultChecked
@@ -80,7 +80,7 @@ const SideFilter = () => {
                 <label
                   htmlFor={ele}
                   key={ele}
-                  className="flex items-center space-x-2 cursor-pointer hover:bg-gray-200 transition-colors">
+                  className="flex items-center space-x-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                   <input
                     type="checkbox"
                     defaultChecked
@@ -121,7 +121,7 @@ const SideFilter = () => {
             </div>
           </fieldset>
 
-          <fieldset className="fieldset border border-base-300 p-4 rounded-box">
+          <fieldset className="fieldset border border-base-300 p-4 rounded-box dark:border-white">
             <legend className="fieldset-legend px-2 font-medium">일정</legend>
             <DateSelector
               openDate={openDate}
