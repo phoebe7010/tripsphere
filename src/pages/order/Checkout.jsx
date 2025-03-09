@@ -1,25 +1,25 @@
-import { BiTv } from 'react-icons/bi';
-import { CiCircleMinus, CiCirclePlus } from 'react-icons/ci';
-import { FaRegCalendarAlt } from 'react-icons/fa';
+import { useState } from 'react';
+import { BiHotel, BiTv } from 'react-icons/bi';
 import { FaMapLocationDot } from 'react-icons/fa6';
-import { IoIosMan } from 'react-icons/io';
-import { MdChildCare } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import DateSelector from '../../components/DateSelector';
 import LiElement from '../../components/order/checkout/ListLiElements';
 import PrintOrder from '../../components/order/checkout/PrintOrder';
+import PeopleSelector from '../../components/PeopleSelector';
 
 const receiveData = {
   // 숙박 시설 정보
   accommodations: {
     accommodation_id: '숙소 고유번호',
-    name: '숙소 이름',
-    type: '숙소 유형',
+    name: '양평 독채 풀빌라 스테이호은',
+    type: '호텔',
     loaction: {
       latitude: 123.4512,
       longitude: 123.123,
-      place_name: '지역 이름',
+      place_name: '양평군',
     },
-    description: '숙소 설명',
+    description:
+      "예약 전 숙소 이용 안내 및 이용 수칙을 반드시 읽어주세요. '호젓한 은신처'를 의미하는 '호은'.",
     original_price: 100000,
     discount_rate: 5,
     final_price: 0,
@@ -85,6 +85,7 @@ const orderData = {
 
 const Checkout = () => {
   const navigate = useNavigate();
+  const [openDate, setOpenDate] = useState(false);
 
   return (
     <div className="max-w-[1200px] mx-auto px-[20px] py-[40px]">
@@ -117,91 +118,32 @@ const Checkout = () => {
                 <dd className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                   <ul
                     role="list"
-                    className="divide-y divide-gray-100 rounded-md border border-gray-200">
+                    className="divide-y divide-gray-200 rounded-md border border-gray-200">
                     <LiElement
                       IconComponent={FaMapLocationDot}
-                      Title={'여행지'}
-                      description={'가평군'}
+                      Title={'숙소 위치'}
+                      description={
+                        receiveData.accommodations.loaction.place_name
+                      }
                     />
 
                     <LiElement
-                      IconComponent={FaRegCalendarAlt}
-                      Title={'체크인'}
-                      description={receiveData.reservation.check_info.check_in}
+                      IconComponent={BiHotel}
+                      Title={'숙박 시설'}
+                      description={receiveData.accommodations.type}
                     />
-                    <LiElement
-                      IconComponent={FaRegCalendarAlt}
-                      Title={'체크아웃'}
-                      description={receiveData.reservation.check_info.check_out}
-                    />
-                  </ul>
-                </dd>
-              </div>
 
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 ">
-                <dt className="text-sm/6 font-medium text-gray-900">
-                  예약 인원
-                </dt>
-
-                <dd className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                  <ul
-                    role="list"
-                    className="divide-y divide-gray-100 rounded-md border border-gray-200">
-                    <li className="flex justify-between items-center py-4 pl-4 pr-4">
-                      <div className="flex flex-1 items-center gap-2 ml-4">
-                        <span className="text-gray-400">
-                          <IoIosMan className="text-2xl" />
-                        </span>
-                        <span className="font-medium">성인</span>
-                      </div>
-
-                      <div className="flex items-center">
-                        <button type="button">
-                          <CiCircleMinus className="text-3xl text-gray-300 hover:text-gray-500" />
-                        </button>
-                        <input
-                          type="number"
-                          className="mx-2 w-10 rounded border border-gray-300 p-1 text-center focus:border-gray-900 focus:outline-none"
-                          min="0"
+                    <li>
+                      <fieldset className="fieldset py-4 px-6">
+                        <DateSelector
+                          openDate={openDate}
+                          setOpenDate={setOpenDate}
                         />
-                        <button type="button">
-                          <CiCirclePlus className="text-3xl text-gray-300 hover:text-gray-500" />
-                        </button>
-                      </div>
-                    </li>
 
-                    <li className="flex justify-between items-center py-4 pl-4 pr-4">
-                      <div className="flex flex-1 items-center gap-2 ml-4">
-                        <span className="text-gray-400">
-                          <MdChildCare className="text-2xl" />
-                        </span>
-                        <span className="font-medium">청소년</span>
-                      </div>
-
-                      <div className="flex items-center">
-                        <button type="button">
-                          <CiCircleMinus className="text-3xl text-gray-300 hover:text-gray-500" />
-                        </button>
-                        <input
-                          type="number"
-                          className="mx-2 w-10 rounded border border-gray-300 p-1 text-center focus:border-gray-900 focus:outline-none"
-                          min="0"
-                        />
-                        <button type="button">
-                          <CiCirclePlus className="text-3xl text-gray-300 hover:text-gray-500" />
-                        </button>
-                      </div>
+                        <PeopleSelector />
+                      </fieldset>
                     </li>
                   </ul>
-                </dd>
-              </div>
-
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm/6 font-medium text-gray-900">
-                  숙박 장소
-                </dt>
-                <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {receiveData.accommodations.type}
                 </dd>
               </div>
 
