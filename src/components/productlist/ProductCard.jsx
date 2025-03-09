@@ -1,11 +1,9 @@
 import React from 'react';
-import { BiCart, BiHeart, BiCalendarAlt, BiTime } from 'react-icons/bi';
-import { IoIosMan } from 'react-icons/io';
-import { MdChildCare } from 'react-icons/md';
+import { BiCalendarAlt, BiCart, BiHeart, BiTime } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import KakaoShareButton from './KakaoShareButton';
-import { formatNumber } from '../utils/format';
-import { calculateDiscountedPrice } from '../utils/discountedPrice';
+import { calculateDiscountedPrice } from '../../utils/discountedPrice';
+import { formatNumber } from '../../utils/format';
+import KakaoShareButton from '../KakaoShareButton';
 
 const ProductCard = ({ index, product }) => {
   return (
@@ -20,7 +18,7 @@ const ProductCard = ({ index, product }) => {
           <div className="h-full relative">
             <div className="h-[200px] rounded-md overflow-hidden">
               <img
-                src="https://i.ibb.co/JjbW5yMn/andrew-ruiz-fmz-B9-At9i-Q-unsplash-1024x357.jpg"
+                src="https://imgur.com/a/PpgWsfW"
                 alt=""
                 className="h-full object-cover"
               />

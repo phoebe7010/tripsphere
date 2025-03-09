@@ -1,7 +1,7 @@
-import SideFilter from '../../components/SideFilter';
-import ProductCard from '../../components/ProductCard';
-import Pagination from '../../components/Pagination';
-import PageHeader from '../../components/PageHeader';
+import PageHeader from '../../components/productlist/PageHeader';
+import Pagination from '../../components/productlist/Pagination';
+import ProductCard from '../../components/productlist/ProductCard';
+import SideFilter from '../../components/productlist/SideFilter';
 
 const products = [
   {
