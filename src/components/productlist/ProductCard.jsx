@@ -18,8 +18,9 @@ const ProductCard = ({ index, product }) => {
           <div className="h-full relative">
             <div className="h-[200px] rounded-md overflow-hidden">
               <img
-                src="https://imgur.com/a/PpgWsfW"
-                alt=""
+                // src="https://imgur.com/a/PpgWsfW"
+                src={product.images[0].src}
+                alt={product.images[0].alt}
                 className="h-full object-cover"
               />
             </div>

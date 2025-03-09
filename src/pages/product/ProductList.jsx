@@ -53,12 +53,14 @@ const products = [
     location: '양평군, 경기도, 한국',
     images: [
       {
-        src: 'https://imgur.com/a/PpgWsfW',
+        src: 'https://i.imgur.com/ni513Ct.jpeg',
+        // src: 'https://imgur.com/a/PpgWsfW',
         // src: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
         alt: 'Two each of gray, white, and black shirts laying flat.',
       },
       {
-        src: 'https://imgur.com/a/r6B59wX',
+        src: 'https://i.imgur.com/q8ifdCe.jpeg',
+        // src: 'https://imgur.com/a/r6B59wX',
         // src: 'https://tailwindui.com/plus-assets/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
         alt: 'Model wearing plain black basic tee.',
       },
