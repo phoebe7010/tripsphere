@@ -1,6 +1,6 @@
 import React from 'react';
-import Counter from './Counter';
 import useCounterStore from '../stores/useCounterStore';
+import Counter from './Counter';
 
 const PeopleSelector = () => {
   const { childrenCount, adultCount } = useCounterStore(state => state);
@@ -9,14 +9,14 @@ const PeopleSelector = () => {
     <div className="w-full">
       <label
         htmlFor="peopleCount"
-        className="mb-2 block text-sm font-medium text-gray-700 text-left">
+        className="mb-2 block text-sm font-medium text-gray-700 text-left dark:text-gray-200">
         인원수
       </label>
       <div className="dropdown w-full">
         <input
           tabIndex={1}
           role="button"
-          className="input bg-base-200 w-full"
+          className="input bg-base-200 w-full dark:border-gray-200"
           placeholder="인원수"
           value={`총 인원 ${adultCount + childrenCount}`}
         />

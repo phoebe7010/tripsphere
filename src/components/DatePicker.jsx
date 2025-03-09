@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react';
+import { ko } from 'date-fns/locale';
+import React, { useRef, useState } from 'react';
 import { DateRangePicker } from 'react-date-range';
-import { useClickAway } from 'react-use';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
-import { ko } from 'date-fns/locale';
+import { useClickAway } from 'react-use';
 
 const DatePicker = ({ openDate, setOpenDate }) => {
   const [date, setDate] = useState({
@@ -20,10 +20,10 @@ const DatePicker = ({ openDate, setOpenDate }) => {
   return (
     <div
       ref={ref}
-      className="relative">
+      className="relative ">
       <input
         type="text"
-        className="input bg-base-200 w-full"
+        className="input bg-base-200 w-full  dark:border-gray-200"
         value={`${date.startDate.toLocaleDateString()} - ${date.endDate.toLocaleDateString()}`}
         readOnly
         onClick={() => setOpenDate(!openDate)}
