@@ -131,65 +131,6 @@ const SideFilter = () => {
             <PeopleSelector />
           </fieldset>
 
-          {/* 인원 수정 */}
-          {/* 
-          <fieldset className="rounded-lg border border-gray-200 p-3">
-            <legend className="px-2 font-medium">인원</legend>
-            <div className="mb-2 flex items-center">
-              <label className="w-1/2">성인</label>
-              <div className="flex w-1/2 items-center justify-end">
-                <button type="button">
-                  <CiCircleMinus className="text-3xl text-gray-300" />
-                </button>
-                <input
-                  type="number"
-                  className="mx-2 w-10 rounded border border-gray-300 p-1 text-center focus:border-indigo-600 focus:outline-none"
-                  min="0"
-                />
-                <button type="button">
-                  <CiCirclePlus className="text-3xl text-gray-300" />
-                </button>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <label className="w-1/2">어린이</label>
-              <div className="flex w-1/2 items-center justify-end">
-                <button type="button">
-                  <CiCircleMinus className="text-3xl text-gray-300" />
-                </button>
-                <input
-                  type="number"
-                  className="mx-2 w-10 rounded border border-gray-300 p-1 text-center focus:border-indigo-600 focus:outline-none"
-                  min="0"
-                />
-                <button type="button">
-                  <CiCirclePlus className="text-3xl text-gray-300" />
-                </button>
-              </div>
-            </div>
-          </fieldset>
-          */}
-
-          {/* 여행 기간 선택 */}
-          {/*           
-          <fieldset className="rounded-lg border border-gray-200 p-3">
-            <legend className="px-2 font-medium">여행 기간 선택</legend>
-            <div className="mb-2 flex items-center justify-between">
-              <label className="w-1/4">체크인</label>
-              <input
-                type="date"
-                className="w-3/4 rounded border border-gray-300 p-1.5 focus:border-indigo-600 focus:outline-none"
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <label className="w-1/4">체크아웃</label>
-              <input
-                type="date"
-                className="w-3/4 rounded border border-gray-300 p-1.5 focus:border-indigo-600 focus:outline-none"
-              />
-            </div>
-          </fieldset>  */}
-
           <button
             type="submit"
             className="flex items-center justify-center gap-2 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">

@@ -48,10 +48,6 @@ const receiveData = {
     points: 1000000,
   },
   // 예약정보
-  // 숙박업소는... 흠... 예약한 방의 등급과 갯수로 가격을 책정해야 해야하는데
-  // 그럼 제공해야하는 정보가 달라져야하지 않을까?
-  // 방마다 설치된 침대의 사이즈를 적는다던가
-  // 등급에 따라 묵을 수 있는 인원수를 제공해야할텐데
   reservation: {
     check_info: {
       check_in: '20260101',
@@ -239,30 +235,6 @@ const Checkout = () => {
                           description={''}
                         />
                       ))}
-                    {/* <li className="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6">
-                      <div className="flex w-0 flex-1 items-center">
-                        <div className="ml-4 flex min-w-0 flex-1 gap-2 items-center">
-                          <span className="shrink-0 text-gray-400">
-                            <BiTv />
-                          </span>
-                          <span className="truncate font-medium">
-                            최고의 전망
-                          </span>
-                        </div>
-                      </div>
-                    </li>
-                    <li className="flex items-center justify-between py-4 pr-5 pl-4 text-sm/6">
-                      <div className="flex w-0 flex-1 items-center">
-                        <div className="ml-4 flex min-w-0 flex-1 gap-2 items-center">
-                          <span className="shrink-0 text-gray-400">
-                            <BiMap />
-                          </span>
-                          <span className="truncate font-medium">
-                            최고의 위치
-                          </span>
-                        </div>
-                      </div>
-                    </li> */}
                   </ul>
                 </dd>
               </div>

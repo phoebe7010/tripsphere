@@ -141,25 +141,6 @@ const ProductCard = ({ index, product }) => {
                 </div>
                 <span> -{product.discount}% </span>
               </div>
-
-              {/* 참여 가능인원 */}
-              {/* <div className="flex flex-col items-end">
-                <span>잔여 티켓</span>
-                <div className="flex gap-x-1 items-center">
-                  <span>
-                    <IoIosMan className="text-base" />
-                  </span>
-                  <span>성인 :</span>
-                  <span>15명</span>
-                </div>
-                <div className="flex gap-x-1 items-center">
-                  <span>
-                    <MdChildCare className="text-base" />
-                  </span>
-                  <span>어린이 : </span>
-                  <span>15명</span>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
