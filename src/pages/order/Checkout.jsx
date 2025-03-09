@@ -3,6 +3,7 @@ import { BiHotel, BiTv } from 'react-icons/bi';
 import { FaMapLocationDot } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 import DateSelector from '../../components/DateSelector';
+import KakaoMap from '../../components/KakaoMap';
 import LiElement from '../../components/order/checkout/ListLiElements';
 import PrintOrder from '../../components/order/checkout/PrintOrder';
 import PeopleSelector from '../../components/PeopleSelector';
@@ -126,6 +127,11 @@ const Checkout = () => {
                         receiveData.accommodations.loaction.place_name
                       }
                     />
+                    <div className="border-t border-gray-100 h-">
+                      <div className="divide-y divide-gray-100">
+                        <KakaoMap />
+                      </div>
+                    </div>
 
                     <LiElement
                       IconComponent={BiHotel}
