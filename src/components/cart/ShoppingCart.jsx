@@ -4,9 +4,8 @@ import {
   DialogPanel,
   DialogTitle,
 } from '@headlessui/react';
-import { BiX } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import { MdOutlineDeleteForever } from 'react-icons/md';
+import { BiCalendarAlt, BiX, BiTrash } from 'react-icons/bi';
 
 const products = [
   {
@@ -41,6 +40,7 @@ const ShoppingCart = ({ open, setOpen }) => {
   const totalPrice = products.reduce((acc, product) => {
     return acc + parseInt(product.price.replace(/,/g, ''), 10); // 쉼표 제거 후 숫자로 변환
   }, 0);
+
   return (
     <Dialog
       open={open}
@@ -63,6 +63,7 @@ const ShoppingCart = ({ open, setOpen }) => {
                     <DialogTitle className="text-lg font-medium text-gray-900">
                       장바구니
                     </DialogTitle>
+
                     <div className="ml-3 flex h-7 items-center">
                       <button
                         type="button"
@@ -92,46 +93,86 @@ const ShoppingCart = ({ open, setOpen }) => {
                               defaultChecked
                               className="checkbox checkbox-primary mr-3"
                             />
-                            <div className="size-30 shrink-0 overflow-hidden rounded-md border border-gray-200">
-                              <img
-                                alt={product.imageAlt}
-                                src={product.imageSrc}
-                                className="size-full object-cover"
-                              />
-                            </div>
 
-                            <div className="ml-4 flex flex-1 flex-col">
-                              <h3 className="text-lg font-bold text-gray-900 mb-3">
-                                <a href={product.href}>{product.name}</a>
-                              </h3>
+                            <Link
+                              to="/product/0"
+                              className="w-full flex gap-8">
+                              <div className="h-[100px] rounded-md overflow-hidden inline-block">
+                                <img
+                                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                                  alt="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                                  className="h-full object-cover"
+                                />
+                              </div>
 
-                              <div className="flex flex-1 flex-col justify-end">
-                                <p className="text-sm text-gray-500">
-                                  체크인: {product.checkin}
-                                </p>
-                                <p className="text-sm text-gray-500 mt-1">
-                                  체크아웃: {product.checkout}
-                                </p>
-                                <p className="text-sm text-gray-500 mt-1">
-                                  성인: {product.person}명
-                                </p>
-                                <p className="text-sm text-gray-500 mt-1">
-                                  주소: {product.address}
-                                </p>
+                              <div className="card-body py-0 px-0 gap-0">
+                                {/* 패키지 이름 */}
+                                <div className="flex items-center justify-between">
+                                  <div className="flex gap-2">
+                                    <div className="badge badge-soft badge-primary text-xs">
+                                      펜션
+                                    </div>
 
-                                <div className="mt-4 flex items-center justify-between">
-                                  <p className="text-lg font-medium text-gray-900">
-                                    {product.price}원
-                                  </p>
-                                  <button className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-2 py-1  font-medium text-gray-100  hover:bg-indigo-900">
-                                    <MdOutlineDeleteForever
-                                      size={20}
-                                      className="text-white"
-                                    />
-                                  </button>
+                                    <div className="badge badge-soft badge-info text-xs">
+                                      위치
+                                    </div>
+                                  </div>
+                                </div>
+                                <button className="btn btn-square btn-ghost indicator-item badge absolute top-2 right-2 transition opacity-0 hover:scale-110 group-hover:opacity-100 ">
+                                  <BiTrash className="size-[1.2em]" />
+                                </button>
+
+                                <h2
+                                  className="mt-2 transition-colors card-title text-lg pb-3.5"
+                                  title="여행 패키지 이름">
+                                  <div className="line-clamp-1">
+                                    {product.name}
+                                  </div>
+                                </h2>
+
+                                {/* 가격정보 */}
+                                <div className="flex flex-col border-b-1 border-gray-200 pb-3.5">
+                                  <div className="flex items-center gap-2">
+                                    <div className="text-gray-400">20%</div>
+                                    <div
+                                      className="line-through text-gray-400"
+                                      title="정가">
+                                      8000000원
+                                    </div>
+                                  </div>
+
+                                  <div
+                                    className="font-bold text-lg text-red-600"
+                                    title="할인가">
+                                    1000000원
+                                  </div>
+                                </div>
+
+                                <div
+                                  className=""
+                                  title="패키지 상세정보들">
+                                  <div className="py-4 pr-4">
+                                    <div className="">
+                                      <div className="flex gap-4 items-center">
+                                        <div className="flex items-center gap-2 min-w-[90px]">
+                                          <BiCalendarAlt className="text-base" />
+                                          <p className="font-bold">체크인</p>
+                                        </div>
+                                        <p>2025년 03월 11일</p>
+                                      </div>
+
+                                      <div className="flex gap-4 items-center">
+                                        <div className="flex items-center gap-2 min-w-[90px]">
+                                          <BiCalendarAlt className="text-base" />
+                                          <p className="font-bold">체크아웃</p>
+                                        </div>
+                                        <p>2025년 03월 11일</p>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -142,7 +183,9 @@ const ShoppingCart = ({ open, setOpen }) => {
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>주문 합계 금액</p>
-                    <p>{totalPrice.toLocaleString()}원</p>
+                    <p className="text-indigo-600 font-bold">
+                      {totalPrice.toLocaleString()}원
+                    </p>
                   </div>
 
                   <div className="mt-6">
