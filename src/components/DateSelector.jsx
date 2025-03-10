@@ -5,7 +5,7 @@ const DateSelector = ({ openDate, setOpenDate }) => (
   <div className="w-full">
     <label
       htmlFor="roomType"
-      className="mb-2 block text-sm font-medium text-gray-700 text-left">
+      className="mb-2 block text-sm font-medium text-gray-700 text-left dark:text-gray-200">
       체크인 · 체크아웃
     </label>
     <DatePicker

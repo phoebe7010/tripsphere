@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { CiCircleMinus, CiCirclePlus } from 'react-icons/ci';
 import { BiChevronLeft } from 'react-icons/bi';
+import DateSelector from '../DateSelector';
+import PeopleSelector from '../PeopleSelector';
 
 const SideFilter = () => {
   const [priceRange, setPriceRange] = useState(25);
   const [isFormOpen, setIsFormOpen] = useState(true);
+
+  const [openDate, setOpenDate] = useState(false);
 
   const toggleForm = () => {
     setIsFormOpen(prevState => !prevState);
@@ -32,7 +35,9 @@ const SideFilter = () => {
         <form className="flex flex-col gap-y-5 p-2.5">
           {/* 여행 장소 선택 */}
           <fieldset className="rounded-lg border border-gray-200 p-3">
-            <legend className="px-2 font-medium">여행 장소</legend>
+            <legend className="fieldset-legend px-2 font-medium">
+              여행 장소
+            </legend>
             <div className="grid grid-cols-2 gap-2">
               {[
                 '서울',
@@ -51,7 +56,7 @@ const SideFilter = () => {
                 <label
                   htmlFor={ele}
                   key={ele}
-                  className="flex items-center space-x-2 cursor-pointer">
+                  className="flex items-center space-x-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                   <input
                     type="checkbox"
                     defaultChecked
@@ -67,13 +72,15 @@ const SideFilter = () => {
 
           {/* 숙박 장소 선택 */}
           <fieldset className="rounded-lg border border-gray-200 p-3">
-            <legend className="px-2 font-medium">숙박 장소</legend>
+            <legend className="fieldset-legend px-2 font-medium">
+              숙박 장소
+            </legend>
             <div className="grid grid-cols-2 gap-x-3 gap-y-2">
               {['호텔', '펜션', '게스트하우스', '캠핑'].map(ele => (
                 <label
                   htmlFor={ele}
                   key={ele}
-                  className="flex items-center space-x-2 cursor-pointer">
+                  className="flex items-center space-x-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                   <input
                     type="checkbox"
                     defaultChecked
@@ -89,7 +96,7 @@ const SideFilter = () => {
 
           {/* 예산 범위 선택 */}
           <fieldset className="rounded-lg border border-gray-200 p-3">
-            <legend className="px-2 font-medium">가격</legend>
+            <legend className="fieldset-legend px-2 font-medium">가격</legend>
             <div className="flex items-center justify-between">
               <div className="w-full max-w-xs">
                 <input
@@ -114,60 +121,14 @@ const SideFilter = () => {
             </div>
           </fieldset>
 
-          {/* 인원 수정 */}
-          <fieldset className="rounded-lg border border-gray-200 p-3">
-            <legend className="px-2 font-medium">인원</legend>
-            <div className="mb-2 flex items-center">
-              <label className="w-1/2">성인</label>
-              <div className="flex w-1/2 items-center justify-end">
-                <button type="button">
-                  <CiCircleMinus className="text-3xl text-gray-300" />
-                </button>
-                <input
-                  type="number"
-                  className="mx-2 w-10 rounded border border-gray-300 p-1 text-center focus:border-indigo-600 focus:outline-none"
-                  min="0"
-                />
-                <button type="button">
-                  <CiCirclePlus className="text-3xl text-gray-300" />
-                </button>
-              </div>
-            </div>
-            <div className="flex items-center">
-              <label className="w-1/2">어린이</label>
-              <div className="flex w-1/2 items-center justify-end">
-                <button type="button">
-                  <CiCircleMinus className="text-3xl text-gray-300" />
-                </button>
-                <input
-                  type="number"
-                  className="mx-2 w-10 rounded border border-gray-300 p-1 text-center focus:border-indigo-600 focus:outline-none"
-                  min="0"
-                />
-                <button type="button">
-                  <CiCirclePlus className="text-3xl text-gray-300" />
-                </button>
-              </div>
-            </div>
-          </fieldset>
+          <fieldset className="fieldset border border-base-300 p-4 rounded-box dark:border-white">
+            <legend className="fieldset-legend px-2 font-medium">일정</legend>
+            <DateSelector
+              openDate={openDate}
+              setOpenDate={setOpenDate}
+            />
 
-          {/* 여행 기간 선택 */}
-          <fieldset className="rounded-lg border border-gray-200 p-3">
-            <legend className="px-2 font-medium">여행 기간 선택</legend>
-            <div className="mb-2 flex items-center justify-between">
-              <label className="w-1/4">체크인</label>
-              <input
-                type="date"
-                className="w-3/4 rounded border border-gray-300 p-1.5 focus:border-indigo-600 focus:outline-none"
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <label className="w-1/4">체크아웃</label>
-              <input
-                type="date"
-                className="w-3/4 rounded border border-gray-300 p-1.5 focus:border-indigo-600 focus:outline-none"
-              />
-            </div>
+            <PeopleSelector />
           </fieldset>
 
           <button

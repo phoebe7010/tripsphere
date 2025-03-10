@@ -20,14 +20,14 @@ const CitySelector = ({ selectedCity, handleCityChange }) => {
     <div className="w-full">
       <label
         htmlFor="peopleCount"
-        className="mb-2 block text-sm font-medium text-gray-700 text-left">
+        className="mb-2 block text-sm font-medium text-gray-700 text-left dark:text-gray-200">
         여행지
       </label>
       <div className="dropdown w-full">
         <input
           tabIndex={0}
           role="button"
-          className="input bg-base-200 w-full"
+          className="input bg-base-200 w-full dark:border-gray-200 dark:placeholder:text-gray-200"
           placeholder="여행지"
           value={selectedCity}
         />

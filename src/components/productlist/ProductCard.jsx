@@ -1,13 +1,35 @@
 import React from 'react';
-import { BiCart, BiHeart, BiCalendarAlt, BiTime } from 'react-icons/bi';
-import { IoIosMan } from 'react-icons/io';
-import { MdChildCare } from 'react-icons/md';
+import { BiCalendarAlt, BiCart, BiHeart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import KakaoShareButton from './KakaoShareButton';
-import { formatNumber } from '../utils/format';
-import { calculateDiscountedPrice } from '../utils/discountedPrice';
+import { calculateDiscountedPrice } from '../../utils/discountedPrice';
+import { formatNumber } from '../../utils/format';
+import KakaoShareButton from '../KakaoShareButton';
 
 const ProductCard = ({ index, product }) => {
+  function bulidingType({ product }) {
+    let message;
+
+    switch (product.type) {
+      case 'hotel':
+        message = '호텔';
+        break;
+      case 'pension':
+        message = '펜션';
+        break;
+      case 'guesthouse':
+        message = '게스트하우스';
+        break;
+      case 'camping':
+        message = '캠핑';
+        break;
+      default:
+        message = '';
+        break;
+    }
+
+    return message;
+  }
+
   return (
     <Link to="/product/0">
       {/* 각 여행패키지 정보*/}
@@ -20,8 +42,8 @@ const ProductCard = ({ index, product }) => {
           <div className="h-full relative">
             <div className="h-[200px] rounded-md overflow-hidden">
               <img
-                src="https://i.ibb.co/JjbW5yMn/andrew-ruiz-fmz-B9-At9i-Q-unsplash-1024x357.jpg"
-                alt=""
+                src={product.images[0].src}
+                alt={product.images[0].alt}
                 className="h-full object-cover"
               />
             </div>
@@ -33,10 +55,15 @@ const ProductCard = ({ index, product }) => {
           {/* 패키지 이름 */}
           <div className="flex items-center justify-between">
             <div className="flex gap-2">
-              <div className="badge badge-soft badge-secondary">NEW</div>
-              <div className="badge badge-soft badge-info">서울</div>
+              <div className="badge badge-soft badge-primary">
+                {bulidingType({ product })}
+              </div>
+              {/* <div className="badge badge-soft badge-secondary">NEW</div> */}
+              <div className="badge badge-soft badge-info">
+                {product.location.place_name}
+              </div>
             </div>
-            <div class="flex gap-2">
+            <div className="flex gap-2">
               <span className="hidden sm:block">
                 <KakaoShareButton
                   title={product.name}
@@ -86,7 +113,7 @@ const ProductCard = ({ index, product }) => {
                     <BiCalendarAlt className="text-base" />
                     <p className="font-bold">체크인</p>
                   </div>
-                  <time dateTime="2025-04-01">2025-04-01</time>
+                  <time dateTime={product.check_in}>{product.check_in}</time>
                 </div>
 
                 <div className="flex gap-4 items-center">
@@ -94,10 +121,10 @@ const ProductCard = ({ index, product }) => {
                     <BiCalendarAlt className="text-base" />
                     <p className="font-bold">체크아웃</p>
                   </div>
-                  <time dateTime="2025-04-03">2025-04-03</time>
+                  <time dateTime={product.check_out}>{product.check_out}</time>
                 </div>
 
-                <div>
+                {/* <div>
                   <div className="flex gap-4 items-center">
                     <div className="flex items-center gap-2 min-w-[100px]">
                       <BiTime className="text-base" />
@@ -105,7 +132,7 @@ const ProductCard = ({ index, product }) => {
                     </div>
                     <span>3일</span>
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <p
@@ -126,41 +153,22 @@ const ProductCard = ({ index, product }) => {
                   <p
                     className="line-through text-red-600"
                     title="정가">
-                    {formatNumber(product.totalPrice)}원
+                    {formatNumber(product.original_price)}원
                   </p>
                   <p
                     className="underline font-bold text-2xl transition-colors"
                     title="할인가">
                     {formatNumber(
                       calculateDiscountedPrice(
-                        product.totalPrice,
+                        product.original_price,
                         product.discount,
                       ),
                     )}
                     원
                   </p>
                 </div>
-                <span> -{product.discount}% </span>
+                <span> -{product.discount_rate}% </span>
               </div>
-
-              {/* 참여 가능인원 */}
-              {/* <div className="flex flex-col items-end">
-                <span>잔여 티켓</span>
-                <div className="flex gap-x-1 items-center">
-                  <span>
-                    <IoIosMan className="text-base" />
-                  </span>
-                  <span>성인 :</span>
-                  <span>15명</span>
-                </div>
-                <div className="flex gap-x-1 items-center">
-                  <span>
-                    <MdChildCare className="text-base" />
-                  </span>
-                  <span>어린이 : </span>
-                  <span>15명</span>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
