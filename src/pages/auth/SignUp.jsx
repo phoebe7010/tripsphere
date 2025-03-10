@@ -11,7 +11,7 @@ import { updateProfile } from 'firebase/auth';
 import { validateForm } from '../../utils/validation';
 
 // 회원가입 처리 함수
-const signupUser = async ({ email, password, username, nickname }) => {
+const signupUser = async ({ email, password, username, nickname, phone }) => {
   // Firebase에 새 사용자 생성
   const userCredential = await createUserWithEmailAndPassword(
     auth,
@@ -30,6 +30,7 @@ const signupUser = async ({ email, password, username, nickname }) => {
     createAt: serverTimestamp(),
     username,
     nickname,
+    phone,
   });
 
   return userCredential.user;
@@ -92,6 +93,7 @@ const SignUp = () => {
       password: state.password,
       username: state.username,
       nickname: state.nickname,
+      phone: state.phone,
     });
   };
 
@@ -185,6 +187,18 @@ const SignUp = () => {
                 dispatch({ type: 'SET_NICKNAME', payload: e.target.value })
               }
               error={state.errors.nickname}
+            />
+
+            {/* 연락처 */}
+            <InputField
+              label="연락처"
+              type="number"
+              value={state.phone}
+              placeholder={state.placeholder.phone}
+              onChange={e =>
+                dispatch({ type: 'SET_PHONE', payload: e.target.value })
+              }
+              error={state.errors.phone}
             />
 
             <div>

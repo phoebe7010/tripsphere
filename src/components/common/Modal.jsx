@@ -59,7 +59,7 @@ const Modal = ({ open, setOpen, text, type, onNavigate }) => {
               <button
                 type="button"
                 onClick={handleClose}
-                className={`inline-flex w-full justify-center rounded-md bg-${type} px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-${type} sm:ml-3 sm:w-auto`}>
+                className={`inline-flex w-full justify-center rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-${type} sm:ml-3 sm:w-auto`}>
                 확인
               </button>
             </div>

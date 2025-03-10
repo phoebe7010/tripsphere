@@ -6,12 +6,14 @@ const initialState = {
   nickname: '',
   password: '',
   passwordConfirm: '',
+  phone: '',
   errors: {
     email: '',
     username: '',
     nickname: '',
     password: '',
     passwordConfirm: '',
+    phone: '',
   },
   placeholder: {
     email: '이메일을 입력해 주세요.',
@@ -19,6 +21,7 @@ const initialState = {
     nickname: '닉네임을 입력해 주세요.',
     password: '비밀번호를 입력해 주세요.',
     passwordConfirm: '비밀번호 한번 더 입력해 주세요.',
+    phone: '연락처를 입력해 주세요.',
   },
 };
 
@@ -48,6 +51,11 @@ const formReducer = (state, action) => {
       return {
         ...state,
         nickname: action.payload,
+      };
+    case 'SET_PHONE':
+      return {
+        ...state,
+        phone: action.payload,
       };
     case 'SET_ERRORS':
       return {
