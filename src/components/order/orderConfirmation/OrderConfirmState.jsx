@@ -1,35 +1,35 @@
 import { FcApproval, FcCancel, FcClock, FcQuestions } from 'react-icons/fc';
+import OrderList from '../orderList';
 
-const OrderState = ({ order }) => {
+const OrderState = ({ orders }) => {
   let State;
   let message;
 
-  switch (order.payment_status) {
-    case 'pending':
-      State = FcClock;
-      message = '결제 대기중입니다.';
-      break;
-    case 'completed':
-      State = FcApproval;
-      message = '결제가 완료되었습니다.';
-      break;
-    case 'canceled':
-      State = FcCancel;
-      message = '결제가 취소 되었습니다.';
-      break;
-    default:
-      State = FcQuestions;
-      message = '정보를 확인할 수 없습니다.';
+  const hasPending = orders.some(order => order.payment_status === 'pending');
+  const hasCanceled = orders.some(order => order.payment_status === 'canceled');
+  const allCompleted = orders.every(
+    order => order.payment_status === 'completed',
+  );
+
+  if (hasPending) {
+    State = FcClock;
+    message = '결제 대기중입니다.';
+  } else if (hasCanceled) {
+    State = FcCancel;
+    message = '결제가 취소 되었습니다.';
+  } else if (allCompleted) {
+    State = FcApproval;
+    message = '결제가 완료되었습니다.';
+  } else {
+    State = FcQuestions;
+    message = '정보를 확인할 수 없습니다.';
   }
 
   return (
-    <div className="flex flex-col justify-center items-center gap-4 h-83 ">
+    <div className="flex flex-col justify-center items-center gap-4">
       <State size={50} />
       <h1 className="text-4xl font-semibold tracking-tight">{message}</h1>
-
-      <div className="p-5 text-sm font-semibold">
-        <p>주문 번호 : {order.order_id}</p>
-      </div>
+      <OrderList data={orders} />
     </div>
   );
 };

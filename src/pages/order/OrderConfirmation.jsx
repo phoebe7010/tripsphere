@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import OrderState from '../../components/order/orderConfirmation/OrderConfirmState';
 import SwiperComponent from '../../components/recommand/SwiperComponent';
 
-const orderInfo = {
+const prevOrderInfo = {
   order_id: 1,
   user_id: '주문한 사용자 UID',
   accommodation_id: '숙소 ID',
@@ -21,6 +21,26 @@ const orderInfo = {
   order_date: '주문 날짜',
   used_points: 160000,
 };
+
+const orderInfo = [
+  {
+    order_id: 1,
+    payment_status:
+      //'canceled',
+      // 'pending',
+      'completed', //결제 상태 (pending, completed, canceled)
+    reservationNumber: '12121212',
+    reservationDate: '2024년 12월 20일',
+    hotelName: '서울 코리아나호텔',
+    price: '1,200,000원',
+    adultCount: 2,
+    childCount: 2,
+    checkIn: '2024년 04월 01일',
+    checkOut: '2024년 04월 04일',
+    imageUrl:
+      'https://ak-d.tripcdn.com/images/220713000000ubfbb2422_R_600_400_R5.webp',
+  },
+];
 
 const products = [
   {
@@ -307,9 +327,9 @@ const OrderConfirmation = () => {
     <div className="max-w-[1200px] mx-auto py-[40px] flex flex-col justify-start items-center gap-12">
       <div className="flex flex-col items-center">
         {/* 주문 문구 */}
-        <OrderState order={orderInfo} />
+        <OrderState orders={orderInfo} />
 
-        <div className="flex justify-center gap-x-2">
+        <div className="flex justify-center gap-x-2 mt-8">
           {/* 홈으로 이동*/}
           <div className="">
             <button
