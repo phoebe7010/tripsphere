@@ -1,5 +1,5 @@
 import React from 'react';
-import Rating from './Rating';
+import Rating from '../common/Rating';
 
 const ReviewItem = ({ reviews }) => {
   return (

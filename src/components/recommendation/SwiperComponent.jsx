@@ -27,8 +27,8 @@ const SwiperComponent = ({ products }) => {
         scrollbar={{ draggable: true }}
         onSwiper={swiper => console.log(swiper)}
         onSlideChange={() => console.log('slide change')}>
-        {products.map(product => (
-          <SwiperSlide key={product.id}>
+        {products.map((product, index) => (
+          <SwiperSlide key={index}>
             <ProductCard product={product} />
           </SwiperSlide>
         ))}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { formatNumber } from '../../utils/format';
-import DateSelector from '../../components/DateSelector';
-import PeopleSelector from '../../components/PeopleSelector';
+import DateSelector from '../../components/common/DateSelector';
+import PeopleSelector from '../../components/common/PeopleSelector';
 import { BiTv, BiMap } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 

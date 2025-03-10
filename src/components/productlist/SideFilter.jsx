@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
-import DateSelector from '../DateSelector';
-import PeopleSelector from '../PeopleSelector';
+import DateSelector from '../common/DateSelector';
+import PeopleSelector from '../common/PeopleSelector';
 
 const SideFilter = () => {
   const [priceRange, setPriceRange] = useState(25);

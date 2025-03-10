@@ -1,6 +1,6 @@
 import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
-const starReturn = ({ ratingScore }) => {
+const RatingView = ({ ratingScore }) => {
   const rating = Math.floor(ratingScore * 10);
   const star = Math.max(0, Math.floor(rating / 10)); // 정수 별 개수
   const half = rating % 10 >= 5; // 반 개 별 여부
@@ -24,4 +24,4 @@ const starReturn = ({ ratingScore }) => {
   );
 };
 
-export default starReturn;
+export default RatingView;

@@ -1,4 +1,4 @@
-const LiElement = ({ IconComponent, Title, description }) => {
+const OrderList = ({ IconComponent, Title, description }) => {
   return (
     <li className="flex items-center justify-start  py-4 pr-5 pl-4 text-sm/6 dark:text-gray-200">
       <div className="ml-4 flex min-w-0 flex-1 gap-2 items-center ">
@@ -15,4 +15,4 @@ const LiElement = ({ IconComponent, Title, description }) => {
   );
 };
 
-export default LiElement;
+export default OrderList;

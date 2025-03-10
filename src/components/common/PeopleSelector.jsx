@@ -1,5 +1,5 @@
 import React from 'react';
-import useCounterStore from '../stores/useCounterStore';
+import useCounterStore from '../../stores/useCounterStore';
 import Counter from './Counter';
 
 const PeopleSelector = () => {

@@ -1,4 +1,4 @@
-const PrintOrder = ({ receiveData }) => {
+const OrderSummary = ({ receiveData }) => {
   return (
     <div className="dark:font-bold">
       <h2 className="card-title mb-2">최종 결제 금액</h2>
@@ -54,4 +54,4 @@ const PrintOrder = ({ receiveData }) => {
   );
 };
 
-export default PrintOrder;
+export default OrderSummary;

@@ -3,7 +3,7 @@ import { BiCalendarAlt, BiCart, BiHeart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import { calculateDiscountedPrice } from '../../utils/discountedPrice';
 import { formatNumber } from '../../utils/format';
-import KakaoShareButton from '../KakaoShareButton';
+import KakaoShareButton from '../common/KakaoShareButton';
 
 const ProductCard = ({ index, product }) => {
   function bulidingType({ product }) {

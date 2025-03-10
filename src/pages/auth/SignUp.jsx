@@ -5,8 +5,8 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import InputField from '../../components/InputField';
-import Modal from '../../components/Modal';
+import InputField from '../../components/common/InputField';
+import Modal from '../../components/common/Modal';
 import { updateProfile } from 'firebase/auth';
 import { validateForm } from '../../utils/validation';
 

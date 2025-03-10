@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ThemeToggleButton from '../ThemeToggleButton';
+import ThemeToggleButton from './ThemeToggleButton';
 import { Link } from 'react-router-dom';
-import ShoppingCart from '../ShoppingCart';
+import ShoppingCart from '../cart/ShoppingCart';
 import { BiUser } from 'react-icons/bi';
 
 const Header = () => {

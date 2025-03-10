@@ -1,5 +1,5 @@
-import ReviewInput from '../ReviewInput';
-import ReviewItem from '../ReviewItem';
+import ReviewInput from './ReviewInput';
+import ReviewItem from './ReviewItem';
 
 const reviews = [
   {

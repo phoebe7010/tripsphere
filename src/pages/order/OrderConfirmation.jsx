@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import OrderState from '../../components/order/orderConfirmation/OrderConfirmState';
-import SwiperComponent from '../../components/recommand/SwiperComponent';
+import SwiperComponent from '../../components/recommendation/SwiperComponent';
 
 const prevOrderInfo = {
   order_id: 1,

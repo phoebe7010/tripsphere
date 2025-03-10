@@ -1,5 +1,5 @@
 import React from 'react';
-import KakaoShareButton from '../../components/KakaoShareButton';
+import KakaoShareButton from '../../components/common/KakaoShareButton';
 import { BiCart, BiHeart } from 'react-icons/bi';
 
 const ProductHeader = ({ product, productId }) => {

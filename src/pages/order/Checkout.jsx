@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { BiHotel, BiTv } from 'react-icons/bi';
 import { FaMapLocationDot } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
-import DateSelector from '../../components/DateSelector';
-import KakaoMap from '../../components/KakaoMap';
-import LiElement from '../../components/order/checkout/ListLiElements';
-import PrintOrder from '../../components/order/checkout/PrintOrder';
-import PeopleSelector from '../../components/PeopleSelector';
+import KakaoMap from '../../components/common/KakaoMap';
+import OrderSummary from '../../components/order/checkout/OrderSummary';
+import PeopleSelector from '../../components/common/PeopleSelector';
+import OrderList from '../../components/order/checkout/OrderList';
+import DateSelector from '../../components/common/DateSelector';
 
 const receiveData = {
   // 숙박 시설 정보
@@ -114,7 +114,7 @@ const Checkout = () => {
                   <ul
                     role="list"
                     className="divide-y divide-gray-200 rounded-md border border-gray-200">
-                    <LiElement
+                    <OrderList
                       IconComponent={FaMapLocationDot}
                       Title={'숙소 위치'}
                       description={
@@ -127,7 +127,7 @@ const Checkout = () => {
                       </div>
                     </div>
 
-                    <LiElement
+                    <OrderList
                       IconComponent={BiHotel}
                       Title={'숙박 시설'}
                       description={receiveData.accommodations.type}
@@ -168,7 +168,7 @@ const Checkout = () => {
                     className="divide-y divide-gray-100 rounded-md border border-gray-200">
                     {receiveData.accommodations.service &&
                       receiveData.accommodations.service.map((ele, index) => (
-                        <LiElement
+                        <OrderList
                           key={index}
                           IconComponent={BiTv}
                           Title={ele}
@@ -186,7 +186,7 @@ const Checkout = () => {
         <div className="">
           <div className="sticky card top-15 bg-base-100 w-96 shadow-sm">
             <form className="card-body">
-              <PrintOrder receiveData={receiveData} />
+              <OrderSummary receiveData={receiveData} />
 
               <div className="card-actions justify-end">
                 <button
