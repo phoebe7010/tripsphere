@@ -1,9 +1,10 @@
-import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
+import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
-const starReturn = ratingScore => {
+const starReturn = ({ ratingScore }) => {
   const rating = Math.floor(ratingScore * 10);
-  const star = Math.floor(rating / 10); // 정수 별 개수
-  const half = rating % 10 >= 5; // 반개 별 여부 (5 이상이면 true)
+  const star = Math.max(0, Math.floor(rating / 10)); // 정수 별 개수
+  const half = rating % 10 >= 5; // 반 개 별 여부
+  const empty = Math.max(0, 5 - star - (half ? 1 : 0)); // 남은 빈 별 개수
 
   return (
     <>
@@ -14,6 +15,11 @@ const starReturn = ratingScore => {
 
       {/* 반 개 별 추가 (조건부 렌더링) */}
       {half && <FaStarHalfAlt />}
+
+      {/* 빈 별 추가 */}
+      {[...Array(empty)].map((_, i) => (
+        <FaRegStar key={i} />
+      ))}
     </>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { calculateDiscountedPrice } from '../../utils/discountedPrice';
 import { formatNumber } from '../../utils/format';
-import starReturn from '../StarReturn';
+import StarReturn from '../StarReturn';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
@@ -20,10 +20,8 @@ const ProductCard = ({ product }) => {
           <div className="flex flex-col justify-between max-[53rem]:flex-row">
             <div className="flex justify-between max-[53rem]:flex-col max-[53rem]:justify-around mb-1">
               <div className="flex justify-start items-center text-yellow-500 max-[53rem]:text-2xl ">
-                {starReturn(product.rating)}
-              </div>
-              <div className="max-[53rem]:text-2xl max-[53rem]:font-bold font-bold">
-                평점 : {product.rating}
+                <StarReturn ratingScore={product.rating} />
+                {product.rating}
               </div>
             </div>
 

@@ -85,7 +85,7 @@ const products = [
       experience: '호텔리어 15년 경력',
       contact: '010-0000-0000',
     },
-    rating: 4.8,
+    rating: 4.5,
     reviews_count: 15,
   },
 
@@ -131,7 +131,7 @@ const products = [
       experience: '호텔리어 15년 경력',
       contact: '010-0000-0000',
     },
-    rating: 4.6,
+    rating: 3.5,
     reviews_count: 15,
   },
 
@@ -177,7 +177,7 @@ const products = [
       experience: '호텔리어 15년 경력',
       contact: '010-0000-0000',
     },
-    rating: 4.2,
+    rating: 4,
     reviews_count: 15,
   },
 
@@ -223,7 +223,7 @@ const products = [
       experience: '호텔리어 15년 경력',
       contact: '010-0000-0000',
     },
-    rating: 3.8,
+    rating: 5,
     reviews_count: 15,
   },
 
@@ -269,7 +269,7 @@ const products = [
       experience: '호텔리어 15년 경력',
       contact: '010-0000-0000',
     },
-    rating: 3.3,
+    rating: 2.5,
     reviews_count: 15,
   },
 
