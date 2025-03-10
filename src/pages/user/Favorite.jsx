@@ -1,189 +1,125 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { BiTrash } from 'react-icons/bi';
-import { MdArrowBackIosNew } from 'react-icons/md';
-const Favorite = () => {
-  const navigate = useNavigate();
+import Pagination from '../../components/productlist/Pagination';
+import ProductCard from '../../components/favorite/ProductCard';
+import PageHeader from '../../components/productlist/PageHeader';
 
+const products = [
+  {
+    name: '양평 독채 풀빌라 스테이호은',
+    type: 'pension',
+    // location: '양평군, 경기도, 한국',
+    location: {
+      latitude: 123.123,
+      longitude: 123.123,
+      place_name: '양평군, 경기도, 한국',
+    },
+    description: `예약 전 숙소 이용 안내 및 이용 수칙을 반드시 읽어주세요. '호젓한 은신처'를 의미하는 '호은'.`,
+    original_price: 120000,
+
+    discount_rate: 40,
+    final_price: 80000,
+
+    check_in: '0900',
+    check_out: '1200',
+    capacity: {
+      adult: 3,
+      children: 3,
+    },
+
+    services: [
+      { icon: 'tv', text: '최고의 전망' },
+      { icon: 'map', text: '최고의 위치' },
+    ],
+
+    images: [
+      {
+        src: 'https://i.imgur.com/ni513Ct.jpeg',
+        alt: 'Two each of gray, white, and black shirts laying flat.',
+      },
+      {
+        src: 'https://i.imgur.com/q8ifdCe.jpeg',
+        alt: 'Model wearing plain black basic tee.',
+      },
+    ],
+    host: {
+      name: '홍길동',
+      experience: '호텔리어 15년 경력',
+      contact: '010-0000-0000',
+    },
+    rating: 4.8,
+    reviews_count: 15,
+  },
+
+  {
+    name: '양평 독채 풀빌라 스테이호은',
+    type: 'pension',
+    // location: '양평군, 경기도, 한국',
+    location: {
+      latitude: 123.123,
+      longitude: 123.123,
+      place_name: '양평군, 경기도, 한국',
+    },
+    description: `예약 전 숙소 이용 안내 및 이용 수칙을 반드시 읽어주세요. '호젓한 은신처'를 의미하는 '호은'.`,
+    original_price: 120000,
+
+    discount_rate: 40,
+    final_price: 80000,
+
+    check_in: '0900',
+    check_out: '1200',
+    capacity: {
+      adult: 3,
+      children: 3,
+    },
+
+    services: [
+      { icon: 'tv', text: '최고의 전망' },
+      { icon: 'map', text: '최고의 위치' },
+    ],
+
+    images: [
+      {
+        src: 'https://imgur.com/a/PpgWsfW',
+        alt: 'Two each of gray, white, and black shirts laying flat.',
+      },
+      {
+        src: 'https://imgur.com/a/r6B59wX',
+        alt: 'Model wearing plain black basic tee.',
+      },
+    ],
+    host: {
+      name: '홍길동',
+      experience: '호텔리어 15년 경력',
+      contact: '010-0000-0000',
+    },
+    rating: 4.8,
+    reviews_count: 15,
+  },
+];
+
+const breadcrumb = [
+  { link: '/', text: '홈' },
+  { link: '/favorite', text: '찜 목록' },
+];
+
+const Favorite = () => {
   return (
     <div className="max-w-[1200px] mx-auto py-[40px]">
-      {/* 뒤로 가기 버튼 */}
-      <div className="mt-6 flex items-center justify-end gap-x-6 py-[10px] ">
-        {/* <button
-          type="button"
-          onClick={() => navigate('/mypage')}
-          className="text-sm/6 font-semibold text-gray-900">
-          뒤로 가기
-        </button> */}
-        <MdArrowBackIosNew
-          size="30"
-          onClick={() => navigate('/mypage')}
-        />
+      <PageHeader
+        title="찜 목록"
+        breadcrumb={breadcrumb}
+      />
+
+      <div className="mb-10 grid grid-cols-4 gap-10">
+        {products.map((product, index) => (
+          <ProductCard
+            key={index}
+            index={index}
+            product={product}
+          />
+        ))}
       </div>
 
-      <h2 className="text-base/7 font-semibold  mb-10">찜 목록</h2>
-
-      {/* 찜 목록 */}
-      {/* <ul className="list bg-base-100 rounded-box shadow-md">
-        <li className="list-row">
-          <div>
-            <img
-              className="size-10 rounded-box"
-              src="https://img.daisyui.com/images/profile/demo/1@94.webp"
-            />
-          </div>
-          <div>
-            <div>Dio Lupa</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              Remaining Reason
-            </div>
-          </div>
-          <p className="list-col-wrap text-xs">
-            "Remaining Reason" became an instant hit, praised for its haunting
-            sound and emotional depth. A viral performance brought it widespread
-            recognition, making it one of Dio Lupa’s most iconic tracks.
-          </p>
-          <button className="btn btn-square btn-ghost">
-            <BiTrash className="size-[1.2em]" />
-          </button>
-        </li>
-
-        <li className="list-row">
-          <div>
-            <img
-              className="size-10 rounded-box"
-              src="https://img.daisyui.com/images/profile/demo/4@94.webp"
-            />
-          </div>
-          <div>
-            <div>Ellie Beilish</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              Bears of a fever
-            </div>
-          </div>
-          <p className="list-col-wrap text-xs">
-            "Bears of a Fever" captivated audiences with its intense energy and
-            mysterious lyrics. Its popularity skyrocketed after fans shared it
-            widely online, earning Ellie critical acclaim.
-          </p>
-          <button className="btn btn-square btn-ghost">
-            <BiTrash className="size-[1.2em]" />
-          </button>
-        </li>
-
-        <li className="list-row">
-          <div>
-            <img
-              className="size-10 rounded-box"
-              src="https://img.daisyui.com/images/profile/demo/3@94.webp"
-            />
-          </div>
-          <div>
-            <div>Sabrino Gardener</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              Cappuccino
-            </div>
-          </div>
-          <p className="list-col-wrap text-xs">
-            "Cappuccino" quickly gained attention for its smooth melody and
-            relatable themes. The song’s success propelled Sabrino into the
-            spotlight, solidifying their status as a rising star.
-          </p>
-          <button className="btn btn-square btn-ghost">
-            <BiTrash className="size-[1.2em]" />
-          </button>
-        </li>
-      </ul> */}
-
-      <ul className="grid grid-cols-4 gap-8">
-        <li>
-          <div className="card m4 w-full shadow-sm relative group">
-            <figure>
-              <img
-                className="aspect-square"
-                src="https://img.daisyui.com/images/blog/daisyui-5.webp"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">홍천, 한국의 초소형 주택</h2>
-              <p>3월주중10% 할인 조용하고 한적한곳 멍때리기,힐링 바베큐,불멍</p>
-            </div>
-
-            <button className="btn btn-square btn-ghost indicator-item badge absolute top-2 right-2 transition opacity-0 hover:scale-110 group-hover:opacity-100 ">
-              <BiTrash className="size-[1.2em]" />
-            </button>
-          </div>
-        </li>
-        <li>
-          <div className="card m4 w-full shadow-sm relative group">
-            <figure>
-              <img
-                className="aspect-square"
-                src="https://img.daisyui.com/images/blog/daisyui-5.webp"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">홍천, 한국의 초소형 주택</h2>
-              <p>3월주중10% 할인 조용하고 한적한곳 멍때리기,힐링 바베큐,불멍</p>
-            </div>
-
-            <button className="btn btn-square btn-ghost indicator-item badge absolute top-2 right-2 transition opacity-0 hover:scale-110 group-hover:opacity-100 ">
-              <BiTrash className="size-[1.2em]" />
-            </button>
-          </div>
-        </li>
-        <li>
-          <div className="card m4 w-full shadow-sm relative group">
-            <figure>
-              <img
-                className="aspect-square"
-                src="https://img.daisyui.com/images/blog/daisyui-5.webp"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">홍천, 한국의 초소형 주택</h2>
-              <p>3월주중10% 할인 조용하고 한적한곳 멍때리기,힐링 바베큐,불멍</p>
-            </div>
-
-            <button className="btn btn-square btn-ghost indicator-item badge absolute top-2 right-2 transition opacity-0 hover:scale-110 group-hover:opacity-100 ">
-              <BiTrash className="size-[1.2em]" />
-            </button>
-          </div>
-        </li>
-        <li>
-          <div className="card m4 w-full shadow-sm relative group">
-            <figure>
-              <img src="https://img.daisyui.com/images/blog/daisyui-5.webp" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">홍천, 한국의 초소형 주택</h2>
-              <p>3월주중10% 할인 조용하고 한적한곳 멍때리기,힐링 바베큐,불멍</p>
-            </div>
-
-            <button className="btn btn-square btn-ghost indicator-item badge absolute top-2 right-2 transition opacity-0 hover:scale-110 group-hover:opacity-100 ">
-              <BiTrash className="size-[1.2em]" />
-            </button>
-          </div>
-        </li>
-        <li>
-          <div className="card m4 w-full shadow-sm relative group">
-            <figure>
-              <img
-                className="aspect-square"
-                src="https://img.daisyui.com/images/blog/daisyui-5.webp"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">홍천, 한국의 초소형 주택</h2>
-              <p>3월주중10% 할인 조용하고 한적한곳 멍때리기,힐링 바베큐,불멍</p>
-            </div>
-
-            <button className="btn btn-square btn-ghost indicator-item badge absolute top-2 right-2 transition opacity-0 hover:scale-110 group-hover:opacity-100 ">
-              <BiTrash className="size-[1.2em]" />
-            </button>
-          </div>
-        </li>
-      </ul>
+      <Pagination />
     </div>
   );
 };

@@ -3,25 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import OrderState from '../../components/order/orderConfirmation/OrderConfirmState';
 import SwiperComponent from '../../components/recommendation/SwiperComponent';
 
-const prevOrderInfo = {
-  order_id: 1,
-  user_id: '주문한 사용자 UID',
-  accommodation_id: '숙소 ID',
-  check_in: '체크인 날짜',
-  check_out: '체크아웃 날짜',
-  guest_count: {
-    adults: 2,
-    children: 2,
-  },
-  total_price: 160000,
-  payment_status:
-    //'canceled',
-    // 'pending',
-    'completed', //결제 상태 (pending, completed, canceled)
-  order_date: '주문 날짜',
-  used_points: 160000,
-};
-
 const orderInfo = [
   {
     order_id: 1,
@@ -118,11 +99,11 @@ const products = [
 
     images: [
       {
-        src: 'https://imgur.com/a/PpgWsfW',
+        src: 'https://i.imgur.com/ni513Ct.jpeg',
         alt: 'Two each of gray, white, and black shirts laying flat.',
       },
       {
-        src: 'https://imgur.com/a/r6B59wX',
+        src: 'https://i.imgur.com/q8ifdCe.jpeg',
         alt: 'Model wearing plain black basic tee.',
       },
     ],
@@ -164,11 +145,11 @@ const products = [
 
     images: [
       {
-        src: 'https://imgur.com/a/PpgWsfW',
+        src: 'https://i.imgur.com/ni513Ct.jpeg',
         alt: 'Two each of gray, white, and black shirts laying flat.',
       },
       {
-        src: 'https://imgur.com/a/r6B59wX',
+        src: 'https://i.imgur.com/q8ifdCe.jpeg',
         alt: 'Model wearing plain black basic tee.',
       },
     ],
@@ -210,11 +191,11 @@ const products = [
 
     images: [
       {
-        src: 'https://imgur.com/a/PpgWsfW',
+        src: 'https://i.imgur.com/ni513Ct.jpeg',
         alt: 'Two each of gray, white, and black shirts laying flat.',
       },
       {
-        src: 'https://imgur.com/a/r6B59wX',
+        src: 'https://i.imgur.com/q8ifdCe.jpeg',
         alt: 'Model wearing plain black basic tee.',
       },
     ],
@@ -256,11 +237,11 @@ const products = [
 
     images: [
       {
-        src: 'https://imgur.com/a/PpgWsfW',
+        src: 'https://i.imgur.com/ni513Ct.jpeg',
         alt: 'Two each of gray, white, and black shirts laying flat.',
       },
       {
-        src: 'https://imgur.com/a/r6B59wX',
+        src: 'https://i.imgur.com/q8ifdCe.jpeg',
         alt: 'Model wearing plain black basic tee.',
       },
     ],

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import ThemeToggleButton from './ThemeToggleButton';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ShoppingCart from '../cart/ShoppingCart';
-import { BiUser } from 'react-icons/bi';
+import { BiUser, BiHeart } from 'react-icons/bi';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleCart = () => {
     setOpen(true);

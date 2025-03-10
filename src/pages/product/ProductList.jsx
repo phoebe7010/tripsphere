@@ -97,10 +97,18 @@ const products = [
   },
 ];
 
+const breadcrumb = [
+  { link: '/', text: '홈' },
+  { link: '/products', text: '여행 검색 결과 목록' },
+];
+
 const ProductList = () => {
   return (
     <div className="max-w-[1200px] mx-auto py-[40px]">
-      <PageHeader />
+      <PageHeader
+        title="여행 패키지 검색 결과"
+        breadcrumb={breadcrumb}
+      />
 
       <div
         id="container"

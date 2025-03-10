@@ -13,15 +13,17 @@ const ProductCard = ({ product }) => {
         <img
           src={product.images[0].src}
           alt={product.images[0].alt}
-          className="object-cover h-40 rounded-2xl"
+          className="object-cover h-40 rounded-2xl mb-4"
         />
         <div className="flex flex-col gap-1.5 font-semibold">
-          <p className="group-hover:font-extrabold">{product.name}</p>
+          <p className="group-hover:font-extrabold line-clamp-1">
+            {product.name}
+          </p>
           <div className="flex flex-col justify-between max-[53rem]:flex-row">
             <div className="flex justify-between max-[53rem]:flex-col max-[53rem]:justify-around mb-1">
               <div className="flex justify-start items-center text-yellow-500 max-[53rem]:text-2xl ">
                 <RatingView ratingScore={product.rating} />
-                {product.rating}
+                <span className="ml-2">{product.rating}</span>
               </div>
             </div>
 
