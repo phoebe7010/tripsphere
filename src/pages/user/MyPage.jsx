@@ -4,25 +4,32 @@ import { BiHeart, BiCog } from 'react-icons/bi';
 import { HiOutlineTicket } from 'react-icons/hi';
 import { LiaCoinsSolid } from 'react-icons/lia';
 import { useNavigate } from 'react-router-dom';
+import PageHeader from '../../components/common/PageHeader';
+
+const breadcrumb = [
+  { link: '/', text: '홈' },
+  { link: '/mypage', text: '마이페이지' },
+];
 
 const MyPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="max-w-[700px] mx-auto">
-      {/* 제목 */}
-      <div>
-        <h1 className="text-center font-bold  py-4 border-b-2">마이페이지</h1>
-      </div>
+    <div className="py-[40px] max-w-[700px] mx-auto">
+      <PageHeader
+        title="마이페이지"
+        breadcrumb={breadcrumb}
+      />
 
       {/* 유저 정보 */}
-      <div className="flex px-4 py-8">
+      <div className="flex px-4 mb-8">
         {/* 프로필사진 */}
         <div className="avatar">
           <div className="w-20 rounded-full">
             <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
           </div>
         </div>
+
         {/* 이름 등 정보 */}
         <div className="ml-4 flex flex-1 flex-col">
           <div>

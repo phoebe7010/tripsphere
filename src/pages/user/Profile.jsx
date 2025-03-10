@@ -1,5 +1,10 @@
-import { BiSolidUserCircle } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
+import PageHeader from '../../components/common/PageHeader';
+
+const breadcrumb = [
+  { link: '/mypage', text: '마이페이지' },
+  { link: '/profile', text: '내 정보 수정' },
+];
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -8,12 +13,11 @@ const Profile = () => {
     <form className="max-w-[700px] mx-auto py-[40px]">
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base/7 font-semibold text-gray-900">
-            내 정보 수정
-          </h2>
-          <p className="mt-1 text-sm/6 text-gray-600">
-            개인 정보 수정 후 저장 버튼을 클릭해주세요.
-          </p>
+          <PageHeader
+            title="내 정보 수정"
+            breadcrumb={breadcrumb}
+            hasBackButton={true}
+          />
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">

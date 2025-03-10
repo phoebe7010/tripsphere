@@ -1,6 +1,6 @@
 import Pagination from '../../components/productlist/Pagination';
 import ProductCard from '../../components/favorite/ProductCard';
-import PageHeader from '../../components/productlist/PageHeader';
+import PageHeader from '../../components/common/PageHeader';
 
 const products = [
   {

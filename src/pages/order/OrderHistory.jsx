@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import OrderList from '../../components/order/orderList';
+import PageHeader from '../../components/common/PageHeader';
 
 const orders = [
   {
@@ -29,25 +30,19 @@ const orders = [
   },
 ];
 
-const OrderHistory = () => {
-  const navigate = useNavigate();
+const breadcrumb = [
+  { link: '/mypage', text: '마이페이지' },
+  { link: '/orderhistory', text: '주문 내역' },
+];
 
+const OrderHistory = () => {
   return (
     <div className="max-w-[700px] mx-auto py-[40px]">
-      <div className="flex">
-        <button
-          type="button"
-          onClick={() => navigate('/mypage')}
-          className="text-base/7 font-semibold text-gray-900 mb-10 pr-3 hover:cursor-pointer">
-          마이페이지
-        </button>
-        <h2 className="text-base/7 font-semibold text-gray-900 mb-10 pr-3">
-          &gt;
-        </h2>
-        <h2 className="text-base/7 font-semibold text-gray-900 mb-10">
-          내 예약
-        </h2>
-      </div>
+      <PageHeader
+        title="주문 내역"
+        breadcrumb={breadcrumb}
+        hasBackButton={true}
+      />
 
       {/* 주문 내역 */}
       <OrderList data={orders} />
