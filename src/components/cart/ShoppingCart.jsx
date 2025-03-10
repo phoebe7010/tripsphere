@@ -6,39 +6,81 @@ import {
 } from '@headlessui/react';
 import { Link } from 'react-router-dom';
 import { BiCalendarAlt, BiX, BiTrash } from 'react-icons/bi';
+import { formatNumber } from '../../utils/format';
 
-const products = [
+// [250311] hrkim: firebase 사용하면, users 테이블의 wishlist에 있는 accommodation_id 리스트를 이용하여 아래 정보를 조회해주세요
+const accommodations = [
   {
-    id: 1,
-    name: '페어필드 바이 메리어트 서울',
-    href: '#',
-    color: 'Salmon',
-    price: '1,002,000',
-    person: 2,
-    checkin: '2025-04-15 ',
-    checkout: '2025-04-18',
-    imageSrc:
-      'https://ak-d.tripcdn.com/images/1mc5s12000ap7p81yFA38_R_600_400_R5.webp',
-    address: '서울특별시 영등포구 경인로 870,07306',
+    id: '1',
+    type: 'pension',
+    name: '양평 독채 풀빌라 스테이호은',
+    check_in: '2025.03.11',
+    check_out: '2025.03.13',
+    description:
+      '예약 전 숙소 이용 안내 및 이용 수칙을 반드시 읽어주세요. 호젓한 은신처를 의미하는 호은.',
+    original_price: '80000',
+    discount_rate: '20',
+    final_price: '64000',
+    images: [
+      'https://ak-d.tripcdn.com/images/220713000000ubfbb2422_R_600_400_R5.webp',
+      'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F5%2Fb1df43231016311a21c18139bcda6d08%2Fd2071f084774e9d137837f63a757b432.jpg%22&type=m1500',
+      'https://search.pstatic.net/common?src=https://img.tripplat.com/domestic/product/package/63/745afb46c4487cb27af34116d44ca34f/2bc579ebce57266a57247ff884947fe7.jpg&type=f174_174',
+      'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F5%2Fb1df43231016311a21c18139bcda6d08%2Fd2071f084774e9d137837f63a757b432.jpg%22&type=m1500',
+      'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F92%2F39eecb19671866113575816b92ff5ac3%2F14de7183c8784b2b44d7a08bf1ef0a7c.png%22&type=m1500',
+    ],
+    host: {
+      name: '홍길동',
+      experience: '3',
+      contact: '010-1234-5678',
+    },
+    services: ['최고의 전망', '조식 포함'],
+    location: {
+      latitude: '33.450701',
+      longitude: '126.570667',
+      place_name: '양평군, 경기도, 한국',
+    },
   },
   {
-    id: 2,
-    name: '메종 글래드 제주',
-    href: '#',
-    color: 'Blue',
-    price: '669,000',
-    person: 1,
-    checkin: '2025-05-05 ',
-    checkout: '2025-05-10',
-    imageSrc:
-      'https://ak-d.tripcdn.com/images/1mc3y12000cemeiq59B00_R_600_400_R5.webp',
-    address: '제주특별자치도 제주시 노연로 80, 63132',
+    id: '2',
+    type: 'pension',
+    name: '양평 독채 풀빌라 스테이호은',
+    check_in: '2025.03.11',
+    check_out: '2025.03.13',
+    description:
+      '예약 전 숙소 이용 안내 및 이용 수칙을 반드시 읽어주세요. 호젓한 은신처를 의미하는 호은.',
+    original_price: '80000',
+    discount_rate: '20',
+    final_price: '64000',
+    images: [
+      'https://ak-d.tripcdn.com/images/220713000000ubfbb2422_R_600_400_R5.webp',
+      'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F5%2Fb1df43231016311a21c18139bcda6d08%2Fd2071f084774e9d137837f63a757b432.jpg%22&type=m1500',
+      'https://search.pstatic.net/common?src=https://img.tripplat.com/domestic/product/package/63/745afb46c4487cb27af34116d44ca34f/2bc579ebce57266a57247ff884947fe7.jpg&type=f174_174',
+      'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F5%2Fb1df43231016311a21c18139bcda6d08%2Fd2071f084774e9d137837f63a757b432.jpg%22&type=m1500',
+      'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F92%2F39eecb19671866113575816b92ff5ac3%2F14de7183c8784b2b44d7a08bf1ef0a7c.png%22&type=m1500',
+    ],
+    host: {
+      name: '홍길동',
+      experience: '3',
+      contact: '010-1234-5678',
+    },
+    services: ['최고의 전망', '조식 포함'],
+    location: {
+      latitude: '33.450701',
+      longitude: '126.570667',
+      place_name: '양평군, 경기도, 한국',
+    },
   },
 ];
 
+const typeMapping = {
+  pension: '펜션',
+  hotel: '호텔',
+  camping: '캠핑',
+};
+
 const ShoppingCart = ({ open, setOpen }) => {
-  const totalPrice = products.reduce((acc, product) => {
-    return acc + parseInt(product.price.replace(/,/g, ''), 10); // 쉼표 제거 후 숫자로 변환
+  const totalPrice = accommodations.reduce((acc, product) => {
+    return acc + parseInt(product.final_price, 10);
   }, 0);
 
   return (
@@ -84,9 +126,9 @@ const ShoppingCart = ({ open, setOpen }) => {
                       <ul
                         role="list"
                         className="flex flex-wrap gap-4">
-                        {products.map(product => (
+                        {accommodations.map(accommodation => (
                           <li
-                            key={product.id}
+                            key={accommodation.id}
                             className="flex w-[48%] h-auto py-6 border border-gray-200 rounded-lg p-4">
                             <input
                               type="checkbox"
@@ -108,43 +150,51 @@ const ShoppingCart = ({ open, setOpen }) => {
                               <div className="card-body py-0 px-0 gap-0">
                                 {/* 패키지 이름 */}
                                 <div className="flex items-center justify-between">
-                                  <div className="flex gap-2">
-                                    <div className="badge badge-soft badge-primary text-xs">
-                                      펜션
-                                    </div>
+                                  <div className="flex items-center justify-between">
+                                    <div className="flex gap-2">
+                                      <div className="badge badge-soft badge-primary text-xs">
+                                        {typeMapping[accommodation.type]}
+                                      </div>
 
-                                    <div className="badge badge-soft badge-info text-xs">
-                                      위치
+                                      <div className="badge badge-soft badge-info text-xs">
+                                        {accommodation.location.place_name}
+                                      </div>
                                     </div>
                                   </div>
+
+                                  <button className="btn btn-square btn-ghost indicator-item badge hover:scale-110 group-hover:opacity-100 ">
+                                    <BiTrash className="size-[1.2em]" />
+                                  </button>
                                 </div>
-                                <button className="btn btn-square btn-ghost indicator-item badge absolute top-2 right-2 transition opacity-0 hover:scale-110 group-hover:opacity-100 ">
-                                  <BiTrash className="size-[1.2em]" />
-                                </button>
 
                                 <h2
                                   className="mt-2 transition-colors card-title text-lg pb-3.5"
                                   title="여행 패키지 이름">
                                   <div className="line-clamp-1">
-                                    {product.name}
+                                    {accommodation.name}
                                   </div>
                                 </h2>
 
                                 {/* 가격정보 */}
                                 <div className="flex flex-col border-b-1 border-gray-200 pb-3.5">
                                   <div className="flex items-center gap-2">
-                                    <div className="text-gray-400">20%</div>
+                                    <div className="text-gray-400">
+                                      {accommodation.discount_rate}%
+                                    </div>
                                     <div
                                       className="line-through text-gray-400"
                                       title="정가">
-                                      8000000원
+                                      {formatNumber(
+                                        accommodation.original_price,
+                                      )}
+                                      원
                                     </div>
                                   </div>
 
                                   <div
                                     className="font-bold text-lg text-red-600"
                                     title="할인가">
-                                    1000000원
+                                    {formatNumber(accommodation.final_price)}원
                                   </div>
                                 </div>
 
@@ -158,7 +208,7 @@ const ShoppingCart = ({ open, setOpen }) => {
                                           <BiCalendarAlt className="text-base" />
                                           <p className="font-bold">체크인</p>
                                         </div>
-                                        <p>2025년 03월 11일</p>
+                                        <p>{accommodation.check_in}</p>
                                       </div>
 
                                       <div className="flex gap-4 items-center">
@@ -166,7 +216,7 @@ const ShoppingCart = ({ open, setOpen }) => {
                                           <BiCalendarAlt className="text-base" />
                                           <p className="font-bold">체크아웃</p>
                                         </div>
-                                        <p>2025년 03월 11일</p>
+                                        <p>{accommodation.check_out}</p>
                                       </div>
                                     </div>
                                   </div>
