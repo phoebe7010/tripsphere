@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 
 import 'swiper/css';
@@ -8,13 +8,29 @@ import ProductCard from './ProductCard';
 
 const SwiperComponent = ({ products }) => {
   const swiperRef = useRef(null);
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
+
+  useEffect(() => {
+    const swiperInstance = swiperRef.current?.swiper;
+
+    if (swiperInstance) {
+      setIsBeginning(swiperInstance.isBeginning);
+      setIsEnd(swiperInstance.isEnd);
+
+      swiperInstance.on('slideChange', () => {
+        setIsBeginning(swiperInstance.isBeginning);
+        setIsEnd(swiperInstance.isEnd);
+      });
+    }
+  }, []);
 
   const handlePrev = () => {
-    swiperRef.current.swiper.slidePrev();
+    if (!isBeginning) swiperRef.current.swiper.slidePrev();
   };
 
   const handleNext = () => {
-    swiperRef.current.swiper.slideNext();
+    if (!isEnd) swiperRef.current.swiper.slideNext();
   };
 
   return (
@@ -25,8 +41,15 @@ const SwiperComponent = ({ products }) => {
         slidesPerView={5}
         pagination={{ clickable: true }}
         scrollbar={{ draggable: true }}
-        onSwiper={swiper => console.log(swiper)}
-        onSlideChange={() => console.log('slide change')}>
+        onSwiper={swiper => {
+          swiperRef.current = { swiper };
+          setIsBeginning(swiper.isBeginning);
+          setIsEnd(swiper.isEnd);
+          swiper.on('slideChange', () => {
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+          });
+        }}>
         {products.map((product, index) => (
           <SwiperSlide key={index}>
             <ProductCard product={product} />
@@ -36,13 +59,19 @@ const SwiperComponent = ({ products }) => {
 
       <button
         onClick={handlePrev}
-        className="absolute top-1/2 -left-4 z-1 transform -translate-y-1/2 bg-white text-black shadow-lg rounded-full p-2">
+        disabled={isBeginning}
+        className={`absolute top-1/2 -left-4 z-1 transform -translate-y-1/2 bg-white text-black shadow-lg rounded-full p-2 ${
+          isBeginning ? 'opacity-0' : ''
+        }`}>
         <BiChevronLeft className="size-6" />
       </button>
 
       <button
         onClick={handleNext}
-        className="absolute top-1/2 -right-4 z-1 transform -translate-y-1/2 bg-white text-black shadow-lg rounded-full p-2">
+        disabled={isEnd}
+        className={`absolute top-1/2 -right-4 z-1 transform -translate-y-1/2 bg-white text-black shadow-lg rounded-full p-2 ${
+          isEnd ? 'opacity-0' : ''
+        }`}>
         <BiChevronRight className="size-6" />
       </button>
     </div>
