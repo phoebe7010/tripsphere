@@ -129,6 +129,17 @@ const favoriteInfo = [
   },
 ];
 
+// 포인트 내역
+const pointInfo = [
+  {
+    user_id: 'user1',
+    points: '10',
+    title: '신규 가입 지급 포인트🎉',
+    description: '신규 가입을 축하드립니다!',
+    received_date: '2025.03.11',
+  },
+];
+
 const MyPage = () => {
   return (
     <div className="py-[40px] max-w-[700px] mx-auto">
@@ -144,7 +155,7 @@ const MyPage = () => {
       <UserStats />
 
       {/* 포인트 내역 */}
-      <PointHistory />
+      <PointHistory pointInfo={pointInfo} />
 
       {/* 주문 내역 */}
       <OrderHistory orderInfo={orderInfo} />
