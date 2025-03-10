@@ -52,7 +52,7 @@
 - `capacity` (object):
   - `adults` (number): 성인 수
   - `children` (number): 어린이 수
-- `services` (array): 제공 서비스 목록 (예: `["최고의 전망", "조식 포함"]`)
+- `services` (array): 제공 서비스 목록 (예: `["wifi", "parking", "airconditioning", "tv", "breakfast", "barbecue"]`)
 - `images` (array): 숙소 사진 URL 리스트
 - `host` (object):
   - `name` (string): 호스트 이름
