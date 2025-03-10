@@ -7,6 +7,7 @@ import OrderSummary from '../../components/order/checkout/OrderSummary';
 import PeopleSelector from '../../components/common/PeopleSelector';
 import DateSelector from '../../components/common/DateSelector';
 import ServiceIcon from '../../components/common/ServiceIcon';
+import OrderList from '../../components/order/checkout/OrderList';
 
 const accommodation = {
   id: '1',
