@@ -33,7 +33,7 @@ const accommodations = [
       experience: '3',
       contact: '010-1234-5678',
     },
-    services: ['최고의 전망', '조식 포함'],
+    services: ['wifi', 'parking', 'tv', 'breakfast', 'barbecue'],
     location: {
       latitude: '33.450701',
       longitude: '126.570667',
@@ -63,7 +63,7 @@ const accommodations = [
       experience: '3',
       contact: '010-1234-5678',
     },
-    services: ['최고의 전망', '조식 포함'],
+    services: ['wifi', 'parking', 'tv', 'breakfast', 'barbecue'],
     location: {
       latitude: '33.450701',
       longitude: '126.570667',
@@ -167,9 +167,7 @@ const ShoppingCart = ({ open, setOpen }) => {
                                   </button>
                                 </div>
 
-                                <h2
-                                  className="mt-2 transition-colors card-title text-lg pb-3.5"
-                                  title="여행 패키지 이름">
+                                <h2 className="mt-2 transition-colors card-title text-lg pb-3.5">
                                   <div className="line-clamp-1">
                                     {accommodation.name}
                                   </div>

@@ -28,7 +28,7 @@ const accommodation = {
     experience: '3',
     contact: '010-1234-5678',
   },
-  services: ['최고의 전망', '조식 포함'],
+  services: ['wifi', 'parking', 'tv', 'breakfast', 'barbecue'],
   location: {
     latitude: '33.450701',
     longitude: '126.570667',

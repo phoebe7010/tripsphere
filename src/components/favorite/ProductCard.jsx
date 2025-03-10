@@ -41,9 +41,7 @@ const ProductCard = ({ favorite }) => {
             </div>
           </div>
 
-          <h2
-            className="mt-2 transition-colors card-title text-lg pb-3.5"
-            title="여행 패키지 이름">
+          <h2 className="mt-2 transition-colors card-title text-lg pb-3.5">
             <div className="line-clamp-1">{favorite.name}</div>
           </h2>
 

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { BiHotel, BiTv } from 'react-icons/bi';
+import { BiHotel } from 'react-icons/bi';
 import { FaMapLocationDot } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 import KakaoMap from '../../components/common/KakaoMap';
 import OrderSummary from '../../components/order/checkout/OrderSummary';
 import PeopleSelector from '../../components/common/PeopleSelector';
-import OrderList from '../../components/order/checkout/OrderList';
 import DateSelector from '../../components/common/DateSelector';
+import ServiceIcon from '../../components/common/ServiceIcon';
 
 const accommodation = {
   id: '1',
@@ -31,7 +31,7 @@ const accommodation = {
     experience: '3',
     contact: '010-1234-5678',
   },
-  services: ['최고의 전망', '조식 포함'],
+  services: ['wifi', 'parking', 'tv', 'breakfast', 'barbecue'],
   location: {
     latitude: '33.450701',
     longitude: '126.570667',
@@ -54,6 +54,14 @@ const typeMapping = {
   camping: '캠핑',
 };
 
+const serviceNames = {
+  wifi: '와이파이',
+  parking: '주차장',
+  tv: 'TV',
+  breakfast: '조식',
+  barbecue: '바비큐',
+};
+
 const Checkout = () => {
   const navigate = useNavigate();
   const [openDate, setOpenDate] = useState(false);
@@ -73,7 +81,7 @@ const Checkout = () => {
           <div className="mt-6 border-t ">
             <dl className="divide-y divide-gray-100">
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <dt className="text-sm/6 font-medium">여행 패키지</dt>
+                <dt className="text-sm/6 font-medium">숙소명</dt>
                 <dd className="mt-1 text-sm/6  sm:col-span-2 sm:mt-0">
                   {accommodation.name}
                 </dd>
@@ -141,12 +149,19 @@ const Checkout = () => {
                     className="divide-y divide-gray-100 rounded-md border border-gray-200">
                     {accommodation.services &&
                       accommodation.services.map((service, index) => (
-                        <OrderList
+                        <li
                           key={index}
-                          IconComponent={BiTv}
-                          Title={service}
-                          description={''}
-                        />
+                          className="flex items-center py-4 px-4 text-sm">
+                          <div className="flex items-center gap-2">
+                            <ServiceIcon
+                              key={service}
+                              type={service}
+                            />
+                            <span className="font-medium">
+                              {serviceNames[service]}
+                            </span>
+                          </div>
+                        </li>
                       ))}
                   </ul>
                 </dd>

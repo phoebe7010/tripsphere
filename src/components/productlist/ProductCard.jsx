@@ -92,9 +92,7 @@ const ProductCard = ({ index, product }) => {
               </span>
             </div>
           </div>
-          <h2
-            className=" transition-colors card-title text-2xl pb-3.5 border-b-1 border-gray-200"
-            title="여행 패키지 이름">
+          <h2 className=" transition-colors card-title text-2xl pb-3.5 border-b-1 border-gray-200">
             {product.name}
           </h2>
 
@@ -126,9 +124,7 @@ const ProductCard = ({ index, product }) => {
               </p>
             </div>
 
-            <div
-              className="flex flex-col border-l border-gray-200 pl-4 py-4"
-              title="여행 패키지 정보">
+            <div className="flex flex-col border-l border-gray-200 pl-4 py-4">
               {/* 가격정보 */}
               <div
                 title="가격정보"

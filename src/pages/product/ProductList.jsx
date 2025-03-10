@@ -53,7 +53,7 @@ const ProductList = () => {
   return (
     <div className="max-w-[1200px] mx-auto py-[40px]">
       <PageHeader
-        title="여행 패키지 검색 결과"
+        title="여행 숙소 검색 결과"
         breadcrumb={breadcrumb}
       />
 

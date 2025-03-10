@@ -3,11 +3,20 @@ import { formatNumber } from '../../utils/format';
 import DateSelector from '../../components/common/DateSelector';
 import PeopleSelector from '../../components/common/PeopleSelector';
 import { useNavigate } from 'react-router-dom';
+import ServiceIcon from '../common/ServiceIcon';
 
 const typeMapping = {
   pension: '펜션',
   hotel: '호텔',
   camping: '캠핑',
+};
+
+const serviceNames = {
+  wifi: '와이파이',
+  parking: '주차장',
+  tv: 'TV',
+  breakfast: '조식',
+  barbecue: '바비큐',
 };
 
 const ProductDetails = ({ product }) => {
@@ -36,7 +45,13 @@ const ProductDetails = ({ product }) => {
                     key={index}
                     className="flex items-center py-4 px-4 text-sm">
                     <div className="flex items-center gap-2">
-                      <span className="font-medium">{service}</span>
+                      <ServiceIcon
+                        key={service}
+                        type={service}
+                      />
+                      <span className="font-medium">
+                        {serviceNames[service]}
+                      </span>
                     </div>
                   </li>
                 ))}
