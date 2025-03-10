@@ -8,6 +8,7 @@
 | 박세진 | 팀원 | 상품 목록 페이지(결과 페이지),<br/> 결제 페이지,<br/> 주문 완료 페이지 | product/ProductList.jsx,<br/> order/Checkout.jsx,<br/> order/OrderConfirmation.jsx  |
 | 최승이 | 팀원 | 마이페이지,<br/> 찜 목록 페이지 | user/MyPage.jsx,<br/> user/Favorite.jsx  |
 | 형주희 | 팀원 | 주문 내역 페이지,<br/> 장바구니 페이지 | order/OrderHistory.jsx,<br/> components/ShoppingCart.jsx |
+| 전윤교 | 팀원 | |
 
 ---
 
