@@ -1,38 +1,7 @@
 import ReviewInput from './ReviewInput';
 import ReviewItem from './ReviewItem';
 
-const reviews = [
-  {
-    id: 1,
-    name: '김혜란',
-    date: '2025년 3월 10일',
-    review: '정말 좋아요',
-    image: 'https://img.daisyui.com/images/profile/demo/1@94.webp',
-  },
-  {
-    id: 2,
-    name: '박세진',
-    date: '2025년 3월 10일',
-    review: '깔끔해요',
-    image: 'https://img.daisyui.com/images/profile/demo/4@94.webp',
-  },
-  {
-    id: 3,
-    name: '형주희',
-    date: '2025년 3월 10일',
-    review: '멋져요',
-    image: 'https://img.daisyui.com/images/profile/demo/3@94.webp',
-  },
-  {
-    id: 4,
-    name: '최승이',
-    date: '2025년 3월 10일',
-    review: '좋아요',
-    image: 'https://img.daisyui.com/images/profile/demo/3@94.webp',
-  },
-];
-
-const ProductReview = () => {
+const ProductReview = ({ reviews }) => {
   return (
     <div>
       <div className="flex space-y-6 gap-10 max-w-[1200px] mx-auto py-[20px] px-[20px]">

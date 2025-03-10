@@ -11,8 +11,8 @@ const ProductCard = ({ product }) => {
       className="group my-2  rounded-2xl shadow-sm p-3 flex flex-col gap-3 transition-transform hover:cursor-pointer dark:shadow-gray-700">
       <Link to="/">
         <img
-          src={product.images[0].src}
-          alt={product.images[0].alt}
+          src={product.images[0]}
+          alt={product.name}
           className="object-cover h-40 rounded-2xl mb-4"
         />
         <div className="flex flex-col gap-1.5 font-semibold">
@@ -22,8 +22,8 @@ const ProductCard = ({ product }) => {
           <div className="flex flex-col justify-between max-[53rem]:flex-row">
             <div className="flex justify-between max-[53rem]:flex-col max-[53rem]:justify-around mb-1">
               <div className="flex justify-start items-center text-yellow-500 max-[53rem]:text-2xl ">
-                <RatingView ratingScore={product.rating} />
-                <span className="ml-2">{product.rating}</span>
+                <RatingView ratingScore={product.reviews.rating} />
+                <span className="ml-2">{product.reviews.rating}</span>
               </div>
             </div>
 

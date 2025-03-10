@@ -39,6 +39,7 @@ const SwiperComponent = ({ products }) => {
         className="absolute top-1/2 -left-4 z-1 transform -translate-y-1/2 bg-white text-black shadow-lg rounded-full p-2">
         <BiChevronLeft className="size-6" />
       </button>
+
       <button
         onClick={handleNext}
         className="absolute top-1/2 -right-4 z-1 transform -translate-y-1/2 bg-white text-black shadow-lg rounded-full p-2">

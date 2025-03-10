@@ -5,7 +5,7 @@ import ProductDetails from '../../components/detail/ProductDetails';
 import ProductLocation from '../../components/detail/ProductLocation';
 import ProductReview from '../../components/detail/ProductReview';
 
-const product = {
+const accommodation = {
   id: '1',
   type: 'pension',
   name: '양평 독채 풀빌라 스테이호은',
@@ -36,6 +36,68 @@ const product = {
   },
 };
 
+const reviews = [
+  {
+    id: 'review1',
+    accommodation_id: '1',
+    user_id: 'user1',
+    rating: '5',
+    comment: '정말 좋아요',
+    created_at: '2025.03.11',
+    user_info: {
+      name: '김혜란',
+      profile_image: 'https://img.daisyui.com/images/profile/demo/1@94.webp',
+    },
+  },
+  {
+    id: 'review2',
+    accommodation_id: '1',
+    user_id: 'user2',
+    rating: '5',
+    comment: '정말 좋아요',
+    created_at: '2025.03.11',
+    user_info: {
+      name: '박세진',
+      profile_image: 'https://img.daisyui.com/images/profile/demo/1@94.webp',
+    },
+  },
+  {
+    id: 'review3',
+    accommodation_id: '1',
+    user_id: 'user3',
+    rating: '4.5',
+    comment: '정말 좋아요',
+    created_at: '2025.03.11',
+    user_info: {
+      name: '형주희',
+      profile_image: 'https://img.daisyui.com/images/profile/demo/1@94.webp',
+    },
+  },
+  {
+    id: 'review4',
+    accommodation_id: '1',
+    user_id: 'user4',
+    rating: '3',
+    comment: '정말 좋아요',
+    created_at: '2025.03.11',
+    user_info: {
+      name: '최승이',
+      profile_image: 'https://img.daisyui.com/images/profile/demo/1@94.webp',
+    },
+  },
+  {
+    accommodation_id: '1',
+    user_id: 'user5',
+    rating: '4',
+    comment: '정말 좋아요',
+    created_at: '2025.03.11',
+    user_info: {
+      name: '전윤교',
+      profile_image: 'https://img.daisyui.com/images/profile/demo/1@94.webp',
+    },
+  },
+];
+
 const ProductDetail = () => {
   const [productId, setProductId] = useState(0);
 
@@ -43,21 +105,21 @@ const ProductDetail = () => {
     <div className="max-w-[1200px] mx-auto px-[20px] py-[40px]">
       {/* 상품 헤더 */}
       <ProductHeader
-        product={product}
+        product={accommodation}
         productId={productId}
       />
 
       {/* 상품 갤러리 */}
-      <ProductGallery product={product} />
+      <ProductGallery product={accommodation} />
 
       {/* 상품 상세 정보 */}
-      <ProductDetails product={product} />
+      <ProductDetails product={accommodation} />
 
       {/* 위치 */}
-      <ProductLocation product={product} />
+      <ProductLocation product={accommodation} />
 
       {/* 리뷰 */}
-      <ProductReview />
+      <ProductReview reviews={reviews} />
     </div>
   );
 };

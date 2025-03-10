@@ -1,13 +1,17 @@
 import { FcApproval, FcCancel, FcClock, FcQuestions } from 'react-icons/fc';
 import OrderList from '../orderList';
 
-const OrderState = ({ orders }) => {
+const OrderState = ({ orderInfo }) => {
   let State;
   let message;
 
-  const hasPending = orders.some(order => order.payment_status === 'pending');
-  const hasCanceled = orders.some(order => order.payment_status === 'canceled');
-  const allCompleted = orders.every(
+  const hasPending = orderInfo.some(
+    order => order.payment_status === 'pending',
+  );
+  const hasCanceled = orderInfo.some(
+    order => order.payment_status === 'canceled',
+  );
+  const allCompleted = orderInfo.every(
     order => order.payment_status === 'completed',
   );
 
@@ -28,8 +32,10 @@ const OrderState = ({ orders }) => {
   return (
     <div className="flex flex-col justify-center items-center gap-4">
       <State size={50} />
+
       <h1 className="text-4xl font-semibold tracking-tight">{message}</h1>
-      <OrderList data={orders} />
+
+      <OrderList data={orderInfo} />
     </div>
   );
 };

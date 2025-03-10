@@ -8,80 +8,50 @@ import PeopleSelector from '../../components/common/PeopleSelector';
 import OrderList from '../../components/order/checkout/OrderList';
 import DateSelector from '../../components/common/DateSelector';
 
-const receiveData = {
-  // 숙박 시설 정보
-  accommodations: {
-    accommodation_id: '숙소 고유번호',
-    name: '양평 독채 풀빌라 스테이호은',
-    type: '호텔',
-    loaction: {
-      latitude: 123.4512,
-      longitude: 123.123,
-      place_name: '양평군',
-    },
-    description:
-      "예약 전 숙소 이용 안내 및 이용 수칙을 반드시 읽어주세요. '호젓한 은신처'를 의미하는 '호은'.",
-    original_price: 100000,
-    discount_rate: 5,
-    final_price: 0,
-    check_in: '체크인시간',
-    check_out: '체크아웃시간',
-    capacity: {
-      adults: 2,
-      children: 2,
-    },
-    service: ['제공 서비스1', '제공 서비스2', '제공 서비스3'],
-    images: ['https://imgur.com/a/PpgWsfW', 'https://imgur.com/a/r6B59wX'],
-    host: {
-      name: '숙박 사업주명',
-      experience: '숙박 사업주 경력 기술',
-      contact: '010-0000-0000',
-    },
-    rating: 3,
-    revicews_count: 3,
+const accommodation = {
+  id: '1',
+  type: 'pension',
+  name: '양평 독채 풀빌라 스테이호은',
+  check_in: '2025.03.11',
+  check_out: '2025.03.13',
+  description:
+    '예약 전 숙소 이용 안내 및 이용 수칙을 반드시 읽어주세요. 호젓한 은신처를 의미하는 호은.',
+  original_price: '80000',
+  discount_rate: '20',
+  final_price: '64000',
+  images: [
+    'https://ak-d.tripcdn.com/images/220713000000ubfbb2422_R_600_400_R5.webp',
+    'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F5%2Fb1df43231016311a21c18139bcda6d08%2Fd2071f084774e9d137837f63a757b432.jpg%22&type=m1500',
+    'https://search.pstatic.net/common?src=https://img.tripplat.com/domestic/product/package/63/745afb46c4487cb27af34116d44ca34f/2bc579ebce57266a57247ff884947fe7.jpg&type=f174_174',
+    'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F5%2Fb1df43231016311a21c18139bcda6d08%2Fd2071f084774e9d137837f63a757b432.jpg%22&type=m1500',
+    'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F92%2F39eecb19671866113575816b92ff5ac3%2F14de7183c8784b2b44d7a08bf1ef0a7c.png%22&type=m1500',
+  ],
+  host: {
+    name: '홍길동',
+    experience: '3',
+    contact: '010-1234-5678',
   },
-  // 사용자 정보
-  user: {
-    uid: 'user_123',
-    name: '유저명',
-    email: '유저이메일',
-    phone: '유저연락처',
-    points: 1000000,
-  },
-  // 예약정보
-  reservation: {
-    check_info: {
-      check_in: '20260101',
-      check_out: '20260103',
-      check_range: 3,
-    },
-    guest_info: {
-      adult: 2,
-      children: 2,
-      guest_total: 4,
-    },
-    order_info: {
-      order_price: 120000,
-      order_fee: 40000,
-      order_total: 160000,
-    },
+  services: ['최고의 전망', '조식 포함'],
+  location: {
+    latitude: '33.450701',
+    longitude: '126.570667',
+    place_name: '양평군, 경기도, 한국',
   },
 };
 
-const orderData = {
-  uid: 'user_123',
-  accommodation_id: '숙소 고유번호',
-  check_in: '20260101',
-  check_out: '20260103',
-  guest_count: {
-    adults: 2,
-    children: 2,
+const orderInfo = {
+  commission: '1000',
+  total_price: '10000',
+  used_points: '800',
+  userInfo: {
+    points: '900',
   },
+};
 
-  total_price: 100000,
-  payment_state: 'completed',
-  order_data: '20250309',
-  used_points: 0,
+const typeMapping = {
+  pension: '펜션',
+  hotel: '호텔',
+  camping: '캠핑',
 };
 
 const Checkout = () => {
@@ -105,9 +75,10 @@ const Checkout = () => {
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt className="text-sm/6 font-medium">여행 패키지</dt>
                 <dd className="mt-1 text-sm/6  sm:col-span-2 sm:mt-0">
-                  {receiveData.accommodations.name}
+                  {accommodation.name}
                 </dd>
               </div>
+
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt className="text-sm/6 font-medium ">예약 정보</dt>
                 <dd className="mt-2 text-sm sm:col-span-2 sm:mt-0">
@@ -117,20 +88,21 @@ const Checkout = () => {
                     <OrderList
                       IconComponent={FaMapLocationDot}
                       Title={'숙소 위치'}
-                      description={
-                        receiveData.accommodations.loaction.place_name
-                      }
+                      description={accommodation.location.place_name}
                     />
                     <div className="border-t border-gray-100 h-">
                       <div className="divide-y divide-gray-100">
-                        <KakaoMap />
+                        <KakaoMap
+                          latitude={accommodation.location.latitude}
+                          longitude={accommodation.location.longitude}
+                        />
                       </div>
                     </div>
 
                     <OrderList
                       IconComponent={BiHotel}
                       Title={'숙박 시설'}
-                      description={receiveData.accommodations.type}
+                      description={typeMapping[accommodation.type]}
                     />
 
                     <li>
@@ -150,28 +122,29 @@ const Checkout = () => {
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 ">
                 <dt className="text-sm/6 font-medium">호스트 연락처</dt>
                 <dd className="mt-1 text-sm/6 sm:col-span-2 sm:mt-0">
-                  {receiveData.accommodations.host.contact}
+                  {accommodation.host.contact}
                 </dd>
               </div>
 
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt className="text-sm/6 font-medium ">숙소 소개</dt>
                 <dd className="mt-1 text-sm/6 sm:col-span-2 sm:mt-0">
-                  {receiveData.accommodations.description}
+                  {accommodation.description}
                 </dd>
               </div>
+
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                 <dt className="text-sm/6 font-medium">서비스</dt>
                 <dd className="mt-2 text-sm sm:col-span-2 sm:mt-0">
                   <ul
                     role="list"
                     className="divide-y divide-gray-100 rounded-md border border-gray-200">
-                    {receiveData.accommodations.service &&
-                      receiveData.accommodations.service.map((ele, index) => (
+                    {accommodation.services &&
+                      accommodation.services.map((service, index) => (
                         <OrderList
                           key={index}
                           IconComponent={BiTv}
-                          Title={ele}
+                          Title={service}
                           description={''}
                         />
                       ))}
@@ -186,7 +159,7 @@ const Checkout = () => {
         <div className="">
           <div className="sticky card top-15 bg-base-100 w-96 shadow-sm">
             <form className="card-body">
-              <OrderSummary receiveData={receiveData} />
+              <OrderSummary orderInfo={orderInfo} />
 
               <div className="card-actions justify-end">
                 <button

@@ -11,17 +11,20 @@ const ReviewItem = ({ reviews }) => {
           <div>
             <img
               className="size-10 rounded-box"
-              src={review.image}
-              alt={review.name}
+              src={review.user_info.profile_image}
+              alt={review.user_info.name}
             />
           </div>
+
           <div>
-            <div>{review.name}</div>
+            <div>{review.user_info.name}</div>
             <div className="text-xs uppercase font-semibold opacity-60">
-              {review.date}
+              {review.created_at}
             </div>
           </div>
-          <p className="list-col-wrap text-xs">{review.review}</p>
+
+          <p className="list-col-wrap text-xs">{review.comment}</p>
+
           <Rating />
         </li>
       ))}
