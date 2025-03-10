@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { formatNumber } from '../../utils/format';
 import DateSelector from '../../components/common/DateSelector';
 import PeopleSelector from '../../components/common/PeopleSelector';
-import { BiTv, BiMap } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 
-const icons = {
-  tv: <BiTv className="text-xl text-gray-400" />,
-  map: <BiMap className="text-xl text-gray-400" />,
+const typeMapping = {
+  pension: '펜션',
+  hotel: '호텔',
+  camping: '캠핑',
 };
 
 const ProductDetails = ({ product }) => {
@@ -19,10 +19,12 @@ const ProductDetails = ({ product }) => {
       <div className="flex-1">
         <div className="px-4 sm:px-0">
           <h3 className="text-base/7 font-semibold text-gray-900">
-            {product.type}
+            {product.name}
           </h3>
           <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">
-            {product.roomConfiguration}
+            <div className="badge badge-soft badge-primary text-xs">
+              {typeMapping[product.type]}
+            </div>
           </p>
         </div>
         <div className="mt-6 border-t border-gray-100">
@@ -34,13 +36,13 @@ const ProductDetails = ({ product }) => {
                     key={index}
                     className="flex items-center py-4 px-4 text-sm">
                     <div className="flex items-center gap-2">
-                      {icons[service.icon]}
-                      <span className="font-medium">{service.text}</span>
+                      <span className="font-medium">{service}</span>
                     </div>
                   </li>
                 ))}
               </ul>
             </div>
+
             <div className="px-4 py-6 gap-4 sm:px-0 text-sm/6 text-gray-70">
               <ul className="list">
                 <li className="list-row px-0 py-0">
@@ -53,12 +55,13 @@ const ProductDetails = ({ product }) => {
                   <div>
                     <div className="font-bold">호스트: {product.host.name}</div>
                     <div className="text-xs uppercase opacity-60">
-                      호스트 경력 {product.host.career}년
+                      호스트 경력 {product.host.experience}년
                     </div>
                   </div>
                 </li>
               </ul>
             </div>
+
             <div className="px-4 py-6 gap-4 sm:px-0 text-sm/6 text-gray-70">
               <div className="mb-4 line-clamp-3">{product.description}</div>
 
@@ -69,6 +72,7 @@ const ProductDetails = ({ product }) => {
                 }>
                 더 보기
               </button>
+
               <dialog
                 id="my_modal_1"
                 className="modal">

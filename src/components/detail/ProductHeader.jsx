@@ -17,7 +17,7 @@ const ProductHeader = ({ product, productId }) => {
             hasText
             title={product.name}
             description={product.description}
-            imageUrl={product.images[0].src}
+            imageUrl={product.images[0]}
             pageUrl={window.location.origin + '/product/' + productId}
           />
         </span>

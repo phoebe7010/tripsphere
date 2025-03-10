@@ -9,13 +9,17 @@ const ProductLocation = ({ product }) => {
           <div className="px-4 sm:px-0">
             <h3 className="text-base/7 font-semibold text-gray-900">위치</h3>
             <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">
-              {product.location}
+              {product.location.place_name}
             </p>
           </div>
+
           <div className="mt-6 border-t border-gray-100">
             <div className="divide-y divide-gray-100">
               <div className="py-4">
-                <KakaoMap />
+                <KakaoMap
+                  latitude={product.location.latitude}
+                  longitude={product.location.longitude}
+                />
               </div>
             </div>
           </div>

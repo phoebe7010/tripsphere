@@ -1,7 +1,6 @@
 import React from 'react';
 import { BiCalendarAlt, BiCart, BiHeart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import { calculateDiscountedPrice } from '../../utils/discountedPrice';
 import { formatNumber } from '../../utils/format';
 import KakaoShareButton from '../common/KakaoShareButton';
 
@@ -32,43 +31,40 @@ const ProductCard = ({ index, product }) => {
 
   return (
     <Link to="/product/0">
-      {/* 각 여행패키지 정보*/}
       <article
         className={`group card bg-base-100 transition-shadow grid grid-cols-[2fr_5fr] gap-[20px] ${
           index === 0 ? 'pb-[30px]' : 'py-[30px]'
         } ${index !== product.length - 1 ? 'border-b border-gray-200' : ''}`}>
-        {/* 패키지 사진 영역*/}
         <figure>
           <div className="h-full relative">
             <div className="h-[200px] rounded-md overflow-hidden">
               <img
-                src={product.images[0].src}
-                alt={product.images[0].alt}
+                src={product.images[0]}
+                alt={product.name}
                 className="h-full object-cover"
               />
             </div>
           </div>
-          {/* <figcaption>여행 패키지 상품 사진</figcaption> */}
         </figure>
 
         <div className="card-body py-0 px-0 gap-0">
-          {/* 패키지 이름 */}
           <div className="flex items-center justify-between">
             <div className="flex gap-2">
               <div className="badge badge-soft badge-primary">
                 {bulidingType({ product })}
               </div>
-              {/* <div className="badge badge-soft badge-secondary">NEW</div> */}
+
               <div className="badge badge-soft badge-info">
                 {product.location.place_name}
               </div>
             </div>
+
             <div className="flex gap-2">
               <span className="hidden sm:block">
                 <KakaoShareButton
                   title={product.name}
                   description={product.description}
-                  imageUrl={product.images[0].src}
+                  imageUrl={product.images[0]}
                   pageUrl={window.location.origin + '/product/0'}
                 />
               </span>
@@ -103,9 +99,7 @@ const ProductCard = ({ index, product }) => {
           </h2>
 
           {/* 패키지 정보 */}
-          <div
-            className="grid grid-cols-[3fr_1fr] h-4/5 "
-            title="패키지 상세정보들">
+          <div className="grid grid-cols-[3fr_1fr] h-4/5">
             <div className="py-4 pr-4">
               <div className="grid grid-cols-2 gap-x-8 gap-y-2 mb-2.5">
                 <div className="flex gap-4 items-center">
@@ -123,16 +117,6 @@ const ProductCard = ({ index, product }) => {
                   </div>
                   <time dateTime={product.check_out}>{product.check_out}</time>
                 </div>
-
-                {/* <div>
-                  <div className="flex gap-4 items-center">
-                    <div className="flex items-center gap-2 min-w-[100px]">
-                      <BiTime className="text-base" />
-                      <span className="font-bold">총 소요 일수 </span>
-                    </div>
-                    <span>3일</span>
-                  </div>
-                </div> */}
               </div>
 
               <p
@@ -155,19 +139,15 @@ const ProductCard = ({ index, product }) => {
                     title="정가">
                     {formatNumber(product.original_price)}원
                   </p>
+
                   <p
                     className="underline font-bold text-2xl transition-colors"
                     title="할인가">
-                    {formatNumber(
-                      calculateDiscountedPrice(
-                        product.original_price,
-                        product.discount,
-                      ),
-                    )}
-                    원
+                    {formatNumber(product.final_price)}원
                   </p>
                 </div>
-                <span> -{product.discount_rate}% </span>
+
+                <span> {product.discount_rate}% </span>
               </div>
             </div>
           </div>
