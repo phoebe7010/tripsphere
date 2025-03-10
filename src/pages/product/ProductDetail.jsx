@@ -3,6 +3,7 @@ import ProductHeader from '../../components/detail/ProductHeader';
 import ProductGallery from '../../components/detail/ProductGallery';
 import ProductDetails from '../../components/detail/ProductDetails';
 import ProductLocation from '../../components/detail/ProductLocation';
+import ProductReview from '../../components/detail/ProductReview';
 
 const product = {
   name: '양평 독채 풀빌라 스테이호은',
@@ -60,6 +61,9 @@ const ProductDetail = () => {
 
       {/* 위치 */}
       <ProductLocation product={product} />
+
+      {/* 리뷰 */}
+      <ProductReview />
     </div>
   );
 };
