@@ -6,7 +6,7 @@ const Footer = () => {
       <aside>
         <p>
           Copyright © {new Date().getFullYear()} - All right reserved by 김혜란,
-          박세진, 형주희, 최승이
+          박세진, 형주희, 최승이, 전윤교
         </p>
       </aside>
     </footer>
