@@ -171,6 +171,18 @@
 
 ---
 
+### 5. points (포인트 내역)
+**Document ID:** 포인트 내역 ID
+
+#### 🔹 Fields
+- `user_id` (string): 포인트를 받은 사용자 UID
+- `points` (number): 받은 포인트 양
+- `title` (string): 포인트 제목
+- `description` (string): 포인트 부가설명 (예: "첫 예약 축하 보너스")
+- `received_date` (string): 포인트 받은 날짜
+
+---
+
 | 📌 Page | 🔗 Related Collections | 📝 Description |
 |---------|--------------------|--------------|
 | 메인페이지 | `accommodations` | 인기 숙소, 추천 숙소 표시 |
