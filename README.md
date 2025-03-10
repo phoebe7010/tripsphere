@@ -94,6 +94,68 @@
 - `payment_status` (string): 결제 상태 (`pending`, `completed`, `canceled`)
 - `order_date` (string): 주문 날짜
 - `used_points` (number): 사용한 포인트
+- `commission` (number): 수수료## 1. `accommodations` (숙소 정보)
+**Document ID:** 숙소 고유 ID (자동 생성 또는 지정)
+
+#### 🔹 Fields
+- `name` (string): 숙소 이름 (예: "해운대 오션뷰 호텔")
+- `type` (string): 숙소 유형 (`hotel`, `pension`, `guesthouse`, `camping`)
+- `location` (object):
+  - `latitude` (number): 위도
+  - `longitude` (number): 경도
+  - `place_name` (string): 지역 이름 (예: "부산 해운대")
+- `description` (string): 숙소 설명
+- `original_price` (number): 원래 가격
+- `discount_rate` (number): 할인율 (예: `0.1` → 10%)
+- `final_price` (number): 할인된 가격 (계산 가능)
+- `check_in` (string): 체크인 시간
+- `check_out` (string): 체크아웃 시간
+- `capacity` (object):
+  - `adults` (number): 성인 수
+  - `children` (number): 어린이 수
+- `services` (array): 제공 서비스 목록 (예: `["최고의 전망", "조식 포함"]`)
+- `images` (array): 숙소 사진 URL 리스트
+- `host` (object):
+  - `name` (string): 호스트 이름
+  - `experience` (string): 경력
+  - `contact` (string): 연락처
+- `rating` (number): 평균 평점
+- `reviews_count` (number): 리뷰 개수
+
+---
+
+### 2. `users` (사용자 정보)
+**Document ID:** 사용자 UID (Firebase Auth와 연동)
+
+#### 🔹 Fields
+- `name` (string): 사용자 이름
+- `nickname` (string): 닉네임
+- `email` (string): 이메일
+- `phone` (string): 전화번호
+- `profile_image` (string): 프로필 사진 URL
+- `wishlist` (array): 찜 목록 (`accommodation_id` 리스트)
+- `orders` (array): 주문 내역 (`order_id` 리스트)
+- `cart` (array): 장바구니 (`accommodation_id` 리스트)
+- `points` (number): 사용 가능한 포인트
+
+---
+
+### 3. `orders` (주문 정보)
+**Document ID:** 주문 ID
+
+#### 🔹 Fields
+- `user_id` (string): 주문한 사용자 UID
+- `accommodation_id` (string): 숙소 ID
+- `check_in` (string): 체크인 날짜
+- `check_out` (string): 체크아웃 날짜
+- `guest_count` (object):
+  - `adults` (number): 성인 수
+  - `children` (number): 어린이 수
+- `total_price` (number): 총 결제 금액
+- `payment_status` (string): 결제 상태 (`pending`, `completed`, `canceled`)
+- `order_date` (string): 주문 날짜
+- `used_points` (number): 사용한 포인트
+- `commission` (number): 수수료
 
 ---
 
