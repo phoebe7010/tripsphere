@@ -44,7 +44,7 @@ const OrderHistory = () => {
                 <div className="font-bold ml-5 pt-2">성인 :</div>
                 <div className="ml-2 pt-2">2명</div>
                 <div className="font-bold ml-5 pt-2">소아 :</div>
-                <div className="ml-2 pt-2">0명</div>
+                <div className="ml-2 pt-2">2명</div>
               </div>
               <div className="flex">
                 <div className="font-bold ml-5 pt-2">체크인 :</div>

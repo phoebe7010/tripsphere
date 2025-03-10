@@ -20,7 +20,7 @@ const products = [
     checkout: '2025-04-18',
     imageSrc:
       'https://ak-d.tripcdn.com/images/1mc5s12000ap7p81yFA38_R_600_400_R5.webp',
-    address: '서울특별시 영등포구 경인로 870, 07306',
+    address: '서울특별시 영등포구 경인로 870,07306',
   },
   {
     id: 2,
