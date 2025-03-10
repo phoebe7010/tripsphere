@@ -22,31 +22,6 @@ const Favorite = () => {
       </div>
 
       <h2 className="text-base/7 font-semibold  mb-10">찜 목록</h2>
-      <form className="filter">
-        <input
-          className="btn btn-square"
-          type="reset"
-          value="×"
-        />
-        <input
-          className="btn"
-          type="radio"
-          name="frameworks"
-          aria-label="서울"
-        />
-        <input
-          className="btn"
-          type="radio"
-          name="frameworks"
-          aria-label="부산"
-        />
-        <input
-          className="btn"
-          type="radio"
-          name="frameworks"
-          aria-label="제주도"
-        />
-      </form>
 
       {/* 찜 목록 */}
       {/* <ul className="list bg-base-100 rounded-box shadow-md">
@@ -178,10 +153,7 @@ const Favorite = () => {
         <li>
           <div className="card m4 w-full shadow-sm relative group">
             <figure>
-              <img
-                className="aspect-square"
-                src="https://img.daisyui.com/images/blog/daisyui-5.webp"
-              />
+              <img src="https://img.daisyui.com/images/blog/daisyui-5.webp" />
             </figure>
             <div className="card-body">
               <h2 className="card-title">홍천, 한국의 초소형 주택</h2>
