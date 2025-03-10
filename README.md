@@ -28,6 +28,7 @@
 | **date-fns**                   | `npm install --save date-fns`              | |
 | **react-use**                  | `npm install react-use`                    | |
 | **kakao-map**                  | `npm install react-kakao-maps-sdk`     | [Kakao maps sdk](https://react-kakao-maps-sdk.jaeseokim.dev/docs/sample/) |
+| **swiper**                     | `npm install swiper`                   | |
 
 ---
 
