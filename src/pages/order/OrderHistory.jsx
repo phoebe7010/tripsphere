@@ -2,30 +2,49 @@ import React from 'react';
 import OrderList from '../../components/order/orderList';
 import PageHeader from '../../components/common/PageHeader';
 
-const orders = [
+const orderInfo = [
   {
-    reservationNumber: '12121212',
-    reservationDate: '2024년 12월 20일',
-    hotelName: '서울 코리아나호텔',
-    price: '1,200,000원',
-    adultCount: 2,
-    childCount: 2,
-    checkIn: '2024년 04월 01일',
-    checkOut: '2024년 04월 04일',
-    imageUrl:
-      'https://ak-d.tripcdn.com/images/220713000000ubfbb2422_R_600_400_R5.webp',
-  },
-  {
-    reservationNumber: '12121212',
-    reservationDate: '2024년 12월 20일',
-    hotelName: '아난티 앳 부산 코브',
-    price: '1,500,000원',
-    adultCount: 2,
-    childCount: 1,
-    checkIn: '2024년 04월 01일',
-    checkOut: '2024년 04월 04일',
-    imageUrl:
-      'https://ak-d.tripcdn.com/images/02068120009p1pmjr0B63_W_1280_853_R5.webp?proc=watermark/image_trip1,l_ne,x_16,y_16,w_67,h_16;digimark/t_image,logo_tripbinary;ignoredefaultwm,1A8F',
+    id: 'order1',
+    user_id: 'user1',
+    accommodation_id: '1',
+    check_in: '2025.03.11',
+    check_out: '2025.03.13',
+    guest_count: '4',
+    adults: '3',
+    children: '1',
+    total_price: '10000',
+    payment_status: 'completed',
+    order_date: '2025.03.11',
+    accommodation: {
+      id: '1',
+      type: 'pension',
+      name: '양평 독채 풀빌라 스테이호은',
+      check_in: '2025.03.11',
+      check_out: '2025.03.13',
+      description:
+        '예약 전 숙소 이용 안내 및 이용 수칙을 반드시 읽어주세요. 호젓한 은신처를 의미하는 호은.',
+      original_price: '80000',
+      discount_rate: '20',
+      final_price: '64000',
+      images: [
+        'https://ak-d.tripcdn.com/images/220713000000ubfbb2422_R_600_400_R5.webp',
+        'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F5%2Fb1df43231016311a21c18139bcda6d08%2Fd2071f084774e9d137837f63a757b432.jpg%22&type=m1500',
+        'https://search.pstatic.net/common?src=https://img.tripplat.com/domestic/product/package/63/745afb46c4487cb27af34116d44ca34f/2bc579ebce57266a57247ff884947fe7.jpg&type=f174_174',
+        'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F5%2Fb1df43231016311a21c18139bcda6d08%2Fd2071f084774e9d137837f63a757b432.jpg%22&type=m1500',
+        'https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F92%2F39eecb19671866113575816b92ff5ac3%2F14de7183c8784b2b44d7a08bf1ef0a7c.png%22&type=m1500',
+      ],
+      host: {
+        name: '홍길동',
+        experience: '3',
+        contact: '010-1234-5678',
+      },
+      services: ['최고의 전망', '조식 포함'],
+      location: {
+        latitude: '33.450701',
+        longitude: '126.570667',
+        place_name: '양평군, 경기도, 한국',
+      },
+    },
   },
 ];
 
@@ -44,7 +63,7 @@ const OrderHistory = () => {
       />
 
       {/* 주문 내역 */}
-      <OrderList data={orders} />
+      <OrderList orderInfo={orderInfo} />
     </div>
   );
 };
