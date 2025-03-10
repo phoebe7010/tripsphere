@@ -18,7 +18,8 @@ const PeopleSelector = () => {
           role="button"
           className="input bg-base-200 w-full"
           placeholder="인원수"
-          value={`총 인원 ${adultCount + childrenCount}`}
+          defaultValue={`총 인원 ${adultCount + childrenCount}`} // Read-only input with defaultValue
+          readOnly
         />
         <div
           tabIndex={1}
