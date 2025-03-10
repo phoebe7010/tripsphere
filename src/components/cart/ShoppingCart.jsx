@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { BiCalendarAlt, BiX, BiTrash } from 'react-icons/bi';
 import { formatNumber } from '../../utils/format';
 
-// [250311] hrkim: firebase 사용하면, users 테이블의 wishlist에 있는 accommodation_id 리스트를 이용하여 아래 정보를 조회해주세요
+// [250311] hrkim: firebase 사용하면, users 테이블의 cart에 있는 accommodation_id 리스트를 이용하여 아래 정보를 조회해주세요
 const accommodations = [
   {
     id: '1',

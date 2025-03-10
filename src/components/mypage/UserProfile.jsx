@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BiCog } from 'react-icons/bi';
 
-const UserProfile = () => {
+const UserProfile = ({ userInfo }) => {
   const navigate = useNavigate();
 
   return (
@@ -20,11 +20,11 @@ const UserProfile = () => {
           <div className="flex justify-between text-base font-medium ">
             <h3>
               <a href="#">
-                <strong>홍길동</strong>
+                <strong>{userInfo.name}님</strong>
               </a>
             </h3>
           </div>
-          <p className="mt-1 text-sm text-gray-500">길동이님, 안녕하세요.</p>
+          <p className="mt-1 text-sm text-gray-500">{userInfo.nickname}</p>
         </div>
       </div>
 
@@ -33,9 +33,10 @@ const UserProfile = () => {
         <button
           type="button"
           onClick={() => navigate('/profile')}
-          className="inline-flex items-center  px-2 py-1">
-          <BiCog size={30} />
+          className="inline-flex items-center px-2 py-1">
+          <BiCog size={24} />
         </button>
+
         <p className="text-center text-xs">설정</p>
       </div>
     </div>
