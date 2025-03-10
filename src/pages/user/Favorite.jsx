@@ -107,6 +107,7 @@ const Favorite = () => {
       <PageHeader
         title="찜 목록"
         breadcrumb={breadcrumb}
+        hasBackButton={true}
       />
 
       <div className="mb-10 grid grid-cols-4 gap-10">

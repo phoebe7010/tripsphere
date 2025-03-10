@@ -5,6 +5,7 @@ import { HiOutlineTicket } from 'react-icons/hi';
 import { LiaCoinsSolid } from 'react-icons/lia';
 import { useNavigate } from 'react-router-dom';
 import PageHeader from '../../components/common/PageHeader';
+import { BiCalendarAlt, BiUser, BiChevronRight } from 'react-icons/bi';
 
 const breadcrumb = [
   { link: '/', text: '홈' },
@@ -166,59 +167,145 @@ const MyPage = () => {
           </p>
 
           <Link
-            to="/favorite"
+            to="/orderhistory"
             className="text-primary font-bold">
             더 보기
           </Link>
         </li>
 
-        <li className="list-row">
-          <div>
-            <img
-              className="size-20 rounded-box"
-              src="https://search.pstatic.net/common?src=https://img.tripplat.com/domestic/product/package/63/745afb46c4487cb27af34116d44ca34f/2bc579ebce57266a57247ff884947fe7.jpg&type=f174_174"
-            />
+        <li className="list-row flex-col flex">
+          <div className="py-2 border-b border-stone-200 flex justify-between items-center">
+            <div>2024년 12월 20일</div>
           </div>
-          <div>
-            <div>제주특별자치도 제주시</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              제주도패키지 제주감성 2박3일 아침출발,
-              왕복항공티켓+특2급호텔+전일정식사/입장료포함 (No옵션/선택관광)
+
+          <div className="flex justify-between">
+            <div className="flex gap-6">
+              <img
+                className="size-20 rounded-box"
+                src="https://search.pstatic.net/common?src=https://img.tripplat.com/domestic/product/package/63/745afb46c4487cb27af34116d44ca34f/2bc579ebce57266a57247ff884947fe7.jpg&type=f174_174"
+                alt="서울 코리아나호텔"
+              />
+
+              <div className="flex flex-col">
+                <h2 className="text-md font-bold">서울 코리아나호텔</h2>
+                <div className="mb-4 text-xs uppercase opacity-60">
+                  예약번호 : 12121212
+                </div>
+
+                <div className="flex-col flex gap-[4px] mt-auto">
+                  <div className="flex items-center gap-2 text-xs">
+                    <BiUser />
+                    <div className="mr-1 text-xs">인원수 4</div>
+                    <div>(성인: 2명 소아: 2명)</div>
+                  </div>
+
+                  <div className="flex items-center gap-10">
+                    <div className="flex items-center gap-2 text-xs">
+                      <BiCalendarAlt />
+                      <span>체크인:</span> <span>2024년 04월 01일</span>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-xs">
+                      <BiCalendarAlt />
+                      <span>체크아웃:</span> <span>2024년 04월 04일</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>299,000원</div>
+
+            <div>1,200,000원</div>
           </div>
         </li>
 
-        <li className="list-row">
-          <div>
-            <img
-              className="size-20 rounded-box"
-              src="https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F92%2F39eecb19671866113575816b92ff5ac3%2F14de7183c8784b2b44d7a08bf1ef0a7c.png%22&type=m1500"
-            />
+        <li className="list-row flex-col flex">
+          <div className="py-2 border-b border-stone-200 flex justify-between items-center">
+            <div>2024년 12월 20일</div>
           </div>
-          <div>
-            <div>부산광역시 영도구</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              [KTX/단독 투어+전용 차량/기사/요트] 부산&경주 1박2일 패키지
-              (4인이상 예약가능)
+
+          <div className="flex justify-between">
+            <div className="flex gap-6">
+              <img
+                className="size-20 rounded-box"
+                src="https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F5%2Fb1df43231016311a21c18139bcda6d08%2Fd2071f084774e9d137837f63a757b432.jpg%22&type=m1500"
+                alt="서울 코리아나호텔"
+              />
+
+              <div className="flex flex-col">
+                <h2 className="text-md font-bold">서울 코리아나호텔</h2>
+                <div className="mb-4 text-xs uppercase opacity-60">
+                  예약번호 : 12121212
+                </div>
+
+                <div className="flex-col flex gap-[4px] mt-auto">
+                  <div className="flex items-center gap-2 text-xs">
+                    <BiUser />
+                    <div className="mr-1 text-xs">인원수 4</div>
+                    <div>(성인: 2명 소아: 2명)</div>
+                  </div>
+
+                  <div className="flex items-center gap-10">
+                    <div className="flex items-center gap-2 text-xs">
+                      <BiCalendarAlt />
+                      <span>체크인:</span> <span>2024년 04월 01일</span>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-xs">
+                      <BiCalendarAlt />
+                      <span>체크아웃:</span> <span>2024년 04월 04일</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>414,100원 </div>
+
+            <div>1,200,000원</div>
           </div>
         </li>
 
-        <li className="list-row">
-          <div>
-            <img
-              className="size-20 rounded-box"
-              src="https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F5%2Fb1df43231016311a21c18139bcda6d08%2Fd2071f084774e9d137837f63a757b432.jpg%22&type=m1500"
-            />
+        <li className="list-row flex-col flex">
+          <div className="py-2 border-b border-stone-200 flex justify-between items-center">
+            <div>2024년 12월 20일</div>
           </div>
-          <div>
-            <div>경상남도 양산시</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              진해 벚꽃여행과 부산 1박2일 여행
+
+          <div className="flex justify-between">
+            <div className="flex gap-6">
+              <img
+                className="size-20 rounded-box"
+                src="https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F92%2F39eecb19671866113575816b92ff5ac3%2F14de7183c8784b2b44d7a08bf1ef0a7c.png%22&type=m1500
+"
+                alt="서울 코리아나호텔"
+              />
+
+              <div className="flex flex-col">
+                <h2 className="text-md font-bold">서울 코리아나호텔</h2>
+                <div className="mb-4 text-xs uppercase opacity-60">
+                  예약번호 : 12121212
+                </div>
+
+                <div className="flex-col flex gap-[4px] mt-auto">
+                  <div className="flex items-center gap-2 text-xs">
+                    <BiUser />
+                    <div className="mr-1 text-xs">인원수 4</div>
+                    <div>(성인: 2명 소아: 2명)</div>
+                  </div>
+
+                  <div className="flex items-center gap-10">
+                    <div className="flex items-center gap-2 text-xs">
+                      <BiCalendarAlt />
+                      <span>체크인:</span> <span>2024년 04월 01일</span>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-xs">
+                      <BiCalendarAlt />
+                      <span>체크아웃:</span> <span>2024년 04월 04일</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>118,000원</div>
+
+            <div>1,200,000원</div>
           </div>
         </li>
       </ul>
@@ -237,52 +324,45 @@ const MyPage = () => {
           </Link>
         </li>
 
-        <li className="list-row">
-          <div>
-            <img
-              className="size-20 rounded-box"
-              src="https://search.pstatic.net/common?src=https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F63%2F7203445208dcdebc9f3a1ac91e73d5bb%2F6f3c1e2b78329c8440f3df521f0ca00a.jpg&type=f328_200_travelhome"
-            />
-          </div>
-          <div>
-            <div>제주특별자치도 제주시</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              제주도 2박3일 프리미엄 럭셔리 패키지,
-              왕복항공/특2급호텔/전일정식사,일정 모두포함
-            </div>
-            <div>319,000원~ </div>
-          </div>
-        </li>
+        <li className="list-row flex-col flex">
+          <div className="flex justify-between">
+            <div className="flex gap-6">
+              <img
+                className="size-20 rounded-box"
+                src="https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F5%2Fb1df43231016311a21c18139bcda6d08%2Fd2071f084774e9d137837f63a757b432.jpg%22&type=m1500"
+                alt="서울 코리아나호텔"
+              />
 
-        <li className="list-row">
-          <div>
-            <img
-              className="size-20 rounded-box"
-              src="https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F51%2Fea3d750f54e8330e0be67d8fce3d810f%2F446a1c941bbe983ca350715ed62b4c46.jpg%22&type=m1500"
-            />
-          </div>
-          <div>
-            <div>충청남도 천안시 동남구</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              그날의 봄을 기억하리, 삼일절 특별 1박2일 여행
-            </div>
-            <div>149,000원~ </div>
-          </div>
-        </li>
+              <div className="flex flex-col">
+                <h2 className="text-md font-bold mb-2">서울 코리아나호텔</h2>
 
-        <li className="list-row">
-          <div>
-            <img
-              className="size-20 rounded-box"
-              src="https://search.pstatic.net/common/?src=%22https%3A%2F%2Fimg.tripplat.com%2Fdomestic%2Fproduct%2Fpackage%2F51%2F6c16b3d223eff8633a40de08452ef665%2Ff3510f4c2d025f105adbd7c83fde6f68.jpg%22&type=m1500"
-            />
-          </div>
-          <div>
-            <div>전라남도 광양시</div>
-            <div className="text-xs uppercase font-semibold opacity-60">
-              구경 한 번 와 보세요~ 화개장터 벚꽃과 광양 매화 (여행가는달)
+                <div className="flex gap-2">
+                  <div className="badge badge-soft badge-primary text-xs">
+                    펜션
+                  </div>
+
+                  <div className="badge badge-soft badge-info text-xs">
+                    양평군, 경기도
+                  </div>
+                </div>
+
+                <div className="flex-col flex gap-[4px] mt-auto">
+                  <div className="flex items-center gap-10">
+                    <div className="flex items-center gap-2 text-xs">
+                      <BiCalendarAlt />
+                      <span>체크인:</span> <span>2024년 04월 01일</span>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-xs">
+                      <BiCalendarAlt />
+                      <span>체크아웃:</span> <span>2024년 04월 04일</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>38,900 원~</div>
+
+            <div>1,200,000원</div>
           </div>
         </li>
       </ul>
