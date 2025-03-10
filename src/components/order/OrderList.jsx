@@ -8,7 +8,7 @@ const OrderList = ({ orderInfo }) => {
 
   return (
     <ul className="list bg-base-100 rounded-box shadow-md">
-      {orderInfo.map((order, index) => (
+      {orderInfo?.map((order, index) => (
         <li
           className="list-row flex-col flex"
           key={index}>

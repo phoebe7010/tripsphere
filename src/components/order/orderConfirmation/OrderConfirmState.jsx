@@ -35,7 +35,7 @@ const OrderState = ({ orderInfo }) => {
 
       <h1 className="text-4xl font-semibold tracking-tight">{message}</h1>
 
-      <OrderList data={orderInfo} />
+      <OrderList orderInfo={orderInfo} />
     </div>
   );
 };
