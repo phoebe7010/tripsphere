@@ -67,6 +67,7 @@
 
 #### 🔹 Fields
 - `name` (string): 사용자 이름
+- `nickname` (string): 닉네임
 - `email` (string): 이메일
 - `phone` (string): 전화번호
 - `profile_image` (string): 프로필 사진 URL
