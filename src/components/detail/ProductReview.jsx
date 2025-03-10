@@ -1,3 +1,4 @@
+import ReviewInput from '../ReviewInput';
 import ReviewItem from '../ReviewItem';
 
 const reviews = [
@@ -45,6 +46,8 @@ const ProductReview = () => {
           <div className="mt-6 border-t border-gray-100">
             <div className="divide-y divide-gray-100">
               <div className="py-4">
+                <ReviewInput />
+
                 <ul className="list">
                   <ReviewItem reviews={reviews} />
                 </ul>
