@@ -90,7 +90,7 @@ const ShoppingCart = ({ open, setOpen }) => {
       className="relative z-10">
       <DialogBackdrop
         transition
-        className="fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-closed:opacity-0"
+        className="fixed inset-0 bg-gray-500/75 transition-opacity duration-500 ease-in-out data-closed:opacity-0 "
       />
 
       <div className="fixed inset-0 overflow-hidden">
@@ -98,11 +98,11 @@ const ShoppingCart = ({ open, setOpen }) => {
           <div className="fixed inset-0 flex items-center justify-center">
             <DialogPanel
               transition
-              className="w-[70%] h-[90%] bg-white shadow-xl rounded-lg transform transition duration-500 ease-in-out">
-              <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+              className="w-[70%] h-[90%] bg-white dark:bg-gray-900 shadow-xl rounded-lg transform transition duration-500 ease-in-out">
+              <div className="flex h-full flex-col overflow-y-scroll bg-white dark:bg-gray-900 text-gray-900 dark:text-white shadow-xl">
                 <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                   <div className="flex items-start justify-between">
-                    <DialogTitle className="text-lg font-medium text-gray-900">
+                    <DialogTitle className="text-lg font-medium text-gray-900 dark:text-white">
                       장바구니
                     </DialogTitle>
 
@@ -135,7 +135,6 @@ const ShoppingCart = ({ open, setOpen }) => {
                               defaultChecked
                               className="checkbox checkbox-primary mr-3"
                             />
-
                             <Link
                               to="/product/0"
                               className="w-full flex gap-8">
@@ -152,11 +151,11 @@ const ShoppingCart = ({ open, setOpen }) => {
                                 <div className="flex items-center justify-between">
                                   <div className="flex items-center justify-between">
                                     <div className="flex gap-2">
-                                      <div className="badge badge-soft badge-primary text-xs">
+                                      <div className="badge bg-transparent border border-gray-300 dark:border-indigo-200 text-gray-900 dark:text-indigo-200 text-xs ">
                                         {typeMapping[accommodation.type]}
                                       </div>
 
-                                      <div className="badge badge-soft badge-info text-xs">
+                                      <div className="badge bg-transparent border border-gray-300 dark:border-sky-300 text-gray-900 dark:text-sky-300 text-xs">
                                         {accommodation.location.place_name}
                                       </div>
                                     </div>
@@ -229,9 +228,9 @@ const ShoppingCart = ({ open, setOpen }) => {
                 </div>
 
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                  <div className="flex justify-between text-base font-medium text-gray-900">
+                  <div className="flex justify-between text-base font-medium text-gray-900 dark:text-white ">
                     <p>주문 합계 금액</p>
-                    <p className="text-indigo-600 font-bold">
+                    <p className="text-indigo-600 font-bold dark:text-indigo-50">
                       {totalPrice.toLocaleString()}원
                     </p>
                   </div>

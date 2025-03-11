@@ -31,6 +31,11 @@ const signupUser = async ({ email, password, username, nickname, phone }) => {
     username,
     nickname,
     phone,
+    profile_image: '',
+    wishlist: [],
+    orders: [],
+    cart: [],
+    points: 0,
   });
 
   return userCredential.user;
@@ -57,7 +62,7 @@ const SignUp = () => {
 
   const mutation = useMutation({
     mutationFn: signupUser,
-    onSuccess: user => {
+    onSuccess: (user) => {
       setModalText({
         title: '회원가입이 완료되었습니다.',
         description: `${user.displayName}님 환영합니다!`,
@@ -65,7 +70,7 @@ const SignUp = () => {
       setModalType('success');
       setModalOpen(true);
     },
-    onError: error => {
+    onError: (error) => {
       setModalText({
         title: '회원가입이 실패했습니다.',
         description: error.message,
@@ -75,7 +80,7 @@ const SignUp = () => {
     },
   });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     // 폼 유효성 검사
@@ -126,7 +131,7 @@ const SignUp = () => {
               type="email"
               value={state.email}
               placeholder={state.placeholder.email}
-              onChange={e =>
+              onChange={(e) =>
                 dispatch({ type: 'SET_EMAIL', payload: e.target.value })
               }
               error={state.errors.email}
@@ -138,7 +143,7 @@ const SignUp = () => {
               type="password"
               value={state.password}
               placeholder={state.placeholder.password}
-              onChange={e =>
+              onChange={(e) =>
                 dispatch({ type: 'SET_PASSWORD', payload: e.target.value })
               }
               error={state.errors.password}
@@ -152,7 +157,7 @@ const SignUp = () => {
               type="password"
               value={state.passwordConfirm}
               placeholder={state.placeholder.passwordConfirm}
-              onChange={e =>
+              onChange={(e) =>
                 dispatch({
                   type: 'SET_PASSWORDCONFIRM',
                   payload: e.target.value,
@@ -171,7 +176,7 @@ const SignUp = () => {
               type="text"
               value={state.username}
               placeholder={state.placeholder.username}
-              onChange={e =>
+              onChange={(e) =>
                 dispatch({ type: 'SET_USERNAME', payload: e.target.value })
               }
               error={state.errors.username}
@@ -183,7 +188,7 @@ const SignUp = () => {
               type="text"
               value={state.nickname}
               placeholder={state.placeholder.nickname}
-              onChange={e =>
+              onChange={(e) =>
                 dispatch({ type: 'SET_NICKNAME', payload: e.target.value })
               }
               error={state.errors.nickname}
@@ -192,10 +197,10 @@ const SignUp = () => {
             {/* 연락처 */}
             <InputField
               label="연락처"
-              type="number"
+              type="text"
               value={state.phone}
               placeholder={state.placeholder.phone}
-              onChange={e =>
+              onChange={(e) =>
                 dispatch({ type: 'SET_PHONE', payload: e.target.value })
               }
               error={state.errors.phone}
