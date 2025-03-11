@@ -34,9 +34,9 @@
 
 ### **📍 FireBase 구조**
 ### 1. `accommodations` (숙소 정보)
-**Document ID:** 숙소 고유 ID (자동 생성 또는 지정)
+**문서 ID:** 숙소 고유 ID (자동 생성 또는 지정)
 
-#### 🔹 Fields
+#### 🔹 필드
 - `name` (string): 숙소 이름 (예: "해운대 오션뷰 호텔")
 - `type` (string): 숙소 유형 (`hotel`, `pension`, `guesthouse`, `camping`)
 - `location` (object):
@@ -64,9 +64,9 @@
 ---
 
 ### 2. `users` (사용자 정보)
-**Document ID:** 사용자 UID (Firebase Auth와 연동)
+**문서 ID:** 사용자 UID (Firebase Auth와 연동)
 
-#### 🔹 Fields
+#### 🔹 필드
 - `name` (string): 사용자 이름
 - `nickname` (string): 닉네임
 - `email` (string): 이메일
@@ -80,70 +80,9 @@
 ---
 
 ### 3. `orders` (주문 정보)
-**Document ID:** 주문 ID
+**문서 ID:** 주문 ID
 
-#### 🔹 Fields
-- `user_id` (string): 주문한 사용자 UID
-- `accommodation_id` (string): 숙소 ID
-- `check_in` (string): 체크인 날짜
-- `check_out` (string): 체크아웃 날짜
-- `guest_count` (object):
-  - `adults` (number): 성인 수
-  - `children` (number): 어린이 수
-- `total_price` (number): 총 결제 금액
-- `payment_status` (string): 결제 상태 (`pending`, `completed`, `canceled`)
-- `order_date` (string): 주문 날짜
-- `used_points` (number): 사용한 포인트
-- `commission` (number): 수수료## 1. `accommodations` (숙소 정보)
-**Document ID:** 숙소 고유 ID (자동 생성 또는 지정)
-
-#### 🔹 Fields
-- `name` (string): 숙소 이름 (예: "해운대 오션뷰 호텔")
-- `type` (string): 숙소 유형 (`hotel`, `pension`, `guesthouse`, `camping`)
-- `location` (object):
-  - `latitude` (number): 위도
-  - `longitude` (number): 경도
-  - `place_name` (string): 지역 이름 (예: "부산 해운대")
-- `description` (string): 숙소 설명
-- `original_price` (number): 원래 가격
-- `discount_rate` (number): 할인율 (예: `0.1` → 10%)
-- `final_price` (number): 할인된 가격 (계산 가능)
-- `check_in` (string): 체크인 시간
-- `check_out` (string): 체크아웃 시간
-- `capacity` (object):
-  - `adults` (number): 성인 수
-  - `children` (number): 어린이 수
-- `services` (array): 제공 서비스 목록 (예: `["wifi", "parking", "airconditioning", "tv", "breakfast", "barbecue"]`)
-- `images` (array): 숙소 사진 URL 리스트
-- `host` (object):
-  - `name` (string): 호스트 이름
-  - `experience` (string): 경력
-  - `contact` (string): 연락처
-- `rating` (number): 평균 평점
-- `reviews_count` (number): 리뷰 개수
-
----
-
-### 2. `users` (사용자 정보)
-**Document ID:** 사용자 UID (Firebase Auth와 연동)
-
-#### 🔹 Fields
-- `name` (string): 사용자 이름
-- `nickname` (string): 닉네임
-- `email` (string): 이메일
-- `phone` (string): 전화번호
-- `profile_image` (string): 프로필 사진 URL
-- `wishlist` (array): 찜 목록 (`accommodation_id` 리스트)
-- `orders` (array): 주문 내역 (`order_id` 리스트)
-- `cart` (array): 장바구니 (`accommodation_id` 리스트)
-- `points` (number): 사용 가능한 포인트
-
----
-
-### 3. `orders` (주문 정보)
-**Document ID:** 주문 ID
-
-#### 🔹 Fields
+#### 🔹 필드
 - `user_id` (string): 주문한 사용자 UID
 - `accommodation_id` (string): 숙소 ID
 - `check_in` (string): 체크인 날짜
@@ -160,9 +99,9 @@
 ---
 
 ### 4. `reviews` (리뷰 정보)
-**Document ID:** 리뷰 ID
+**문서 ID:** 리뷰 ID
 
-#### 🔹 Fields
+#### 🔹 필드
 - `accommodation_id` (string): 숙소 ID
 - `user_id` (string): 작성자 UID
 - `rating` (number): 평점 (1~5)
@@ -171,10 +110,10 @@
 
 ---
 
-### 5. points (포인트 내역)
-**Document ID:** 포인트 내역 ID
+### 5. `points` (포인트 내역)
+**문서 ID:** 포인트 내역 ID
 
-#### 🔹 Fields
+#### 🔹 필드
 - `user_id` (string): 포인트를 받은 사용자 UID
 - `points` (number): 받은 포인트 양
 - `title` (string): 포인트 제목
@@ -182,19 +121,6 @@
 - `received_date` (string): 포인트 받은 날짜
 
 ---
-
-| 📌 Page | 🔗 Related Collections | 📝 Description |
-|---------|--------------------|--------------|
-| 메인페이지 | `accommodations` | 인기 숙소, 추천 숙소 표시 |
-| 상품 상세 페이지 | `accommodations`, `reviews` | 숙소 정보 및 리뷰 표시 |
-| 상품 목록 페이지 | `accommodations` | 지역별 필터링, 검색 가능 |
-| 결제 페이지 | `orders`, `users` | 결제 정보 입력 및 확인 |
-| 주문 완료 페이지 | `orders` | 주문 내역 확인 |
-| 마이페이지 | `users`, `orders`, `reviews` | 내 정보, 주문 내역, 리뷰 관리 |
-| 찜 목록 페이지 | `users`, `accommodations` | 찜한 숙소 표시 |
-| 주문 내역 페이지 | `orders` | 예약한 숙소 목록 표시 |
-| 장바구니 페이지 | `users`, `accommodations` | 장바구니 추가된 숙소 표시 |
-
 
 ### **📍 주요 기능**
 
