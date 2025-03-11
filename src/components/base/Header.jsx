@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ThemeToggleButton from './ThemeToggleButton';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ShoppingCart from '../cart/ShoppingCart';
 import { BiUser, BiHeart } from 'react-icons/bi';
+import useAuthStore from '../../stores/useAuthStore';
+import { useUserData } from '../../hooks/useUserData';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
+  const { isAuthenticated, user, logout, initializeAuth } = useAuthStore();
+  const { data: userData, isLoading, error } = useUserData();
+
+  useEffect(() => {
+    initializeAuth();
+  }, [initializeAuth]);
 
   const toggleCart = () => {
     setOpen(true);
@@ -79,12 +86,22 @@ const Header = () => {
                   <Link to="/mypage">마이페이지</Link>
                 </li>
                 <li>
-                  <Link to="/signin">로그인</Link>
+                  {isAuthenticated ? (
+                    <div className="flex gap-4">
+                      <button onClick={logout}>로그아웃</button>
+                    </div>
+                  ) : (
+                    <Link to="/signin">로그인</Link>
+                  )}
                 </li>
                 <li>
                   <Link to="/signup">회원가입</Link>
                 </li>
               </ul>
+
+              {isAuthenticated && (
+                <span>{userData?.username}님, 환영합니다!</span>
+              )}
             </div>
           </div>
         </div>

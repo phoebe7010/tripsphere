@@ -40,15 +40,15 @@ const SignUp = () => {
   const [state, dispatch] = useAuthForm();
   const navigate = useNavigate();
 
-  const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 여부 상태
-  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false); // 비밀번호 확인 표시 여부 상태
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
 
-  const [openModal, setOpenModal] = useState(false); // 모달 상태
+  const [modalOpen, setModalOpen] = useState(false);
   const [modalText, setModalText] = useState({
     title: '',
     description: '',
-  }); // 모달에 표시할 텍스트 상태
-  const [modalType, setModalType] = useState('success'); // 모달 타입 (성공/실패 등)
+  });
+  const [modalType, setModalType] = useState('success');
 
   // 회원가입 후 홈으로 이동
   const handleNavigate = () => {
@@ -63,7 +63,7 @@ const SignUp = () => {
         description: `${user.displayName}님 환영합니다!`,
       });
       setModalType('success');
-      setOpenModal(true);
+      setModalOpen(true);
     },
     onError: error => {
       setModalText({
@@ -71,7 +71,7 @@ const SignUp = () => {
         description: error.message,
       });
       setModalType('error');
-      setOpenModal(true);
+      setModalOpen(true);
     },
   });
 
@@ -79,7 +79,7 @@ const SignUp = () => {
     e.preventDefault();
 
     // 폼 유효성 검사
-    const errors = validateForm(state);
+    const errors = validateForm(state, 'signup');
 
     // 에러 상태 설정
     if (Object.keys(errors).length > 0) {
@@ -214,8 +214,8 @@ const SignUp = () => {
 
       {/* 모달 */}
       <Modal
-        open={openModal}
-        setOpen={setOpenModal}
+        open={modalOpen}
+        setOpen={setModalOpen}
         text={modalText}
         type={modalType}
         onNavigate={handleNavigate}
