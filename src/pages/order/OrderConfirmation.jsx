@@ -198,7 +198,7 @@ const OrderConfirmation = () => {
           <button
             type="submit"
             onClick={() => navigate('/')}
-            className="rounded-md border-1 border-stone-300 px-3 py-2 text-sm font-semibold text-black dark:text-white hover:shadow-xs hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">
+            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">
             홈으로 이동
           </button>
 
@@ -206,7 +206,7 @@ const OrderConfirmation = () => {
           <button
             type="submit"
             onClick={() => navigate('/mypage')}
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">
+            className="rounded-md border-1 border-stone-300 px-3 py-2 text-sm font-semibold text-black dark:text-white hover:shadow-xs hover:bg-stone-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors">
             마이페이지로 이동
           </button>
         </div>

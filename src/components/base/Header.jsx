@@ -82,14 +82,18 @@ const Header = () => {
               <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                <li>
-                  <Link to="/mypage">마이페이지</Link>
-                </li>
+                {isAuthenticated && (
+                  <li>
+                    <Link to="/mypage">{userData?.username}님 마이페이지</Link>
+                  </li>
+                )}
                 <li>
                   {isAuthenticated ? (
-                    <div className="flex gap-4">
-                      <button onClick={logout}>로그아웃</button>
-                    </div>
+                    <button
+                      type="button"
+                      onClick={logout}>
+                      로그아웃
+                    </button>
                   ) : (
                     <Link to="/signin">로그인</Link>
                   )}
@@ -98,10 +102,6 @@ const Header = () => {
                   <Link to="/signup">회원가입</Link>
                 </li>
               </ul>
-
-              {isAuthenticated && (
-                <span>{userData?.username}님, 환영합니다!</span>
-              )}
             </div>
           </div>
         </div>
