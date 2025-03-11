@@ -1,18 +1,18 @@
 import React from 'react';
+import { BiCalendarAlt, BiChevronRight, BiUser } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
-import { BiCalendarAlt, BiUser, BiChevronRight } from 'react-icons/bi';
 import { formatNumber } from '../../utils/format';
 
 const OrderList = ({ orderInfo }) => {
   const navigate = useNavigate();
 
   return (
-    <ul className="list bg-base-100 rounded-box shadow-md">
+    <ul className="list bg-base-100 rounded-box shadow-md py-5">
       {orderInfo?.map((order, index) => (
         <li
-          className="list-row flex-col flex"
+          className="list-row flex-col flex my-3 mx-5 border-gray-200 list-row"
           key={index}>
-          <div className="py-2 border-b border-stone-200 flex justify-between items-center">
+          <div className="border-b border-stone-200 flex justify-between items-center">
             <div>{order.order_date}</div>
 
             <button
