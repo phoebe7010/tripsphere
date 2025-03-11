@@ -122,19 +122,6 @@
 
 ---
 
-| 📌 Page | 🔗 Related Collections | 📝 Description |
-|---------|--------------------|--------------|
-| 메인페이지 | `accommodations` | 인기 숙소, 추천 숙소 표시 |
-| 상품 상세 페이지 | `accommodations`, `reviews` | 숙소 정보 및 리뷰 표시 |
-| 상품 목록 페이지 | `accommodations` | 지역별 필터링, 검색 가능 |
-| 결제 페이지 | `orders`, `users` | 결제 정보 입력 및 확인 |
-| 주문 완료 페이지 | `orders` | 주문 내역 확인 |
-| 마이페이지 | `users`, `orders`, `reviews` | 내 정보, 주문 내역, 리뷰 관리 |
-| 찜 목록 페이지 | `users`, `accommodations` | 찜한 숙소 표시 |
-| 주문 내역 페이지 | `orders` | 예약한 숙소 목록 표시 |
-| 장바구니 페이지 | `users`, `accommodations` | 장바구니 추가된 숙소 표시 |
-
-
 ### **📍 주요 기능**
 
 #### 🧸 회원 인증
