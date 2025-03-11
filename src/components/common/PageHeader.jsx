@@ -19,7 +19,7 @@ const PageHeader = ({ title, breadcrumb, hasBackButton }) => {
                 <div className="flex items-center">
                   <a
                     href={crumb.link}
-                    className="mr-2 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
+                    className="mr-2 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors">
                     {crumb.text}
                   </a>
                   {index < breadcrumb.length - 1 && (
