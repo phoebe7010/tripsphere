@@ -29,7 +29,7 @@ const PageHeader = ({ title, breadcrumb, hasBackButton }) => {
                       viewBox="0 0 16 20"
                       fill="currentColor"
                       aria-hidden="true"
-                      className="h-5 w-4 text-gray-300">
+                      className="h-5 w-4 text-gray-300 ">
                       <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
                     </svg>
                   )}
@@ -43,7 +43,7 @@ const PageHeader = ({ title, breadcrumb, hasBackButton }) => {
           <button
             type="button"
             onClick={() => navigate(-1)}>
-            <BiArrowBack className="size-6" />
+            <BiArrowBack className="size-6 hover:cursor-pointer" />
           </button>
         )}
       </div>
