@@ -10,7 +10,7 @@ const ReviewInput = () => {
         className="textarea h-28 p-3 border rounded-lg resize-none w-full text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 transition-all"
         placeholder="리뷰를 작성해 주세요."
         value={review}
-        onChange={e => setReview(e.target.value)}></textarea>
+        onChange={(e) => setReview(e.target.value)}></textarea>
 
       <div className="flex items-center justify-between">
         <Rating />

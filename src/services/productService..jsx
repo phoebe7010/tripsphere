@@ -1,7 +1,12 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 
-export const fetchAccom = async (accomId) => {
-  const accomDoc = await getDoc(doc(db, 'accommodations', accomId));
-  return accomDoc.exists() ? { id: accomDoc.id, ...accomDoc.data() } : null;
+// 숙소 정보 쿼리
+export const fetchAccomData = async (accomId) => {
+  if (!accomId) return;
+
+  const accomDoc = doc(db, 'accommodations', accomId);
+  const accomSnap = await getDoc(accomDoc);
+
+  return accomSnap.exists() ? accomSnap.data() : null;
 };
