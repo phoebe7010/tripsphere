@@ -38,8 +38,8 @@
 
 #### 🔹 필드
 - `name` (string): 숙소 이름 (예: "해운대 오션뷰 호텔")
-- `type` (string): 숙소 유형 (`hotel`, `pension`, `guesthouse`, `camping`)
-- `location` (object):
+- `type` (string): 숙소 유형 (`hotel`, `motel`, `pension`, `guesthouse`, `camping`)
+- `location` (map):
   - `latitude` (number): 위도
   - `longitude` (number): 경도
   - `place_name` (string): 지역 이름 (예: "부산 해운대")
@@ -47,14 +47,14 @@
 - `original_price` (number): 원래 가격
 - `discount_rate` (number): 할인율 (예: `0.1` → 10%)
 - `final_price` (number): 할인된 가격 (계산 가능)
-- `check_in` (string): 체크인 시간
-- `check_out` (string): 체크아웃 시간
-- `capacity` (object):
+- `check_in` (timestamp): 체크인 시간
+- `check_out` (timestamp): 체크아웃 시간
+- `capacity` (map):
   - `adults` (number): 성인 수
   - `children` (number): 어린이 수
 - `services` (array): 제공 서비스 목록 (예: `["wifi", "parking", "airconditioning", "tv", "breakfast", "barbecue"]`)
 - `images` (array): 숙소 사진 URL 리스트
-- `host` (object):
+- `host` (map):
   - `name` (string): 호스트 이름
   - `experience` (string): 경력
   - `contact` (string): 연락처
@@ -67,7 +67,7 @@
 **문서 ID:** 사용자 UID (Firebase Auth와 연동)
 
 #### 🔹 필드
-- `name` (string): 사용자 이름
+- `username` (string): 사용자 이름
 - `nickname` (string): 닉네임
 - `email` (string): 이메일
 - `phone` (string): 전화번호
@@ -85,14 +85,14 @@
 #### 🔹 필드
 - `user_id` (string): 주문한 사용자 UID
 - `accommodation_id` (string): 숙소 ID
-- `check_in` (string): 체크인 날짜
-- `check_out` (string): 체크아웃 날짜
-- `guest_count` (object):
+- `check_in` (timestamp): 체크인 날짜
+- `check_out` (timestamp): 체크아웃 날짜
+- `guest_count` (map):
   - `adults` (number): 성인 수
   - `children` (number): 어린이 수
 - `total_price` (number): 총 결제 금액
 - `payment_status` (string): 결제 상태 (`pending`, `completed`, `canceled`)
-- `order_date` (string): 주문 날짜
+- `order_date` (timestamp): 주문 날짜
 - `used_points` (number): 사용한 포인트
 - `commission` (number): 수수료
 
@@ -106,7 +106,7 @@
 - `user_id` (string): 작성자 UID
 - `rating` (number): 평점 (1~5)
 - `comment` (string): 리뷰 내용
-- `created_at` (string): 작성 날짜
+- `created_at` (timestamp): 작성 날짜
 
 ---
 
@@ -114,11 +114,11 @@
 **문서 ID:** 포인트 내역 ID
 
 #### 🔹 필드
-- `user_id` (string): 포인트를 받은 사용자 UID
-- `points` (number): 받은 포인트 양
+- `user_id` (string): 포인트를 소유한 사용자 UID
+- `points` (number): 추가한 포인트 양
 - `title` (string): 포인트 제목
-- `description` (string): 포인트 부가설명 (예: "첫 예약 축하 보너스")
-- `received_date` (string): 포인트 받은 날짜
+- `description` (string): 포인트 부가설명 (예: "OO 포인트가 추가되었습니다!")
+- `received_date` (timestamp): 포인트 받은 날짜
 
 ---
 
