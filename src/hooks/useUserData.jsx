@@ -8,7 +8,7 @@ export const useUserData = () => {
 
   return useQuery({
     queryKey: ['user', user?.uid],
-    queryFn: () => fetchUserData(user.uid),
+    queryFn: () => fetchUserData(user?.uid),
     enabled: !!user?.uid,
   });
 };
