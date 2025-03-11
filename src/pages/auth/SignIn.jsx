@@ -22,7 +22,7 @@ const SignIn = () => {
     const unsubscribe = onAuthStateChanged(auth, user => {
       console.log('???' + JSON.stringify(user));
       if (user) {
-        navigate('/');
+        // navigate('/');
       } else {
         setLoading(false);
       }

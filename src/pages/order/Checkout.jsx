@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { BiHotel } from 'react-icons/bi';
 import { FaMapLocationDot } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
-import KakaoMap from '../../components/common/KakaoMap';
-import OrderSummary from '../../components/order/checkout/OrderSummary';
-import PeopleSelector from '../../components/common/PeopleSelector';
 import DateSelector from '../../components/common/DateSelector';
+import KakaoMap from '../../components/common/KakaoMap';
+import PeopleSelector from '../../components/common/PeopleSelector';
 import ServiceIcon from '../../components/common/ServiceIcon';
 import OrderList from '../../components/order/checkout/OrderList';
+import OrderSummary from '../../components/order/checkout/OrderSummary';
 
 const accommodation = {
   id: '1',
@@ -173,7 +173,7 @@ const Checkout = () => {
 
         {/* 최종 결제 금액 */}
         <div className="">
-          <div className="sticky card top-15 bg-base-100 w-96 shadow-sm">
+          <div className="sticky card top-15 bg-base-100 w-96 shadow-sm dark:border-gray-400 dark:border-1">
             <form className="card-body">
               <OrderSummary orderInfo={orderInfo} />
 
