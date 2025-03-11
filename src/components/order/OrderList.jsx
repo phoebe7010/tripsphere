@@ -7,10 +7,10 @@ const OrderList = ({ orderInfo }) => {
   const navigate = useNavigate();
 
   return (
-    <ul className="list bg-base-100 rounded-box shadow-md">
+    <ul className="list bg-base-100 rounded-box shadow-md border border-stone-100 dark:border-stone-100">
       {orderInfo?.map((order, index) => (
         <li
-          className="list-row flex-col flex"
+          className="list-row flex-col flex  "
           key={index}>
           <div className="py-2 border-b border-stone-200 flex justify-between items-center">
             <div>{order.order_date}</div>
