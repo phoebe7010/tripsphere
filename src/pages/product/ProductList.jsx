@@ -2,6 +2,7 @@ import PageHeader from '../../components/common/PageHeader';
 import Pagination from '../../components/productlist/Pagination';
 import ProductCard from '../../components/productlist/ProductCard';
 import SideFilter from '../../components/productlist/SideFilter';
+import useFilterStore from '../../stores/useFilterStore';
 
 const products = [
   {
@@ -50,8 +51,19 @@ const breadcrumb = [
 ];
 
 const ProductList = () => {
+  const { selectedCity, selectedSubCity, people, checkIn, checkOut } =
+    useFilterStore();
+
   return (
     <div className="max-w-[1200px] mx-auto py-[40px]">
+      <div className="inline-block py-4 px-4 bg-gray-100 rounded-md">
+        selectedCity: {selectedCity} <br />
+        selectedSubCity: {selectedSubCity} <br />
+        people: {people} <br />
+        checkIn: {checkIn} <br />
+        checkOut: {checkOut}
+      </div>
+
       <PageHeader
         title="여행 숙소 검색 결과"
         breadcrumb={breadcrumb}

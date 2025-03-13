@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { BiHotel } from 'react-icons/bi';
 import { FaMapLocationDot } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
-import DateSelector from '../../components/common/DateSelector';
 import KakaoMap from '../../components/common/KakaoMap';
 import PeopleSelector from '../../components/common/PeopleSelector';
 import ServiceIcon from '../../components/common/ServiceIcon';
 import OrderList from '../../components/order/checkout/OrderList';
 import OrderSummary from '../../components/order/checkout/OrderSummary';
+import DatePicker from '../../components/common/DatePicker';
 
 const accommodation = {
   id: '1',
@@ -66,6 +66,11 @@ const serviceNames = {
 const Checkout = () => {
   const navigate = useNavigate();
   const [openDate, setOpenDate] = useState(false);
+  const [date, setDate] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  });
 
   return (
     <div className="max-w-[1200px] mx-auto px-[20px] py-[40px] dark:text-gray-200">
@@ -116,9 +121,16 @@ const Checkout = () => {
 
                     <li>
                       <fieldset className="fieldset py-4 px-6">
-                        <DateSelector
+                        <label
+                          htmlFor="roomType"
+                          className="mb-2 block text-sm font-medium text-gray-700 text-left dark:text-gray-200">
+                          체크인 · 체크아웃
+                        </label>
+                        <DatePicker
                           openDate={openDate}
                           setOpenDate={setOpenDate}
+                          date={date}
+                          setDate={setDate}
                         />
 
                         <PeopleSelector />

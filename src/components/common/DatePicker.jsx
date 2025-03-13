@@ -1,20 +1,13 @@
 import { ko } from 'date-fns/locale';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { useClickAway } from 'react-use';
 
-const DatePicker = ({ openDate, setOpenDate }) => {
-  const [date, setDate] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection',
-  });
-
+const DatePicker = ({ openDate, setOpenDate, date, setDate }) => {
   const ref = useRef(null);
 
-  // 바깥 클릭 시 닫히도록 설정
   useClickAway(ref, () => setOpenDate(false));
 
   return (
@@ -33,7 +26,7 @@ const DatePicker = ({ openDate, setOpenDate }) => {
         <DateRangePicker
           className="absolute top-full left-0 mb-2"
           ranges={[date]}
-          onChange={ranges => setDate(ranges.selection)}
+          onChange={(ranges) => setDate(ranges.selection)}
           locale={ko}
         />
       )}

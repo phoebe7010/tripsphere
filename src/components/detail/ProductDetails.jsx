@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { formatNumber } from '../../utils/format';
-import DateSelector from '../../components/common/DateSelector';
 import PeopleSelector from '../../components/common/PeopleSelector';
 import { useNavigate } from 'react-router-dom';
 import ServiceIcon from '../common/ServiceIcon';
+import DatePicker from '../common/DatePicker';
 
 const typeMapping = {
   pension: '펜션',
@@ -22,6 +22,11 @@ const serviceNames = {
 const ProductDetails = ({ product }) => {
   const [openDate, setOpenDate] = useState(false);
   const navigate = useNavigate();
+  const [date, setDate] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  });
 
   return (
     <div className="flex space-y-6 gap-10 mt-[30px]">
@@ -111,9 +116,16 @@ const ProductDetails = ({ product }) => {
           <div className="card-body">
             <h2 className="card-title">예약 정보</h2>
             <fieldset className="fieldset border border-base-300 p-4 rounded-box">
-              <DateSelector
+              <label
+                htmlFor="roomType"
+                className="mb-2 block text-sm font-medium text-gray-700 text-left dark:text-gray-200">
+                체크인 · 체크아웃
+              </label>
+              <DatePicker
                 openDate={openDate}
                 setOpenDate={setOpenDate}
+                date={date}
+                setDate={setDate}
               />
 
               <PeopleSelector />

@@ -1,5 +1,5 @@
 import React from 'react';
-import Filter from '../components/common/Filter';
+import Filter from '../components/filter/Filter';
 
 const Home = () => {
   return (

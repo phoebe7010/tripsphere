@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import Counter from './Counter';
+import React, { useEffect, useState } from 'react';
+import Counter from '../common/Counter';
+import useFilterStore from '../../stores/useFilterStore';
 
 const PeopleSelector = () => {
+  const { setPeople } = useFilterStore();
   const [adultCount, setAdultCount] = useState(0);
   const [childrenCount, setChildrenCount] = useState(0);
-  const [people, setPeople] = useState(0);
 
   useEffect(() => {
     setPeople(adultCount + childrenCount);
@@ -31,7 +32,7 @@ const PeopleSelector = () => {
           role="button"
           className="input bg-base-200 w-full dark:border-gray-200"
           placeholder="인원수"
-          value={`총 인원 ${people}`}
+          value={`총 인원 ${adultCount + childrenCount}`}
           readOnly
         />
         <div
@@ -46,7 +47,7 @@ const PeopleSelector = () => {
 
             <Counter
               type="childrenCount"
-              label="어린이"
+              label="미성년자"
               handlePeopleCount={handlePeopleCount}
             />
           </div>

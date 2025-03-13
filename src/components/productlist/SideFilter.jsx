@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
-import DateSelector from '../common/DateSelector';
 import PeopleSelector from '../common/PeopleSelector';
+import DatePicker from '../common/DatePicker';
 
 const SideFilter = () => {
   const [priceRange, setPriceRange] = useState(25);
   const [isFormOpen, setIsFormOpen] = useState(true);
+  const [date, setDate] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+    key: 'selection',
+  });
 
   const [openDate, setOpenDate] = useState(false);
 
   const toggleForm = () => {
-    setIsFormOpen(prevState => !prevState);
+    setIsFormOpen((prevState) => !prevState);
   };
 
   return (
@@ -52,7 +57,7 @@ const SideFilter = () => {
                 '서귀포',
                 '대전',
                 '인천',
-              ].map(ele => (
+              ].map((ele) => (
                 <label
                   htmlFor={ele}
                   key={ele}
@@ -76,7 +81,7 @@ const SideFilter = () => {
               숙박 장소
             </legend>
             <div className="grid grid-cols-2 gap-x-3 gap-y-2">
-              {['호텔', '펜션', '게스트하우스', '캠핑'].map(ele => (
+              {['호텔', '펜션', '게스트하우스', '캠핑'].map((ele) => (
                 <label
                   htmlFor={ele}
                   key={ele}
@@ -106,7 +111,7 @@ const SideFilter = () => {
                   value={priceRange}
                   className="range"
                   step="1"
-                  onChange={e => setPriceRange(Number(e.target.value))}
+                  onChange={(e) => setPriceRange(Number(e.target.value))}
                 />
                 <div className="flex justify-between px-2.5 mt-2 text-xs">
                   <span>0</span>
@@ -123,11 +128,17 @@ const SideFilter = () => {
 
           <fieldset className="fieldset border border-base-300 p-4 rounded-box dark:border-white">
             <legend className="fieldset-legend px-2 font-medium">일정</legend>
-            <DateSelector
+            <label
+              htmlFor="roomType"
+              className="mb-2 block text-sm font-medium text-gray-700 text-left dark:text-gray-200">
+              체크인 · 체크아웃
+            </label>
+            <DatePicker
               openDate={openDate}
               setOpenDate={setOpenDate}
+              date={date}
+              setDate={setDate}
             />
-
             <PeopleSelector />
           </fieldset>
 
