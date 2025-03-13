@@ -21,7 +21,7 @@ const initialState = {
     nickname: '닉네임을 입력해 주세요.',
     password: '비밀번호를 입력해 주세요.',
     passwordConfirm: '비밀번호 한번 더 입력해 주세요.',
-    phone: '연락처를 입력해 주세요.',
+    phone: '- 없이 숫자만 입력해 주세요.',
   },
 };
 

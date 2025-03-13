@@ -10,11 +10,11 @@ import { useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const [productId, setProductId] = useState(id);
+  const [productId, setProductId] = useState('RVkcAvy6ZzPgsCRBviKv');
 
-  useEffect(() => {
-    setProductId(id);
-  }, [id]);
+  // useEffect(() => {
+  //   setProductId(id);
+  // }, [id]);
 
   // 숙소 정보
   const {

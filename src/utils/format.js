@@ -25,3 +25,11 @@ export const formatDate = (timestamp) => {
 
   return `${year}.${month}.${day}`;
 };
+
+// MM:SS 형식으로 시간 포맷
+export const formatTime = (seconds) => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+};

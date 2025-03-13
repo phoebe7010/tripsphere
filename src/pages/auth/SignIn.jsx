@@ -1,13 +1,11 @@
-import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthForm } from '../../hooks/useAuthForm';
 import { auth } from '../../firebase/firebaseConfig';
-import { useMutation } from '@tanstack/react-query';
-import { validateForm } from '../../utils/validation';
+import { useSignInMutation } from '../../hooks/useAuthData';
 import InputField from '../../components/common/InputField';
 import Modal from '../../components/common/Modal';
-import useAuthStore from '../../stores/useAuthStore';
 
 const SignIn = () => {
   const [state, dispatch] = useAuthForm();
@@ -19,75 +17,22 @@ const SignIn = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      console.log('???' + JSON.stringify(user));
-      if (user) {
-        // navigate('/');
-      } else {
-        setLoading(false);
-      }
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) setLoading(false);
     });
 
     return () => unsubscribe();
-  }, [navigate]);
+  }, []);
 
-  // 로그인 mutation
-  const loginMutation = useMutation({
-    mutationFn: async () => {
-      const { email, password } = state;
+  const showModal = (type, title, description) => {
+    setModalType(type);
+    setModalText({ title, description });
+    setModalOpen(true);
+  };
 
-      // 폼 유효성 검사
-      const errors = validateForm({ email, password }, 'signin');
+  const loginMutation = useSignInMutation(state, dispatch, showModal, navigate);
 
-      // 에러 상태 설정
-      if (Object.keys(errors).length > 0) {
-        dispatch({ type: 'SET_ERRORS', payload: errors });
-        return;
-      }
-
-      // 로그인 요청
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password,
-      );
-      return userCredential.user;
-    },
-    onSuccess: async user => {
-      const userData = {
-        email: user.email,
-        uid: user.uid,
-        token: await user.getIdToken(),
-      };
-
-      useAuthStore.getState().login(userData);
-
-      localStorage.setItem('user', JSON.stringify(userData));
-
-      setModalText({ title: '', description: '로그인 성공' });
-      setModalType('success');
-      setModalOpen(true);
-      navigate('/');
-    },
-    onError: error => {
-      let errorMessage = '로그인에 실패했습니다. 다시 시도해주세요.';
-
-      if (error.code === 'auth/user-not-found') {
-        errorMessage = '일치하는 회원정보가 없습니다.';
-      }
-
-      if (error.code === 'auth/wrong-password') {
-        errorMessage = '비밀번호가 일치하지 않습니다.';
-      }
-
-      setModalText({ title: '로그인 실패', description: errorMessage });
-      setModalType('error');
-      setModalOpen(true);
-    },
-  });
-
-  // 폼 제출 처리
-  const handleLogin = e => {
+  const handleLogin = (e) => {
     e.preventDefault();
     loginMutation.mutate();
   };
@@ -112,28 +57,24 @@ const SignIn = () => {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form
             onSubmit={handleLogin}
-            className="space-y-6"
-            action="#"
-            method="POST">
-            {/* 이메일 */}
+            className="space-y-6">
             <InputField
               label="이메일"
               type="email"
               value={state.email}
               placeholder={state.placeholder.email}
-              onChange={e =>
+              onChange={(e) =>
                 dispatch({ type: 'SET_EMAIL', payload: e.target.value })
               }
               error={state.errors.email}
             />
 
-            {/* 비밀번호 */}
             <InputField
               label="비밀번호"
               type="password"
               value={state.password}
               placeholder={state.placeholder.password}
-              onChange={e =>
+              onChange={(e) =>
                 dispatch({ type: 'SET_PASSWORD', payload: e.target.value })
               }
               error={state.errors.password}
@@ -161,7 +102,6 @@ const SignIn = () => {
         </div>
       </div>
 
-      {/* 모달 */}
       <Modal
         open={modalOpen}
         setOpen={setModalOpen}
