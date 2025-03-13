@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CitySelector from './CitySelector';
-import DateSelector from './DateSelector';
-import PeopleSelector from './PeopleSelector';
+import CitySelector from '../common/CitySelector';
+import DateSelector from '../common/DateSelector';
+import PeopleSelector from '../common/PeopleSelector';
 import SearchButton from './SearchButton';
 
 const Filter = () => {
@@ -12,16 +12,17 @@ const Filter = () => {
       <fieldset className="fieldset bg-white dark:bg-gray-950 border border-base-300 p-4 rounded-box">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {/* 지역 선택 */}
-          <CitySelector />
+          <CitySelector isGlobal={true} />
 
           {/* 체크인 · 체크아웃 */}
           <DateSelector
+            isGlobal={true}
             openDate={openDate}
             setOpenDate={setOpenDate}
           />
 
           {/* 인원수 */}
-          <PeopleSelector />
+          <PeopleSelector isGlobal={true} />
 
           {/* 검색 버튼 */}
           <SearchButton />

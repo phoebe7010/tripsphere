@@ -1,16 +1,12 @@
 import { useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
 import PeopleSelector from '../common/PeopleSelector';
-import DatePicker from '../common/DatePicker';
+import CitySelector from '../common/CitySelector';
+import DateSelector from '../common/DateSelector';
 
 const SideFilter = () => {
   const [priceRange, setPriceRange] = useState(25);
   const [isFormOpen, setIsFormOpen] = useState(true);
-  const [date, setDate] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection',
-  });
 
   const [openDate, setOpenDate] = useState(false);
 
@@ -19,7 +15,8 @@ const SideFilter = () => {
   };
 
   return (
-    <aside className={`sidebar sticky top-5 ${isFormOpen ? 'w-[30%]' : 'w-0'}`}>
+    <aside
+      className={`sidebar z-10 sticky top-5 ${isFormOpen ? 'w-[30%]' : 'w-0'}`}>
       <div className="flex mb-4 items-center justify-between">
         {isFormOpen && <div>검색 영역</div>}
         <button
@@ -43,36 +40,7 @@ const SideFilter = () => {
             <legend className="fieldset-legend px-2 font-medium">
               여행 장소
             </legend>
-            <div className="grid grid-cols-2 gap-2">
-              {[
-                '서울',
-                '부산',
-                '제주도',
-                '속초',
-                '강릉',
-                '전주',
-                '대구',
-                '경주',
-                '여수',
-                '서귀포',
-                '대전',
-                '인천',
-              ].map((ele) => (
-                <label
-                  htmlFor={ele}
-                  key={ele}
-                  className="flex items-center space-x-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                  <input
-                    type="checkbox"
-                    defaultChecked
-                    className="checkbox"
-                    id={ele}
-                    name={ele}
-                  />
-                  <span>{ele}</span>
-                </label>
-              ))}
-            </div>
+            <CitySelector />
           </fieldset>
 
           {/* 숙박 장소 선택 */}
@@ -133,12 +101,13 @@ const SideFilter = () => {
               className="mb-2 block text-sm font-medium text-gray-700 text-left dark:text-gray-200">
               체크인 · 체크아웃
             </label>
-            <DatePicker
+            {/* 체크인 · 체크아웃 */}
+            <DateSelector
               openDate={openDate}
               setOpenDate={setOpenDate}
-              date={date}
-              setDate={setDate}
             />
+
+            {/* 인원수 */}
             <PeopleSelector />
           </fieldset>
 

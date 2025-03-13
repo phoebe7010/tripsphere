@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Counter from './Counter';
+import useFilterStore from '../../stores/useFilterStore';
 
-const PeopleSelector = () => {
+const PeopleSelector = ({ isGlobal }) => {
+  const store = useFilterStore();
   const [adultCount, setAdultCount] = useState(0);
   const [childrenCount, setChildrenCount] = useState(0);
-  const [people, setPeople] = useState(0);
+  const [localPeople, setLocalPeople] = useState(0);
+
+  const selectedState = isGlobal
+    ? {
+        people: store.people,
+        setPeople: store.setPeople,
+      }
+    : {
+        people: localPeople,
+        setPeople: setLocalPeople,
+      };
+
+  const { people, setPeople } = selectedState;
 
   useEffect(() => {
     setPeople(adultCount + childrenCount);

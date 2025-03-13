@@ -3,7 +3,7 @@ import { formatNumber } from '../../utils/format';
 import PeopleSelector from '../../components/common/PeopleSelector';
 import { useNavigate } from 'react-router-dom';
 import ServiceIcon from '../common/ServiceIcon';
-import DatePicker from '../common/DatePicker';
+import DateSelector from '../common/DateSelector';
 
 const typeMapping = {
   pension: '펜션',
@@ -22,11 +22,6 @@ const serviceNames = {
 const ProductDetails = ({ product }) => {
   const [openDate, setOpenDate] = useState(false);
   const navigate = useNavigate();
-  const [date, setDate] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection',
-  });
 
   return (
     <div className="flex space-y-6 gap-10 mt-[30px]">
@@ -121,13 +116,14 @@ const ProductDetails = ({ product }) => {
                 className="mb-2 block text-sm font-medium text-gray-700 text-left dark:text-gray-200">
                 체크인 · 체크아웃
               </label>
-              <DatePicker
+
+              {/* 체크인 · 체크아웃 */}
+              <DateSelector
                 openDate={openDate}
                 setOpenDate={setOpenDate}
-                date={date}
-                setDate={setDate}
               />
 
+              {/* 인원수 */}
               <PeopleSelector />
             </fieldset>
 

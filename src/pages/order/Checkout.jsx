@@ -7,7 +7,7 @@ import PeopleSelector from '../../components/common/PeopleSelector';
 import ServiceIcon from '../../components/common/ServiceIcon';
 import OrderList from '../../components/order/checkout/OrderList';
 import OrderSummary from '../../components/order/checkout/OrderSummary';
-import DatePicker from '../../components/common/DatePicker';
+import DateSelector from '../../components/common/DateSelector';
 
 const accommodation = {
   id: '1',
@@ -66,11 +66,6 @@ const serviceNames = {
 const Checkout = () => {
   const navigate = useNavigate();
   const [openDate, setOpenDate] = useState(false);
-  const [date, setDate] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
-    key: 'selection',
-  });
 
   return (
     <div className="max-w-[1200px] mx-auto px-[20px] py-[40px] dark:text-gray-200">
@@ -126,13 +121,13 @@ const Checkout = () => {
                           className="mb-2 block text-sm font-medium text-gray-700 text-left dark:text-gray-200">
                           체크인 · 체크아웃
                         </label>
-                        <DatePicker
+                        {/* 체크인 · 체크아웃 */}
+                        <DateSelector
                           openDate={openDate}
                           setOpenDate={setOpenDate}
-                          date={date}
-                          setDate={setDate}
                         />
 
+                        {/* 인원수 */}
                         <PeopleSelector />
                       </fieldset>
                     </li>

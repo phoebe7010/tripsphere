@@ -28,6 +28,7 @@ const Counter = ({ type, label, handlePeopleCount }) => {
       <p>{label}</p>
       <div className="flex items-center gap-2">
         <button
+          type="button"
           className="btn btn-circle"
           onClick={decrease}>
           <BiMinus className="size-[1.2em]" />
@@ -41,6 +42,7 @@ const Counter = ({ type, label, handlePeopleCount }) => {
         />
 
         <button
+          type="button"
           className="btn btn-circle"
           onClick={increase}>
           <BiPlus className="size-[1.2em]" />
