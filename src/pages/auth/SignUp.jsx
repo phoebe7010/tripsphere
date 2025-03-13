@@ -13,7 +13,6 @@ const SignUp = () => {
   const [toast, setToast] = useState(null);
 
   const showToast = (type, message) => {
-    console.log('????');
     setToast({ type, message });
     setTimeout(() => setToast(null), 3000);
   };
@@ -29,13 +28,15 @@ const SignUp = () => {
   return (
     <>
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <Link to="/">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
+        <Link
+          to="/"
+          className="block text-center">
+          <p className="font-bold text-2xl">
+            TRIP
+            <span className="text-indigo-500">SPHERE</span>
+          </p>
         </Link>
+
         <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900">
           회원가입
         </h2>

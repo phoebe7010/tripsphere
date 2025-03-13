@@ -26,8 +26,8 @@ const Header = () => {
         <div className="navbar-start">
           <Link
             to="/"
-            className="btn btn-ghost text-xl">
-            TRIPSPHERE
+            className="btn btn-ghost text-xl gap-0">
+            TRIP<span className="text-indigo-500">SPHERE</span>
           </Link>
         </div>
 
