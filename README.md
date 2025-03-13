@@ -4,7 +4,7 @@
 
 | 이름   | 역할 | 담당 업무             | 페이지             |
 | ------ | ---- | --------------------- | --------------------- |
-| 김혜란 | 팀장 | 메인페이지,<br/> 상품 상세 페이지(+리뷰),<br/> 내 정보 수정 페이지,<br/> 로그인 및 회원가입 페이지 | Home.jsx,<br/> product/ProductDetail.jsx,<br/> user/Profile.jsx,<br/> auth/SignIn.jsx, auth/SignUp.jsx  |
+| 김혜란 | 팀장 | 메인페이지,<br/> 상품 상세 페이지(+리뷰),<br/> 내 정보 수정 페이지,<br/> 로그인 및 회원가입 페이지, <br/> Firebase 데이터베이스 설계 | Home.jsx,<br/> product/ProductDetail.jsx,<br/> user/Profile.jsx,<br/> auth/SignIn.jsx, auth/SignUp.jsx  |
 | 박세진 | 팀원 | 상품 목록 페이지(결과 페이지),<br/> 결제 페이지,<br/> 주문 완료 페이지 | product/ProductList.jsx,<br/> order/Checkout.jsx,<br/> order/OrderConfirmation.jsx  |
 | 최승이 | 팀원 | 마이페이지,<br/> 찜 목록 페이지 | user/MyPage.jsx,<br/> user/Favorite.jsx  |
 | 형주희 | 팀원 | 주문 내역 페이지,<br/> 장바구니 페이지 | order/OrderHistory.jsx,<br/> components/ShoppingCart.jsx |
@@ -89,7 +89,7 @@
 - `check_out` (timestamp): 체크아웃 날짜
 - `guest_count` (map):
   - `adults` (number): 성인 수
-  - `children` (number): 어린이 수
+  - `children` (number): 미성년자 수
 - `total_price` (number): 총 결제 금액
 - `payment_status` (string): 결제 상태 (`pending`, `completed`, `canceled`)
 - `order_date` (timestamp): 주문 날짜
