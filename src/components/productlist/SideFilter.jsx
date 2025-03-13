@@ -96,11 +96,6 @@ const SideFilter = () => {
 
           <fieldset className="fieldset border border-base-300 p-4 rounded-box dark:border-white">
             <legend className="fieldset-legend px-2 font-medium">일정</legend>
-            <label
-              htmlFor="roomType"
-              className="mb-2 block text-sm font-medium text-gray-700 text-left dark:text-gray-200">
-              체크인 · 체크아웃
-            </label>
             {/* 체크인 · 체크아웃 */}
             <DateSelector
               openDate={openDate}

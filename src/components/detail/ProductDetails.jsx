@@ -111,12 +111,6 @@ const ProductDetails = ({ product }) => {
           <div className="card-body">
             <h2 className="card-title">예약 정보</h2>
             <fieldset className="fieldset border border-base-300 p-4 rounded-box">
-              <label
-                htmlFor="roomType"
-                className="mb-2 block text-sm font-medium text-gray-700 text-left dark:text-gray-200">
-                체크인 · 체크아웃
-              </label>
-
               {/* 체크인 · 체크아웃 */}
               <DateSelector
                 openDate={openDate}
