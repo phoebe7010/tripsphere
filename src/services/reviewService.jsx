@@ -45,15 +45,18 @@ export const fetchAllReviewData = async (accomId) => {
   return reviewsWithUserInfo;
 };
 
+// 리뷰 추가
 export const addReview = async (review) => {
   try {
     const newReview = {
       ...review,
       created_at: serverTimestamp(),
     };
+
     const docRef = await addDoc(collection(db, 'reviews'), newReview);
+
     return docRef;
   } catch (error) {
-    throw new Error('리뷰 추가 중 오류 발생: ' + error.message);
+    console.error('리뷰 추가 오류: ' + error.message);
   }
 };

@@ -18,10 +18,7 @@ const ReviewForm = ({ handleNewReview, productId }) => {
     setTimeout(() => setToast(null), 3000);
   };
 
-  const { mutate, isLoading, isError, error } = useAddReview(
-    showToast,
-    handleNewReview,
-  );
+  const { mutate, isLoading, error } = useAddReview(showToast, handleNewReview);
 
   const handleAddReview = (e) => {
     if (e) e.preventDefault();

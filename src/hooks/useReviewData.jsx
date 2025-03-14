@@ -10,6 +10,7 @@ export const useReviewData = (accomId) => {
   });
 };
 
+// 리뷰 추가
 export const useAddReview = (showToast, handleNewReview) => {
   return useMutation({
     mutationFn: (review) => addReview(review),
