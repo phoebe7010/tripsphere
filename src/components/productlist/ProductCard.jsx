@@ -31,7 +31,7 @@ const ProductCard = ({ index, product }) => {
 
   return (
     <Link to="/product/0">
-      <article
+      <li
         className={`group card bg-base-100 transition-shadow grid grid-cols-[2fr_5fr] gap-[20px] ${
           index === 0 ? 'pb-[30px]' : 'py-[30px]'
         } ${index !== product.length - 1 ? 'border-b border-gray-200' : ''}`}>
@@ -148,7 +148,7 @@ const ProductCard = ({ index, product }) => {
             </div>
           </div>
         </div>
-      </article>
+      </li>
     </Link>
   );
 };

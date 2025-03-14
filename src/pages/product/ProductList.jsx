@@ -96,6 +96,12 @@ const ProductList = () => {
         checkOut: {checkOut}
       </div>
 
+      <div className="inline-block py-4 px-4 bg-gray-100 rounded-md">
+        nowMin: {selectedCity} <br />
+        nowMax: {selectedSubCity} <br />
+        range: {people} <br />: {checkIn} <br />: {checkOut}
+      </div>
+
       <PageHeader
         title="여행 숙소 검색 결과"
         breadcrumb={breadcrumb}
@@ -106,17 +112,19 @@ const ProductList = () => {
         className="flex items-start gap-10">
         <SideFilter />
 
-        <div className="content flex-1">
-          {list.map((product, index) => (
-            <ProductCard
-              key={index}
-              index={index}
-              product={product}
-            />
-          ))}
+        <article className="content flex-1">
+          <ul>
+            {list.map((product, index) => (
+              <ProductCard
+                key={index}
+                index={index}
+                product={product}
+              />
+            ))}
+          </ul>
 
           <Pagination />
-        </div>
+        </article>
       </div>
     </div>
   );
