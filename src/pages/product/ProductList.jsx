@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import PageHeader from '../../components/common/PageHeader';
 import Pagination from '../../components/productlist/Pagination';
 import ProductCard from '../../components/productlist/ProductCard';
@@ -49,7 +50,34 @@ const breadcrumb = [
   { link: '/products', text: '여행 검색 결과 목록' },
 ];
 
+/*
+const q = query(collection(db, "cities"), where("capital", "==", true));
+
+const querySnapshot = await getDocs(q);
+querySnapshot.forEach((doc) => {
+  // doc.data() is never undefined for query doc snapshots
+  console.log(doc.id, " => ", doc.data());
+});
+*/
+
 const ProductList = () => {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    // let listInfo = async () => {
+    //   await fetchAccomListData();
+    // };
+
+    setList(products);
+  }, []);
+
+  // 숙소 정보
+  // const {
+  //   data: accomList,
+  //   isLoading: regionsLoading,
+  //   error: accomListError,
+  // } = useRegionStore(regions);
+
   return (
     <div className="max-w-[1200px] mx-auto py-[40px]">
       <PageHeader
@@ -63,7 +91,7 @@ const ProductList = () => {
         <SideFilter />
 
         <div className="content flex-1">
-          {products.map((product, index) => (
+          {list.map((product, index) => (
             <ProductCard
               key={index}
               index={index}
