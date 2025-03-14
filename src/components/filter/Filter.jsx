@@ -16,13 +16,13 @@ const Filter = () => {
 
           {/* 체크인 · 체크아웃 */}
           <DateSelector
-            isGlobal={true}
+            stateType="filter"
             openDate={openDate}
             setOpenDate={setOpenDate}
           />
 
           {/* 인원수 */}
-          <PeopleSelector isGlobal={true} />
+          <PeopleSelector stateType="filter" />
 
           {/* 검색 버튼 */}
           <SearchButton />

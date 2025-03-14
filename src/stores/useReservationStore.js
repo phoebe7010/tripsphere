@@ -1,18 +1,10 @@
 import { create } from 'zustand';
 
-const useFilterStore = create((set) => ({
-  selectedCity: '',
-  selectedSubCity: '',
+const useReservationStore = create((set) => ({
   adultCount: 0,
   childrenCount: 0,
   checkIn: '',
   checkOut: '',
-
-  // 지역 대분류(시·도) 변경
-  setSelectedCity: (city) => set({ selectedCity: city }),
-
-  // 지역 소분류(시·군·구) 변경
-  setSelectedSubCity: (subCity) => set({ selectedSubCity: subCity }),
 
   // 어른 수 변경
   setAdultCount: (num) => set({ adultCount: num }),
@@ -27,4 +19,4 @@ const useFilterStore = create((set) => ({
   setCheckOut: (date) => set({ checkOut: date }),
 }));
 
-export default useFilterStore;
+export default useReservationStore;

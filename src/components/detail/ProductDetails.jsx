@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { formatNumber } from '../../utils/format';
 import PeopleSelector from '../../components/common/PeopleSelector';
 import { useNavigate } from 'react-router-dom';
 import ServiceIcon from '../common/ServiceIcon';
 import DateSelector from '../common/DateSelector';
+import { BiInfoCircle } from 'react-icons/bi';
 
 const typeMapping = {
   pension: '펜션',
@@ -22,12 +23,19 @@ const serviceNames = {
 const ProductDetails = ({ product }) => {
   const [openDate, setOpenDate] = useState(false);
   const navigate = useNavigate();
+  const [adults, setAdults] = useState(0);
+
+  const totalPrice = useMemo(() => {
+    return adults > 0 ? product.final_price * adults : product.final_price;
+  }, [adults, product.final_price]);
+
+  const formattedPrice = `${formatNumber(totalPrice)}원`;
 
   return (
     <div className="flex space-y-6 gap-10 mt-[30px]">
       <div className="flex-1">
         <div className="px-4 sm:px-0">
-          <h3 className="text-base/7 font-semibold text-gray-900">
+          <h3 className="text-2xl font-semibold text-gray-900">
             {product.name}
           </h3>
           <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">
@@ -44,14 +52,15 @@ const ProductDetails = ({ product }) => {
                   <li
                     key={index}
                     className="flex items-center py-4 px-4 text-sm">
-                    <div className="flex items-center gap-2">
-                      <ServiceIcon
-                        key={service}
-                        type={service}
-                      />
-                      <span className="font-medium">
-                        {serviceNames[service]}
-                      </span>
+                    <div className="flex items-center gap-3">
+                      <div className="text-lg">
+                        <ServiceIcon
+                          key={service}
+                          type={service}
+                          className="text-lg"
+                        />
+                      </div>
+                      <span>{serviceNames[service]}</span>
                     </div>
                   </li>
                 ))}
@@ -113,35 +122,28 @@ const ProductDetails = ({ product }) => {
             <fieldset className="fieldset border border-base-300 p-4 rounded-box">
               {/* 체크인 · 체크아웃 */}
               <DateSelector
+                stateType="reservation"
                 openDate={openDate}
                 setOpenDate={setOpenDate}
               />
 
               {/* 인원수 */}
-              <PeopleSelector />
+              <PeopleSelector
+                adults={adults}
+                setAdults={setAdults}
+                stateType="reservation"
+              />
             </fieldset>
 
-            <div className="flex justify-between py-2">
+            <div className="flex items-center justify-between py-2">
               <p>주문 금액</p>
-              <p className="flex justify-end">
-                {formatNumber(product.productPrice)}원
+              <p className="text-red-500 text-xl font-bold text-right">
+                {formattedPrice}
               </p>
             </div>
 
-            <div className="flex justify-between py-2">
-              <p>TRIPSPHERE 서비스 수수료</p>
-              <p className="flex justify-end">
-                {formatNumber(product.serviceFee)}원
-              </p>
-            </div>
-
-            <div className="border-t border-gray-200">
-              <div className="flex justify-between py-4">
-                <p>주문 합계 금액</p>
-                <p className="flex justify-end">
-                  {formatNumber(product.totalPrice)}원
-                </p>
-              </div>
+            <div className="flex items-center gap-2 pb-2 text-indigo-500">
+              <BiInfoCircle /> 미성년자는 주문 금액에 포함되지 않습니다.
             </div>
 
             <div className="card-actions justify-end">

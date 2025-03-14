@@ -1,24 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import Counter from './Counter';
 import useFilterStore from '../../stores/useFilterStore';
+import useReservationStore from '../../stores/useReservationStore';
 
-const PeopleSelector = ({ isGlobal }) => {
-  const store = useFilterStore();
-  const [adultCount, setAdultCount] = useState(0);
-  const [childrenCount, setChildrenCount] = useState(0);
-  const [localPeople, setLocalPeople] = useState(0);
+const PeopleSelector = ({ stateType, setAdults }) => {
+  const filterStore = useFilterStore();
+  const reservationStore = useReservationStore();
+  const [localAdultCount, setLocalAdultCount] = useState(0);
+  const [localChildrenCount, setLocalChildrenCount] = useState(0);
+  const [people, setPeople] = useState(0);
+  let selectedState;
 
-  const selectedState = isGlobal
-    ? {
-        people: store.people,
-        setPeople: store.setPeople,
-      }
-    : {
-        people: localPeople,
-        setPeople: setLocalPeople,
-      };
+  if (stateType === 'filter') {
+    selectedState = {
+      adultCount: filterStore.adultCount,
+      setAdultCount: filterStore.setAdultCount,
+      childrenCount: filterStore.childrenCount,
+      setChildrenCount: filterStore.setChildrenCount,
+    };
+  } else if (stateType === 'reservation') {
+    selectedState = {
+      adultCount: reservationStore.adultCount,
+      setAdultCount: reservationStore.setAdultCount,
+      childrenCount: reservationStore.childrenCount,
+      setChildrenCount: reservationStore.setChildrenCount,
+    };
+  } else {
+    selectedState = {
+      adultCount: localAdultCount,
+      setAdultCount: setLocalAdultCount,
+      childrenCount: localChildrenCount,
+      setChildrenCount: setLocalChildrenCount,
+    };
+  }
 
-  const { people, setPeople } = selectedState;
+  const { adultCount, setAdultCount, childrenCount, setChildrenCount } =
+    selectedState;
+
+  useEffect(() => {
+    if (stateType === 'reservation') {
+      setAdults(adultCount);
+    }
+  }, [adultCount]);
 
   useEffect(() => {
     setPeople(adultCount + childrenCount);
@@ -60,7 +83,7 @@ const PeopleSelector = ({ isGlobal }) => {
 
             <Counter
               type="childrenCount"
-              label="어린이"
+              label="미성년자"
               handlePeopleCount={handlePeopleCount}
             />
           </div>

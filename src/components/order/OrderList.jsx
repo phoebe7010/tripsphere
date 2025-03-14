@@ -47,7 +47,7 @@ const OrderList = ({ orderInfo }) => {
                     </div>
 
                     <div>
-                      (성인: {order.adults}명 어린이: {order.children}명)
+                      (성인: {order.adults}명 미성년자: {order.children}명)
                     </div>
                   </div>
 

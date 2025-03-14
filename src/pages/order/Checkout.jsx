@@ -8,6 +8,7 @@ import ServiceIcon from '../../components/common/ServiceIcon';
 import OrderList from '../../components/order/checkout/OrderList';
 import OrderSummary from '../../components/order/checkout/OrderSummary';
 import DateSelector from '../../components/common/DateSelector';
+import useReservationStore from '../../stores/useReservationStore';
 
 const accommodation = {
   id: '1',
@@ -66,9 +67,18 @@ const serviceNames = {
 const Checkout = () => {
   const navigate = useNavigate();
   const [openDate, setOpenDate] = useState(false);
-
+  const { checkIn, checkOut, adultCount, childrenCount } =
+    useReservationStore();
   return (
     <div className="max-w-[1200px] mx-auto px-[20px] py-[40px] dark:text-gray-200">
+      <div className="inline-block py-4 px-4 bg-gray-100 rounded-md">
+        checkIn: {checkIn}
+        <br />
+        checkOut: {checkOut}
+        <br />
+        adultCount: {adultCount} <br />
+        childrenCount: {childrenCount}
+      </div>
       <div className="flex space-y-6 gap-10 py-[30px] max-lg:flex-col max-lg:items-center">
         {/* 주문 결제 정보 */}
         <div className="flex-10/12 max-lg:w-full">
