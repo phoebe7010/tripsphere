@@ -31,7 +31,10 @@ const ProductReview = ({ productId }) => {
           <div className="mt-6 border-t border-gray-100">
             <div className="divide-y divide-gray-100">
               <div className="py-4">
-                <ReviewForm handleNewReview={refetch} />
+                <ReviewForm
+                  handleNewReview={refetch}
+                  productId={productId}
+                />
 
                 <ul className="list">
                   <ReviewItem reviews={reviews} />

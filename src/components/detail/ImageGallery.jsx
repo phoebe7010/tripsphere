@@ -23,8 +23,8 @@ const ImageGallery = ({ images }) => {
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2 max-h-[500px]">
-        {images.map((image) => (
-          <SwiperSlide>
+        {images.map((image, index) => (
+          <SwiperSlide key={`parent-${index}`}>
             <img
               src={image}
               className="w-full h-auto max-h-[500px] rounded-lg"
@@ -41,8 +41,8 @@ const ImageGallery = ({ images }) => {
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper mt-4">
-        {images.map((image) => (
-          <SwiperSlide>
+        {images.map((image, index) => (
+          <SwiperSlide key={`children-${index}`}>
             <img
               src={image}
               className="rounded-lg"
