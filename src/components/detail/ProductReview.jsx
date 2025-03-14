@@ -1,7 +1,21 @@
-import ReviewInput from './ReviewInput';
+import { useEffect, useState } from 'react';
+import ReviewForm from './ReviewForm';
 import ReviewItem from './ReviewItem';
+import { useReviewData } from '../../hooks/useReviewData';
 
-const ProductReview = ({ reviews }) => {
+const ProductReview = ({ productId }) => {
+  const [reviews, setReviews] = useState([]);
+  const { data, isLoading, error, refetch } = useReviewData(productId);
+
+  useEffect(() => {
+    if (data) {
+      setReviews(data);
+    }
+  }, [data]);
+
+  if (isLoading) return <>로딩 중...</>;
+  if (error) return <>에러</>;
+
   return (
     <div>
       <div className="flex space-y-6 gap-10 max-w-[1200px] mx-auto py-[20px] px-[20px]">
@@ -17,7 +31,7 @@ const ProductReview = ({ reviews }) => {
           <div className="mt-6 border-t border-gray-100">
             <div className="divide-y divide-gray-100">
               <div className="py-4">
-                <ReviewInput />
+                <ReviewForm handleNewReview={refetch} />
 
                 <ul className="list">
                   <ReviewItem reviews={reviews} />

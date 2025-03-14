@@ -64,8 +64,14 @@ querySnapshot.forEach((doc) => {
 
 const ProductList = () => {
   // 팀장님
-  const { selectedCity, selectedSubCity, people, checkIn, checkOut } =
-    useFilterStore();
+  const {
+    selectedCity,
+    selectedSubCity,
+    adultCount,
+    childrenCount,
+    checkIn,
+    checkOut,
+  } = useFilterStore();
   // 팀장님
 
   // 박세진
@@ -94,7 +100,8 @@ const ProductList = () => {
       <div className="inline-block py-4 px-4 bg-gray-100 rounded-md">
         selectedCity: {selectedCity} <br />
         selectedSubCity: {selectedSubCity} <br />
-        people: {people} <br />
+        adultCount: {adultCount} <br />
+        childrenCount: {childrenCount} <br />
         checkIn: {checkIn} <br />
         checkOut: {checkOut}
       </div>

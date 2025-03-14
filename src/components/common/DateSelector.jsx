@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import DatePicker from './DatePicker';
 import useFilterStore from '../../stores/useFilterStore';
+import useReservationStore from '../../stores/useReservationStore';
 
-const DateSelector = ({ openDate, setOpenDate, isGlobal }) => {
-  const store = useFilterStore();
+const DateSelector = ({ openDate, setOpenDate, stateType }) => {
+  const filterStore = useFilterStore();
+  const reservationStore = useReservationStore();
   const [date, setDate] = useState({
     startDate: new Date(),
     endDate: new Date(),
@@ -13,15 +15,24 @@ const DateSelector = ({ openDate, setOpenDate, isGlobal }) => {
   const [localCheckIn, setLocalCheckIn] = useState();
   const [localCheckOut, setLocalCheckOut] = useState();
 
-  const selectedState = isGlobal
-    ? {
-        setCheckIn: store.setCheckIn,
-        setCheckOut: store.setCheckOut,
-      }
-    : {
-        setCheckIn: setLocalCheckIn,
-        setCheckOut: setLocalCheckOut,
-      };
+  let selectedState;
+
+  if (stateType === 'filter') {
+    selectedState = {
+      setCheckIn: filterStore.setCheckIn,
+      setCheckOut: filterStore.setCheckOut,
+    };
+  } else if (stateType === 'reservation') {
+    selectedState = {
+      setCheckIn: reservationStore.setCheckIn,
+      setCheckOut: reservationStore.setCheckOut,
+    };
+  } else {
+    selectedState = {
+      setCheckIn: setLocalCheckIn,
+      setCheckOut: setLocalCheckOut,
+    };
+  }
 
   const { setCheckIn, setCheckOut } = selectedState;
 
