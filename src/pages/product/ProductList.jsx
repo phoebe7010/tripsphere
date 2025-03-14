@@ -4,6 +4,7 @@ import Pagination from '../../components/productlist/Pagination';
 import ProductCard from '../../components/productlist/ProductCard';
 import SideFilter from '../../components/productlist/SideFilter';
 import useFilterStore from '../../stores/useFilterStore';
+import usePriceStore from '../../stores/usePriceStore';
 
 const products = [
   {
@@ -70,6 +71,8 @@ const ProductList = () => {
   // 박세진
   const [list, setList] = useState([]);
 
+  const { priceRange, valueMaximum, setPriceRange } = usePriceStore();
+
   useEffect(() => {
     // let listInfo = async () => {
     //   await fetchAccomListData();
@@ -97,9 +100,11 @@ const ProductList = () => {
       </div>
 
       <div className="inline-block py-4 px-4 bg-gray-100 rounded-md">
-        nowMin: {selectedCity} <br />
-        nowMax: {selectedSubCity} <br />
-        range: {people} <br />: {checkIn} <br />: {checkOut}
+        nowMin: {setPriceRange} <br />
+        nowMax: {valueMaximum} <br />
+        range: {priceRange}
+        rangeLow : {priceRange.min}
+        rangeHigh : {priceRange.max}
       </div>
 
       <PageHeader

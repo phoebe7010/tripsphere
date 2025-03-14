@@ -19,15 +19,12 @@ const SideFilter = () => {
   const [range, setRange] = useState([0, 35]);
 
   const { region, showRegions, addRegion, delRegion } = useRegionStore();
-  const {
-    priceRange,
-    valueMinimum,
-    valueMaximum,
-    setMinimum,
-    setMaximum,
-    setPriceRange,
-    getPriceRange,
-  } = usePriceStore();
+
+  // priceRange : 초기 세팅값 활용
+  // valueMinimum : 범위 최소값, 이 설정 이하면 0으로 잡음
+  // valueMaximum : 범위 최대값, 이 설정 이상이면 최대로 잡음
+  const { priceRange, valueMinimum, valueMaximum, setPriceRange } =
+    usePriceStore();
 
   const toggleForm = () => {
     setIsFormOpen((prevState) => !prevState);
@@ -144,14 +141,8 @@ const SideFilter = () => {
             <div className="flex items-center justify-between">
               <div className="w-full p-3 max-w-xs">
                 <PriceSlider
-                  range={priceRange}
-                  setRange={setPriceRange}
-                  min={0}
-                  max={valueMaximum + 5}
                   step={5}
                   className="relative w-full p-4"
-                  trackClass="bg-gray-200 h-6 w-full rounded-full outline-1 outline-green-300"
-                  thumbClass="bg-red-300 h-4 w-4 rounded-full"
                 />
 
                 {/* <input

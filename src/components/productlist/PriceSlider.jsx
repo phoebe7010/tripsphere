@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Range } from 'react-range';
+import usePriceStore from '../../stores/usePriceStore';
 
-const PriceSlider = ({
-  range,
-  setRange,
-  min = 0,
-  max = 35,
-  minimum = 5,
-  maximum = 30,
-  step = 5,
-}) => {
+const PriceSlider = ({ step = 5 }) => {
+  const {
+    priceRange,
+    valueMinimum,
+    valueMaximum,
+    setLowPrice,
+    sethighPrice,
+    setMinimum,
+    setMaximum,
+  } = usePriceStore();
+
   const handleInputChange = (index, value) => {
-    let newRange = [...range];
-    newRange[index] = Number(value);
-
-    if (newRange[0] < minimum) {
+    if (index === 0) {
       newRange[0] = 0;
     }
 
@@ -35,10 +35,6 @@ const PriceSlider = ({
     setRange(newRange);
   };
 
-  useEffect(() => {
-    [range];
-  });
-
   return (
     <div className="w-full flex flex-col items-center">
       <div className="flex justify-between items-center mb-4 gap-4">
@@ -46,7 +42,7 @@ const PriceSlider = ({
           <span>최소</span>
           <input
             type="number"
-            value={range[0]}
+            value={range.min}
             min={min}
             max={max}
             step={1}
@@ -89,8 +85,8 @@ const PriceSlider = ({
               style={{
                 position: 'absolute',
                 height: '100%',
-                left: `${((range[0] - min) / (max - min)) * 100}%`,
-                right: `${100 - ((range[1] - min) / (max - min)) * 100}%`,
+                left: `${((range.min - min) / (max - min)) * 100}%`,
+                right: `${100 - ((range.max - min) / (max - min)) * 100}%`,
                 background: '#4CAF50',
                 borderRadius: '3px',
               }}
