@@ -10,12 +10,13 @@ export const useReviewData = (accomId) => {
   });
 };
 
-export const useAddReview = (showToast) => {
+export const useAddReview = (showToast, handleNewReview) => {
   return useMutation({
     mutationFn: (review) => addReview(review),
     onSuccess: (data) => {
       console.log('리뷰가 성공적으로 추가되었습니다:', data);
       showToast('success', '리뷰가 성공적으로 추가되었습니다.');
+      handleNewReview();
     },
     onError: (error) => {
       showToast('error', '리뷰 추가 중 오류가 발생했습니다.');

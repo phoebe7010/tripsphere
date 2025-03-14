@@ -18,7 +18,10 @@ const ReviewForm = ({ handleNewReview, productId }) => {
     setTimeout(() => setToast(null), 3000);
   };
 
-  const { mutate, isLoading, isError, error } = useAddReview(showToast);
+  const { mutate, isLoading, isError, error } = useAddReview(
+    showToast,
+    handleNewReview,
+  );
 
   const handleAddReview = (e) => {
     if (e) e.preventDefault();
@@ -31,7 +34,6 @@ const ReviewForm = ({ handleNewReview, productId }) => {
     };
 
     mutate(review);
-    handleNewReview();
 
     // 초기화
     setComment('');
