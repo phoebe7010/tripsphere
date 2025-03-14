@@ -1,9 +1,36 @@
-import React from 'react';
-import useCounterStore from '../../stores/useCounterStore';
+import React, { useState, useEffect } from 'react';
 import Counter from './Counter';
+import useFilterStore from '../../stores/useFilterStore';
 
-const PeopleSelector = () => {
-  const { childrenCount, adultCount } = useCounterStore(state => state);
+const PeopleSelector = ({ isGlobal }) => {
+  const store = useFilterStore();
+  const [adultCount, setAdultCount] = useState(0);
+  const [childrenCount, setChildrenCount] = useState(0);
+  const [localPeople, setLocalPeople] = useState(0);
+
+  const selectedState = isGlobal
+    ? {
+        people: store.people,
+        setPeople: store.setPeople,
+      }
+    : {
+        people: localPeople,
+        setPeople: setLocalPeople,
+      };
+
+  const { people, setPeople } = selectedState;
+
+  useEffect(() => {
+    setPeople(adultCount + childrenCount);
+  }, [adultCount, childrenCount]);
+
+  const handlePeopleCount = (type, count) => {
+    if (type === 'adultCount') {
+      setAdultCount(count);
+    } else if (type === 'childrenCount') {
+      setChildrenCount(count);
+    }
+  };
 
   return (
     <div className="w-full">
@@ -18,7 +45,7 @@ const PeopleSelector = () => {
           role="button"
           className="input bg-base-200 w-full dark:border-gray-200"
           placeholder="인원수"
-          defaultValue={`총 인원 ${adultCount + childrenCount}`} // Read-only input with defaultValue
+          value={`총 인원 ${people}`}
           readOnly
         />
         <div
@@ -28,10 +55,13 @@ const PeopleSelector = () => {
             <Counter
               type="adultCount"
               label="성인"
+              handlePeopleCount={handlePeopleCount}
             />
+
             <Counter
               type="childrenCount"
               label="어린이"
+              handlePeopleCount={handlePeopleCount}
             />
           </div>
         </div>

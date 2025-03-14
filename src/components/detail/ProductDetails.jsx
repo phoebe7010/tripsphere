@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import DateSelector from '../../components/common/DateSelector';
 import PeopleSelector from '../../components/common/PeopleSelector';
 import { formatNumber } from '../../utils/format';
+import DateSelector from '../common/DateSelector';
 import ServiceIcon from '../common/ServiceIcon';
 
 const typeMapping = {
@@ -111,11 +110,13 @@ const ProductDetails = ({ product }) => {
           <div className="card-body">
             <h2 className="card-title">예약 정보</h2>
             <fieldset className="fieldset border border-base-300 p-4 rounded-box">
+              {/* 체크인 · 체크아웃 */}
               <DateSelector
                 openDate={openDate}
                 setOpenDate={setOpenDate}
               />
 
+              {/* 인원수 */}
               <PeopleSelector />
             </fieldset>
 

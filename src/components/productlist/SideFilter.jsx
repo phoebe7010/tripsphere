@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
 import usePriceStore from '../../stores/usePriceStore';
 import useRegionStore from '../../stores/useRegionStore';
+import CitySelector from '../common/CitySelector';
 import DateSelector from '../common/DateSelector';
 import PeopleSelector from '../common/PeopleSelector';
 import PriceSlider from './PriceSlider';
@@ -30,6 +31,7 @@ const SideFilter = () => {
 
   const toggleForm = () => {
     setIsFormOpen((prevState) => !prevState);
+    setIsFormOpen((prevState) => !prevState);
   };
 
   useEffect(() => {
@@ -43,7 +45,8 @@ const SideFilter = () => {
   }, [region]);
 
   return (
-    <aside className={`sidebar sticky top-5 ${isFormOpen ? 'w-[30%]' : 'w-0'}`}>
+    <aside
+      className={`sidebar z-10 sticky top-5 ${isFormOpen ? 'w-[30%]' : 'w-0'}`}>
       <div className="flex mb-4 items-center justify-between">
         {isFormOpen && <div>검색 영역</div>}
         <button
@@ -67,6 +70,7 @@ const SideFilter = () => {
             <legend className="fieldset-legend px-2 font-medium">
               여행 장소
             </legend>
+            <CitySelector />
             <div className="flex flex-col w-full gap-y-3 divide-y-1">
               {showRegionInfo &&
                 Object.entries(showRegionInfo).map(([keyName, places]) => (
@@ -158,6 +162,7 @@ const SideFilter = () => {
                   className="range"
                   step="1"
                   onChange={(e) => setPriceRange(Number(e.target.value))}
+                  onChange={(e) => setPriceRange(Number(e.target.value))}
                 />
                 <div className="flex justify-between px-2.5 mt-2 text-xs">
                   <span>0</span>
@@ -175,11 +180,13 @@ const SideFilter = () => {
 
           <fieldset className="fieldset border border-base-300 p-4 rounded-box dark:border-white">
             <legend className="fieldset-legend px-2 font-medium">일정</legend>
+            {/* 체크인 · 체크아웃 */}
             <DateSelector
               openDate={openDate}
               setOpenDate={setOpenDate}
             />
 
+            {/* 인원수 */}
             <PeopleSelector />
           </fieldset>
 

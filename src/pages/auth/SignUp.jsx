@@ -1,230 +1,97 @@
 import React, { useState } from 'react';
-import { useAuthForm } from '../../hooks/useAuthForm';
-import { auth, db } from '../../firebase/firebaseConfig';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { setDoc, doc, serverTimestamp } from 'firebase/firestore';
-import { Link, useNavigate } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import InputField from '../../components/common/InputField';
-import Modal from '../../components/common/Modal';
-import { updateProfile } from 'firebase/auth';
-import { validateForm } from '../../utils/validation';
-
-// 회원가입 처리 함수
-const signupUser = async ({ email, password, username, nickname, phone }) => {
-  // Firebase에 새 사용자 생성
-  const userCredential = await createUserWithEmailAndPassword(
-    auth,
-    email,
-    password,
-  );
-
-  // 사용자 프로필 업데이트
-  await updateProfile(userCredential.user, {
-    displayName: username,
-  });
-
-  // Firestore users테이블에 사용자 데이터 저장
-  await setDoc(doc(db, 'users', userCredential.user.uid), {
-    email: userCredential.user.email,
-    createAt: serverTimestamp(),
-    username,
-    nickname,
-    phone,
-    profile_image: '',
-    wishlist: [],
-    orders: [],
-    cart: [],
-    points: 0,
-  });
-
-  return userCredential.user;
-};
+import EmailPassword from '../../components/signup/EmailPassword';
+import EmailVerification from '../../components/signup/EmailVerification';
+import Completion from '../../components/signup/Completion';
+import Step from '../../components/signup/Step';
+import { Link } from 'react-router-dom';
+import Toast from '../../components/common/Toast';
+import UserInfo from '../../components/signup/UserinFo';
 
 const SignUp = () => {
-  const [state, dispatch] = useAuthForm();
-  const navigate = useNavigate();
+  const [currentStep, setCurrentStep] = useState(1);
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+  const [toast, setToast] = useState(null);
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalText, setModalText] = useState({
-    title: '',
-    description: '',
-  });
-  const [modalType, setModalType] = useState('success');
-
-  // 회원가입 후 홈으로 이동
-  const handleNavigate = () => {
-    navigate('/');
+  const showToast = (type, message) => {
+    setToast({ type, message });
+    setTimeout(() => setToast(null), 3000);
   };
 
-  const mutation = useMutation({
-    mutationFn: signupUser,
-    onSuccess: (user) => {
-      setModalText({
-        title: '회원가입이 완료되었습니다.',
-        description: `${user.displayName}님 환영합니다!`,
-      });
-      setModalType('success');
-      setModalOpen(true);
-    },
-    onError: (error) => {
-      setModalText({
-        title: '회원가입이 실패했습니다.',
-        description: error.message,
-      });
-      setModalType('error');
-      setModalOpen(true);
-    },
-  });
+  const handlePrevStep = () => {
+    setCurrentStep((prev) => (prev > 0 ? prev - 1 : 1));
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // 폼 유효성 검사
-    const errors = validateForm(state, 'signup');
-
-    // 에러 상태 설정
-    if (Object.keys(errors).length > 0) {
-      dispatch({ type: 'SET_ERRORS', payload: errors });
-      return;
-    }
-
-    // 회원가입 요청
-    mutation.mutate({
-      email: state.email,
-      password: state.password,
-      username: state.username,
-      nickname: state.nickname,
-      phone: state.phone,
-    });
+  const handleNextStep = () => {
+    setCurrentStep((prev) => prev + 1);
   };
 
   return (
     <>
-      <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <Link
+          to="/"
+          className="block text-center">
+          <p className="font-bold text-2xl">
+            TRIP
+            <span className="text-indigo-500">SPHERE</span>
+          </p>
+        </Link>
+
+        <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900">
+          회원가입
+        </h2>
+      </div>
+
+      {/* Step 진행바 */}
+      <div className="flex min-h-full flex-col justify-center px-6 pt-8 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <Link to="/">
-            <img
-              className="mx-auto h-10 w-auto"
-              src="https://tailwindui.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
-            />
-          </Link>
-          <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900">
-            회원가입
-          </h2>
-        </div>
-
-        {/* 폼 영역 */}
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6"
-            action="#"
-            method="POST">
-            {/* 이메일 */}
-            <InputField
-              label="이메일"
-              type="email"
-              value={state.email}
-              placeholder={state.placeholder.email}
-              onChange={(e) =>
-                dispatch({ type: 'SET_EMAIL', payload: e.target.value })
-              }
-              error={state.errors.email}
-            />
-
-            {/* 비밀번호 */}
-            <InputField
-              label="비밀번호"
-              type="password"
-              value={state.password}
-              placeholder={state.placeholder.password}
-              onChange={(e) =>
-                dispatch({ type: 'SET_PASSWORD', payload: e.target.value })
-              }
-              error={state.errors.password}
-              showPassword={showPassword}
-              onTogglePassword={() => setShowPassword(!showPassword)}
-            />
-
-            {/* 비밀번호 확인 */}
-            <InputField
-              label="비밀번호 확인"
-              type="password"
-              value={state.passwordConfirm}
-              placeholder={state.placeholder.passwordConfirm}
-              onChange={(e) =>
-                dispatch({
-                  type: 'SET_PASSWORDCONFIRM',
-                  payload: e.target.value,
-                })
-              }
-              error={state.errors.passwordConfirm}
-              showPassword={showPasswordConfirm}
-              onTogglePassword={() =>
-                setShowPasswordConfirm(!showPasswordConfirm)
-              }
-            />
-
-            {/* 이름 */}
-            <InputField
-              label="이름"
-              type="text"
-              value={state.username}
-              placeholder={state.placeholder.username}
-              onChange={(e) =>
-                dispatch({ type: 'SET_USERNAME', payload: e.target.value })
-              }
-              error={state.errors.username}
-            />
-
-            {/* 닉네임 */}
-            <InputField
-              label="닉네임"
-              type="text"
-              value={state.nickname}
-              placeholder={state.placeholder.nickname}
-              onChange={(e) =>
-                dispatch({ type: 'SET_NICKNAME', payload: e.target.value })
-              }
-              error={state.errors.nickname}
-            />
-
-            {/* 연락처 */}
-            <InputField
-              label="연락처"
-              type="text"
-              value={state.phone}
-              placeholder={state.placeholder.phone}
-              onChange={(e) =>
-                dispatch({ type: 'SET_PHONE', payload: e.target.value })
-              }
-              error={state.errors.phone}
-            />
-
-            <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-indigo-600">
-                회원가입
-              </button>
-            </div>
-          </form>
+          <Step currentStep={currentStep} />
         </div>
       </div>
 
-      {/* 모달 */}
-      <Modal
-        open={modalOpen}
-        setOpen={setModalOpen}
-        text={modalText}
-        type={modalType}
-        onNavigate={handleNavigate}
-      />
+      {/* Step1. 이메일 & 비밀번호 입력 */}
+      {currentStep === 1 && (
+        <EmailPassword
+          onNext={handleNextStep}
+          showToast={showToast}
+        />
+      )}
+
+      {/* Step2. 이메일 인증 */}
+      {currentStep === 2 && (
+        <EmailVerification
+          onNext={handleNextStep}
+          onPrev={handlePrevStep}
+          showToast={showToast}
+        />
+      )}
+
+      {/* Step3. 이름, 닉네임, 연락처 입력 + 약관 동의 */}
+      {currentStep === 3 && (
+        <UserInfo
+          onNext={handleNextStep}
+          onPrev={handlePrevStep}
+        />
+      )}
+
+      {/* Step4. 회원가입 완료 */}
+      {currentStep === 4 && (
+        <Completion
+          onNext={handleNextStep}
+          onPrev={handlePrevStep}
+        />
+      )}
+
+      {/* 토스트 메시지 */}
+      {toast && (
+        <div className="fixed top-5 left-1/2 transform -translate-x-1/2 z-10">
+          <Toast
+            type={toast.type}
+            message={toast.message}
+            onClose={() => setToast(null)}
+          />
+        </div>
+      )}
     </>
   );
 };

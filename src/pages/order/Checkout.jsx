@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { BiHotel } from 'react-icons/bi';
 import { FaMapLocationDot } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
-import DateSelector from '../../components/common/DateSelector';
 import KakaoMap from '../../components/common/KakaoMap';
 import PeopleSelector from '../../components/common/PeopleSelector';
 import ServiceIcon from '../../components/common/ServiceIcon';
 import OrderList from '../../components/order/checkout/OrderList';
 import OrderSummary from '../../components/order/checkout/OrderSummary';
+import DateSelector from '../../components/common/DateSelector';
 
 const accommodation = {
   id: '1',
@@ -116,11 +116,13 @@ const Checkout = () => {
 
                     <li>
                       <fieldset className="fieldset py-4 px-6">
+                        {/* 체크인 · 체크아웃 */}
                         <DateSelector
                           openDate={openDate}
                           setOpenDate={setOpenDate}
                         />
 
+                        {/* 인원수 */}
                         <PeopleSelector />
                       </fieldset>
                     </li>

@@ -13,9 +13,9 @@ const ProductDetail = () => {
   const [productId, setProductId] = useState(id);
   // const [productId, setProductId] = useState('fhxC2un7evQDrgz0wWuP');
 
-  useEffect(() => {
-    setProductId(id);
-  }, [id]);
+  // useEffect(() => {
+  //   setProductId(id);
+  // }, [id]);
 
   // 숙소 정보
   const {
