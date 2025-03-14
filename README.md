@@ -29,7 +29,7 @@
 | **react-use**                  | `npm install react-use`                    | |
 | **kakao-map**                  | `npm install react-kakao-maps-sdk`     | [Kakao maps sdk](https://react-kakao-maps-sdk.jaeseokim.dev/docs/sample/) |
 | **swiper**                     | `npm install swiper`                   | |
-
+| **react-range**                     | `npm install react-range`                   |[npm] (https://www.npmjs.com/package/react-range) |
 ---
 
 ### **📍 FireBase 구조**
