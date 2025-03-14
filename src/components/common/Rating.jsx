@@ -1,6 +1,6 @@
 import React, { useId } from 'react';
 
-const Rating = ({ rating, readOnly = false }) => {
+const Rating = ({ rating, readOnly = false, setRating }) => {
   const id = useId();
 
   return (
@@ -14,6 +14,7 @@ const Rating = ({ rating, readOnly = false }) => {
           aria-label={`${num} star`}
           checked={readOnly ? num <= rating : null}
           disabled={readOnly}
+          onChange={() => setRating && setRating(num)}
         />
       ))}
     </div>

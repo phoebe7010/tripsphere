@@ -96,7 +96,7 @@ const ProductDetails = ({ product }) => {
                   <p className="py-4">{product.description}</p>
                   <div className="modal-action">
                     <form method="dialog">
-                      <button className="btn">Close</button>
+                      <button className="btn">확인</button>
                     </form>
                   </div>
                 </div>

@@ -11,6 +11,10 @@ export const formatNumber = (input) => {
 
 // timestamp 날짜 포맷
 export const formatDate = (timestamp) => {
+  if (!timestamp || !timestamp.seconds) {
+    return '';
+  }
+
   // seconds를 밀리초로 변환
   const date = new Date(timestamp.seconds * 1000);
 

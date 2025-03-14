@@ -9,7 +9,7 @@ const ReviewItem = ({ reviews }) => {
 
   return (
     <>
-      {reviews.map((review) => (
+      {reviews?.map((review) => (
         <li
           key={review.id}
           className="list-row">

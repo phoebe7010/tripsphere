@@ -1,4 +1,12 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  getDocs,
+  orderBy,
+  query,
+  serverTimestamp,
+  where,
+} from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 import { fetchUserData } from './userService';
 
@@ -11,6 +19,7 @@ export const fetchAllReviewData = async (accomId) => {
   const reviewsQuery = query(
     reviewsCollection,
     where('accommodation_id', '==', accomId),
+    orderBy('created_at', 'desc'),
   );
   const reviewSnapshot = await getDocs(reviewsQuery);
 
@@ -34,4 +43,17 @@ export const fetchAllReviewData = async (accomId) => {
   }
 
   return reviewsWithUserInfo;
+};
+
+export const addReview = async (review) => {
+  try {
+    const newReview = {
+      ...review,
+      created_at: serverTimestamp(),
+    };
+    const docRef = await addDoc(collection(db, 'reviews'), newReview);
+    return docRef;
+  } catch (error) {
+    throw new Error('리뷰 추가 중 오류 발생: ' + error.message);
+  }
 };
