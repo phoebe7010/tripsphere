@@ -85,7 +85,16 @@ const ProductList = () => {
     // };
 
     setList(products);
-  }, []);
+  }, [
+    selectedCity,
+    selectedSubCity,
+    adultCount,
+    childrenCount,
+    checkIn,
+    checkOut,
+    range.min,
+    range.max,
+  ]);
 
   // 숙소 정보
   // const {

@@ -1,40 +1,63 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Range } from 'react-range';
 import usePriceStore from '../../stores/usePriceStore';
 
 const PriceSlider = ({ step = 5 }) => {
-  const {
-    range,
-    setLimitLow,
-    setLimitHigh,
-    rangeLimit,
-    setRangeMin,
-    setRangeMax,
-  } = usePriceStore();
+  const { rangeLimit, range, setRangeMin, setRangeMax } = usePriceStore();
 
-  const [values, setValues] = useState([range.min, range.max]);
+  const [maxInput, setMaxInput] = useState(range.max);
+  const [message, setMessage] = useState('');
 
-  const handleInputChange = (index, value) => {
+  const updateByInput = (index, value) => {
+    const numValue = Number(value);
+    if (isNaN(numValue)) return;
+
     if (index === 0) {
-      setRangeMin(value);
-      setValues(...values, (values[0] = range.min));
+      if (numValue >= range.max) {
+        setMessage('최소값은 최대값보다 작아야 합니다.');
+        return;
+      }
+      setRangeMin(numValue);
+    } else {
+      if (numValue <= range.min) {
+        setMessage('최대값은 최소값보다 커야 합니다.');
+        return;
+      }
+      setRangeMax(numValue);
+      setMaxInput(numValue);
     }
-    if (index === 1) {
-      setRangeMax(value);
-      setValues(...values, (values[1] = range.max));
-      console.log('value : ' + values);
-      console.log('range : ' + range);
-    }
+    setMessage('');
   };
 
+  const updateByRangeUI = useCallback(
+    (values) => {
+      if (values[0] < values[1]) {
+        setRangeMin(values[0]);
+        setRangeMax(values[1]);
+      } else {
+        if (values[0] < rangeLimit.max - step) {
+          setRangeMin(values[0]);
+        } else {
+          setRangeMin(rangeLimit.max - step);
+        }
+        setRangeMax(Math.min(values[0] + step, rangeLimit.max));
+      }
+    },
+    [setRangeMin, setRangeMax, rangeLimit.max, step],
+  );
+
   useEffect(() => {
-    console.log('do nothing'), [range];
-  });
+    if (range.max >= rangeLimit.max) {
+      setMaxInput('최대');
+    } else {
+      setMaxInput(range.max);
+    }
+  }, [range.max, rangeLimit.max]);
 
   return (
     <div className="w-full flex flex-col items-center">
       <div className="flex justify-between items-center mb-4 gap-4">
-        <div className="flex justify-between items-center gap-x-3">
+        <label className="flex items-center gap-x-3">
           <span>최소</span>
           <input
             type="number"
@@ -42,115 +65,59 @@ const PriceSlider = ({ step = 5 }) => {
             min={rangeLimit.min}
             max={rangeLimit.max}
             step={1}
-            onChange={(e) => handleInputChange(0, e.target.value)}
-            className="border px-1 py-1 w-10 text-center [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            onChange={(e) => updateByInput(0, e.target.value)}
+            className="border px-1 py-1 w-14 text-center"
           />
-        </div>
+        </label>
         ~
-        <div className="flex justify-between items-center gap-x-3">
+        <label className="flex items-center gap-x-3">
           <span>최대</span>
           <input
-            type="number"
-            value={range.max}
+            type="text"
+            value={maxInput}
+            onFocus={() => setMaxInput(range.max)}
+            onBlur={() =>
+              setMaxInput(range.max >= rangeLimit.max ? '최대' : range.max)
+            }
             min={rangeLimit.min}
             max={rangeLimit.max}
             step={1}
-            onChange={(e) => handleInputChange(1, e.target.value)}
-            className="border px-1 py-1 w-10 text-center [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+            onChange={(e) => updateByInput(1, e.target.value)}
+            className="border px-1 py-1 w-14 text-center"
           />
-        </div>
+        </label>
       </div>
+      {message && <p className="text-red-500 text-sm">{message}</p>}
 
       <Range
-        label="Select your value"
-        step={0.1}
+        step={step}
         min={rangeLimit.min}
         max={rangeLimit.max}
-        values={values}
-        onChange={(values, index) => {
-          console.log('values:', values, 'index:', index);
-          handleInputChange(index, values);
-        }}
+        values={[range.min, range.max]}
+        onChange={updateByRangeUI}
         renderTrack={({ props, children }) => (
-          //트랙 css적용
           <div
             {...props}
-            className="bg-gray-300 w-full h-1">
+            className="relative bg-gray-300 w-full h-2 rounded">
             {children}
+            {[...Array(Math.floor(rangeLimit.max / step))].map((_, i) => (
+              <div
+                key={i}
+                className="absolute top-0 h-2 w-px bg-gray-700"
+                style={{
+                  left: `${(i * 100) / Math.floor(rangeLimit.max / step)}%`,
+                }}
+              />
+            ))}
           </div>
         )}
         renderThumb={({ props }) => (
           <div
             {...props}
-            key={props.key}
-            // style={{
-            //   ...props.style,
-            //   height: '42px',
-            //   width: '42px',
-            //   backgroundColor: '#999',
-            // }}
-            className="bg-gray-600 w-8 h-8"
+            className="bg-gray-600 w-5 h-5 rounded-full"
           />
         )}
       />
-
-      {/* <Range
-        label="가격 범위 조정"
-        value={[range.min, range.max]}
-        step={step}
-        min={rangeLimit.min}
-        max={rangeLimit.max}
-        onChange={(values) => {
-          console.log(values);
-        }}
-        renderTrack={({ props, children }) => (
-          <div
-            {...props}
-            style={{
-              ...props.style,
-              height: '6px',
-              width: '100%',
-              background: '#ddd',
-              borderRadius: '3px',
-              position: 'relative',
-            }}>
-            <div
-              style={{
-                position: 'absolute',
-                height: '100%',
-                left: `${
-                  ((range.min - rangeLimit.min) /
-                    (rangeLimit.max - rangeLimit.min)) *
-                  100
-                }%`,
-                right: `${
-                  100 -
-                  ((range.max - rangeLimit.min) /
-                    (rangeLimit.max - rangeLimit.min)) *
-                    100
-                }%`,
-                background: '#4CAF50',
-                borderRadius: '3px',
-              }}
-            />
-            {children}
-          </div>
-        )}
-        renderThumb={({ props, index }) => (
-          <div
-            {...props}
-            style={{
-              ...props.style,
-              height: '16px',
-              width: '16px',
-              backgroundColor: '#4CAF50',
-              borderRadius: '50%',
-              border: '2px solid white',
-              boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.2)',
-            }}
-          />
-        )}
-      /> */}
     </div>
   );
 };
