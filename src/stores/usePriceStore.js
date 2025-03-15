@@ -1,16 +1,18 @@
 import { create } from 'zustand';
 
-// priceRange : 초기 세팅값 활용
-// valueMinimum : 범위 최소값, 이 설정 이하면 0으로 잡음
-// valueMaximum : 범위 최대값, 이 설정 이상이면 최대로 잡음
+// rangeLimit : 가격 범위 고정값으로 활용
+//   하위 속성 : min, max
+// range : 가격 범위 가변으로 사용
+//   하위 속성 : min, max
 const usePriceStore = create((set) => ({
-  priceRange: { min: 0, max: 35 },
-  valueMinimum: 5,
-  valueMaximum: 30,
-  setLowPrice: (val) => set((state) => ({ ...state.priceRange, min: val })),
-  sethighPrice: (val) => set((state) => ({ ...state.priceRange, max: val })),
-  setMinimum: (min) => set((state) => ({ valueMinimum: min })),
-  setMaximum: (max) => set((state) => ({ valueMaximum: max })),
+  // 가격최대최소 고정범위 조정
+  range: { min: 0, max: 35 },
+  setLimitLow: (val) => set((state) => ({ ...state.rangeLimit, min: val })),
+  setLimitHigh: (val) => set((state) => ({ ...state.rangeLimit, max: val })),
+  // 가격 범위 조정
+  rangeLimit: { min: 0, max: 35 },
+  setRangeMin: (val) => set((state) => ({ ...state.range, min: val })),
+  setRangeMax: (val) => set((state) => ({ ...state.range, max: val })),
 }));
 
 export default usePriceStore;

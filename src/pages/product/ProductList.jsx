@@ -77,7 +77,7 @@ const ProductList = () => {
   // 박세진
   const [list, setList] = useState([]);
 
-  const { priceRange, valueMaximum, setPriceRange } = usePriceStore();
+  const { range, rangeLimit } = usePriceStore();
 
   useEffect(() => {
     // let listInfo = async () => {
@@ -107,11 +107,12 @@ const ProductList = () => {
       </div>
 
       <div className="inline-block py-4 px-4 bg-gray-100 rounded-md">
-        nowMin: {setPriceRange} <br />
-        nowMax: {valueMaximum} <br />
-        range: {priceRange}
-        rangeLow : {priceRange.min}
-        rangeHigh : {priceRange.max}
+        nowMin: {range.min} <br />
+        nowMax: {range.max} <br />
+        rangeLow : {rangeLimit.min}
+        <br />
+        rangeHigh : {rangeLimit.max}
+        <br />
       </div>
 
       <PageHeader
@@ -126,11 +127,12 @@ const ProductList = () => {
 
         <article className="content flex-1">
           <ul>
-            {list.map((product, index) => (
+            {list.map((product, index, array) => (
               <ProductCard
                 key={index}
                 index={index}
                 product={product}
+                arrayLength={array.length}
               />
             ))}
           </ul>

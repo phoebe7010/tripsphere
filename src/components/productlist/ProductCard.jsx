@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { formatNumber } from '../../utils/format';
 import KakaoShareButton from '../common/KakaoShareButton';
 
-const ProductCard = ({ index, product }) => {
+const ProductCard = ({ index, product, arrayLength }) => {
   function bulidingType({ product }) {
     let message;
 
@@ -34,7 +34,7 @@ const ProductCard = ({ index, product }) => {
       <li
         className={`group card bg-base-100 transition-shadow grid grid-cols-[2fr_5fr] gap-[20px] ${
           index === 0 ? 'pb-[30px]' : 'py-[30px]'
-        } ${index !== product.length - 1 ? 'border-b border-gray-200' : ''}`}>
+        } ${index !== arrayLength - 1 ? 'border-b border-gray-200' : ''}`}>
         <figure>
           <div className="h-full relative">
             <div className="h-[200px] rounded-md overflow-hidden">

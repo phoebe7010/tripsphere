@@ -5,7 +5,7 @@ import useRegionStore from '../../stores/useRegionStore';
 import CitySelector from '../common/CitySelector';
 import DateSelector from '../common/DateSelector';
 import PeopleSelector from '../common/PeopleSelector';
-import PriceSlider from './PriceSlider';
+import PriceSlider from './PriceSlider.jsx';
 import regionList from './region.js';
 
 const SideFilter = () => {
@@ -68,13 +68,13 @@ const SideFilter = () => {
               여행 장소
             </legend>
             <CitySelector />
-            <div className="flex flex-col w-full gap-y-3 divide-y-1">
+            {/* <div className="flex flex-col w-full gap-y-3 divide-y-1">
               {showRegionInfo &&
                 Object.entries(showRegionInfo).map(([keyName, places]) => (
                   <details key={keyName}>
                     <summary>{keyName}</summary>
                     <div className="grid grid-cols-2">
-                      {/* "전체 선택" 체크박스를 가장 앞에 추가 */}
+                      "전체 선택" 체크박스를 가장 앞에 추가 
                       <label
                         htmlFor={`${keyName}_total`}
                         key={`${keyName}_total`}
@@ -89,7 +89,7 @@ const SideFilter = () => {
                         <span>전체</span>
                       </label>
 
-                      {/* 개별 지역 체크박스 */}
+                      개별 지역 체크박스 
                       {places.map((ele) => (
                         <label
                           htmlFor={ele}
@@ -108,7 +108,8 @@ const SideFilter = () => {
                     </div>
                   </details>
                 ))}
-            </div>
+            </div> 
+            */}
           </fieldset>
 
           {/* 숙박 장소 선택 */}
