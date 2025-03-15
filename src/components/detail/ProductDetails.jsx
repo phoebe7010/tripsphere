@@ -36,11 +36,11 @@ const ProductDetails = ({ product }) => {
           <h3 className="text-2xl font-semibold text-gray-900">
             {product.name}
           </h3>
-          <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">
+          <div className="mt-1 max-w-2xl text-sm/6 text-gray-500">
             <div className="badge badge-soft badge-primary text-xs">
               {typeMapping[product.type]}
             </div>
-          </p>
+          </div>
         </div>
         <div className="mt-6 border-t border-gray-100">
           <div className="divide-y divide-gray-100">

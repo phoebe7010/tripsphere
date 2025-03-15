@@ -18,9 +18,9 @@ const ProductGallery = ({ product }) => {
         className="modal">
         <div className="modal-box w-11/12 max-w-5xl">
           <h3 className="font-bold text-lg">{product.name}</h3>
-          <p className="py-4">
+          <div className="py-4">
             <ImageGallery images={product.images} />
-          </p>
+          </div>
           <div className="modal-action">
             <form method="dialog">
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">

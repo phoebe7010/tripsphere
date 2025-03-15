@@ -9,9 +9,9 @@ const ReviewItem = ({ reviews }) => {
 
   return (
     <>
-      {reviews?.map((review) => (
+      {reviews?.map((review, index) => (
         <li
-          key={review.id}
+          key={index}
           className="list-row">
           <div>
             <img

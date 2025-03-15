@@ -5,9 +5,8 @@ import { useParams } from 'react-router-dom';
 import Toast from '../common/Toast';
 import { auth } from '../../firebase/firebaseConfig';
 
-const ReviewForm = ({ handleNewReview }) => {
+const ReviewForm = ({ handleNewReview, productId }) => {
   const { id } = useParams();
-  const [productId, setProductId] = useState('RVkcAvy6ZzPgsCRBviKv');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
   const user = auth.currentUser;
@@ -19,11 +18,7 @@ const ReviewForm = ({ handleNewReview }) => {
     setTimeout(() => setToast(null), 3000);
   };
 
-  // useEffect(() => {
-  //   setProductId(id);
-  // }, [id]);
-
-  const { mutate, isLoading, isError, error } = useAddReview(showToast);
+  const { mutate, isLoading, error } = useAddReview(showToast, handleNewReview);
 
   const handleAddReview = (e) => {
     if (e) e.preventDefault();
@@ -36,7 +31,6 @@ const ReviewForm = ({ handleNewReview }) => {
     };
 
     mutate(review);
-    handleNewReview();
 
     // 초기화
     setComment('');
