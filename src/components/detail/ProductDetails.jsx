@@ -142,10 +142,6 @@ const ProductDetails = ({ product }) => {
               </p>
             </div>
 
-            <div className="flex items-center gap-2 pb-2 text-indigo-500">
-              <BiInfoCircle /> 미성년자는 주문 금액에 포함되지 않습니다.
-            </div>
-
             <div className="card-actions justify-end">
               <button
                 type="submit"
