@@ -67,49 +67,7 @@ const SideFilter = () => {
             <legend className="fieldset-legend px-2 font-medium">
               여행 장소
             </legend>
-            <CitySelector />
-            {/* <div className="flex flex-col w-full gap-y-3 divide-y-1">
-              {showRegionInfo &&
-                Object.entries(showRegionInfo).map(([keyName, places]) => (
-                  <details key={keyName}>
-                    <summary>{keyName}</summary>
-                    <div className="grid grid-cols-2">
-                      "전체 선택" 체크박스를 가장 앞에 추가 
-                      <label
-                        htmlFor={`${keyName}_total`}
-                        key={`${keyName}_total`}
-                        className="flex items-center space-x-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                        <input
-                          type="checkbox"
-                          defaultChecked
-                          className="checkbox"
-                          id={`${keyName}_total`}
-                          name={`${keyName}_total`}
-                        />
-                        <span>전체</span>
-                      </label>
-
-                      개별 지역 체크박스 
-                      {places.map((ele) => (
-                        <label
-                          htmlFor={ele}
-                          key={ele}
-                          className="flex items-center space-x-2 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                          <input
-                            type="checkbox"
-                            defaultChecked
-                            className="checkbox"
-                            id={ele}
-                            name={ele}
-                          />
-                          <span>{ele}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </details>
-                ))}
-            </div> 
-            */}
+            <CitySelector isGlobal={true} />
           </fieldset>
 
           {/* 숙박 장소 선택 */}
@@ -145,27 +103,6 @@ const SideFilter = () => {
                   step={5}
                   className="relative w-full p-4"
                 />
-
-                {/* <input
-                  type="range"
-                  min={0}
-                  max="30"
-                  value={priceRange}
-                  className="range"
-                  step="1"
-                  onChange={(e) => setPriceRange(Number(e.target.value))}
-                  onChange={(e) => setPriceRange(Number(e.target.value))}
-                />
-                <div className="flex justify-between px-2.5 mt-2 text-xs">
-                  <span>0</span>
-                  <span>5만원</span>
-                  <span>10만원</span>
-                  <span>15만원</span>
-                  <span>20만원</span>
-                  <span>25만원</span>
-                  <span>30만원</span>
-                </div>
-                  */}
               </div>
             </div>
           </fieldset>
@@ -174,12 +111,13 @@ const SideFilter = () => {
             <legend className="fieldset-legend px-2 font-medium">일정</legend>
             {/* 체크인 · 체크아웃 */}
             <DateSelector
+              stateType="filter"
               openDate={openDate}
               setOpenDate={setOpenDate}
             />
 
             {/* 인원수 */}
-            <PeopleSelector />
+            <PeopleSelector stateType="filter" />
           </fieldset>
 
           <button
