@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { fetchAccomListData } from '../../services/productListService';
+// import { fetchAccomListData } from '../../services/productListService';
+import { getAllAccomData } from '../../services/productListService';
 import useFilterStore from '../../stores/useFilterStore';
 import usePriceStore from '../../stores/usePriceStore';
 import Pagination from './Pagination';
@@ -33,7 +34,8 @@ const ProductsPageList = () => {
         setLoading(true);
         setError(null);
 
-        const data = await fetchAccomListData();
+        // const data = await fetchAccomListData();
+        const data = await getAllAccomData();
         console.log('데이터 로딩 종료');
         setList(data);
         console.log(data);
