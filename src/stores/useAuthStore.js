@@ -1,8 +1,8 @@
-import { create } from 'zustand';
 import { signOut } from 'firebase/auth';
+import { create } from 'zustand';
 import { auth } from '../firebase/firebaseConfig';
 
-const useAuthStore = create(set => ({
+const useAuthStore = create((set) => ({
   isAuthenticated: false,
   user: null,
 
@@ -13,7 +13,7 @@ const useAuthStore = create(set => ({
     }
   },
 
-  login: userData => {
+  login: (userData) => {
     set({ isAuthenticated: true, user: userData });
   },
 

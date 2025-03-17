@@ -5,15 +5,15 @@ import Home from '../pages/Home';
 import SignIn from '../pages/auth/SignIn';
 import SignUp from '../pages/auth/SignUp';
 import NotFound from '../pages/error/NotFound';
-import ProductList from '../pages/product/ProductList';
-import ProductDetail from '../pages/product/ProductDetail';
-import Profile from '../pages/user/Profile';
-import MyPage from '../pages/user/MyPage';
-import OrderHistory from '../pages/order/OrderHistory';
 import Checkout from '../pages/order/Checkout';
 import OrderConfirmation from '../pages/order/OrderConfirmation';
+import OrderHistory from '../pages/order/OrderHistory';
+import ProductDetail from '../pages/product/ProductDetail';
+import ProductList from '../pages/product/ProductList';
 import Favorite from '../pages/user/Favorite';
+import MyPage from '../pages/user/MyPage';
 import PointHistory from '../pages/user/PointHistory';
+import Profile from '../pages/user/Profile';
 
 const router = createBrowserRouter([
   {
