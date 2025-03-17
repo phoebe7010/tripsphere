@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
-import usePriceStore from '../../stores/usePriceStore';
 import useRegionStore from '../../stores/useRegionStore';
 import CitySelector from '../common/CitySelector';
 import DateSelector from '../common/DateSelector';
@@ -16,15 +15,8 @@ const SideFilter = () => {
   const [showRegionInfo, setShowRegionsInfo] = useState({});
 
   const [openDate, setOpenDate] = useState(false);
-  const [range, setRange] = useState([0, 35]);
 
   const { region, showRegions, addRegion, delRegion } = useRegionStore();
-
-  // priceRange : 초기 세팅값 활용
-  // valueMinimum : 범위 최소값, 이 설정 이하면 0으로 잡음
-  // valueMaximum : 범위 최대값, 이 설정 이상이면 최대로 잡음
-  const { priceRange, valueMinimum, valueMaximum, setPriceRange } =
-    usePriceStore();
 
   const toggleForm = () => {
     setIsFormOpen((prevState) => !prevState);

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import PageHeader from '../../components/common/PageHeader';
-import Pagination from '../../components/productlist/Pagination';
-import ProductCard from '../../components/productlist/ProductCard';
+import ProductsPageList from '../../components/productlist/ProductsPageList';
 import SideFilter from '../../components/productlist/SideFilter';
 import useFilterStore from '../../stores/useFilterStore';
 import usePriceStore from '../../stores/usePriceStore';
@@ -81,10 +80,19 @@ const ProductList = () => {
 
   useEffect(() => {
     // let listInfo = async () => {
-    //   await fetchAccomListData();
+    //   try {
+    //     return await fetchAccomListData();
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
     // };
-
-    setList(products);
+    // listInfo().then((ele) => {
+    //   setList(ele);
+    // });
+    // console.log('받음');
+    // let i = 3;
+    // console.log('list [', 3, ']=', list[i]);
+    // setList(products);
   }, [
     selectedCity,
     selectedSubCity,
@@ -95,13 +103,6 @@ const ProductList = () => {
     range.min,
     range.max,
   ]);
-
-  // 숙소 정보
-  // const {
-  //   data: accomList,
-  //   isLoading: regionsLoading,
-  //   error: accomListError,
-  // } = useRegionStore(regions);
   // 박세진
 
   return (
@@ -135,7 +136,8 @@ const ProductList = () => {
         <SideFilter />
 
         <article className="content flex-1">
-          <ul>
+          <ProductsPageList />
+          {/* <ul>
             {list.map((product, index, array) => (
               <ProductCard
                 key={index}
@@ -146,7 +148,7 @@ const ProductList = () => {
             ))}
           </ul>
 
-          <Pagination />
+          <Pagination /> */}
         </article>
       </div>
     </div>

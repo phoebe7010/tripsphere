@@ -30,7 +30,7 @@ const ProductCard = ({ index, product, arrayLength }) => {
   }
 
   return (
-    <Link to="/product/0">
+    <Link to={`/product/${index}`}>
       <li
         className={`group card bg-base-100 transition-shadow grid grid-cols-[2fr_5fr] gap-[20px] ${
           index === 0 ? 'pb-[30px]' : 'py-[30px]'
@@ -105,7 +105,9 @@ const ProductCard = ({ index, product, arrayLength }) => {
                     <BiCalendarAlt className="text-base" />
                     <p className="font-bold">체크인</p>
                   </div>
-                  <time dateTime={product.check_in}>{product.check_in}</time>
+                  <time dateTime={product.check_in.toLocaleString()}>
+                    {product.check_in.toLocaleString()}
+                  </time>
                 </div>
 
                 <div className="flex gap-4 items-center">
@@ -113,7 +115,9 @@ const ProductCard = ({ index, product, arrayLength }) => {
                     <BiCalendarAlt className="text-base" />
                     <p className="font-bold">체크아웃</p>
                   </div>
-                  <time dateTime={product.check_out}>{product.check_out}</time>
+                  <time dateTime={product.check_out.toLocaleString()}>
+                    {product.check_out.toLocaleString()}
+                  </time>
                 </div>
               </div>
 
