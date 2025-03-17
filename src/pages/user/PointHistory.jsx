@@ -1,22 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PageHeader from '../../components/common/PageHeader';
-
-const pointInfo = [
-  {
-    user_id: 'user1',
-    points: '10',
-    title: '신규 가입 지급 포인트🎉',
-    description: '신규 가입을 축하드립니다!',
-    received_date: '2025.03.11',
-  },
-  {
-    user_id: 'user1',
-    points: '10',
-    title: '신규 가입 지급 포인트🎉',
-    description: '신규 가입을 축하드립니다!',
-    received_date: '2025.03.11',
-  },
-];
+import { usePointData } from '../../hooks/usePointData';
+import { auth } from '../../firebase/firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
+import { formatDate } from '../../utils/format';
 
 const breadcrumb = [
   { link: '/mypage', text: '마이페이지' },
@@ -24,6 +11,22 @@ const breadcrumb = [
 ];
 
 const PointHistory = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // 포인트 내역 조회
+  const { data, isLoading, error } = usePointData(user?.uid);
+
+  if (isLoading) return <>로딩 중..</>;
+  if (error) return <>오류</>;
+
   return (
     <div className="max-w-[700px] mx-auto py-[40px]">
       <PageHeader
@@ -33,10 +36,12 @@ const PointHistory = () => {
       />
 
       <ul className="list bg-base-100 rounded-box shadow-md">
-        {pointInfo.map(point => (
-          <li className="list-row flex-col flex">
+        {data?.map((point, index) => (
+          <li
+            className="list-row flex-col flex"
+            key={index}>
             <div className="py-2 border-b border-stone-200 flex justify-between items-center">
-              <div>{point.received_date}</div>
+              <div>{formatDate(point.received_date)}</div>
             </div>
 
             <div className="flex justify-between">
