@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { formatNumber } from '../../utils/format';
 import KakaoShareButton from '../common/KakaoShareButton';
 
-const ProductCard = ({ index, product }) => {
+const ProductCard = ({ index, product, arrayLength }) => {
   function bulidingType({ product }) {
     let message;
 
@@ -30,11 +30,11 @@ const ProductCard = ({ index, product }) => {
   }
 
   return (
-    <Link to="/product/0">
-      <article
+    <Link to={`/product/${index}`}>
+      <li
         className={`group card bg-base-100 transition-shadow grid grid-cols-[2fr_5fr] gap-[20px] ${
           index === 0 ? 'pb-[30px]' : 'py-[30px]'
-        } ${index !== product.length - 1 ? 'border-b border-gray-200' : ''}`}>
+        } ${index !== arrayLength - 1 ? 'border-b border-gray-200' : ''}`}>
         <figure>
           <div className="h-full relative">
             <div className="h-[200px] rounded-md overflow-hidden">
@@ -105,7 +105,9 @@ const ProductCard = ({ index, product }) => {
                     <BiCalendarAlt className="text-base" />
                     <p className="font-bold">체크인</p>
                   </div>
-                  <time dateTime={product.check_in}>{product.check_in}</time>
+                  <time dateTime={product.check_in.toLocaleString()}>
+                    {product.check_in.toLocaleString()}
+                  </time>
                 </div>
 
                 <div className="flex gap-4 items-center">
@@ -113,7 +115,9 @@ const ProductCard = ({ index, product }) => {
                     <BiCalendarAlt className="text-base" />
                     <p className="font-bold">체크아웃</p>
                   </div>
-                  <time dateTime={product.check_out}>{product.check_out}</time>
+                  <time dateTime={product.check_out.toLocaleString()}>
+                    {product.check_out.toLocaleString()}
+                  </time>
                 </div>
               </div>
 
@@ -148,7 +152,7 @@ const ProductCard = ({ index, product }) => {
             </div>
           </div>
         </div>
-      </article>
+      </li>
     </Link>
   );
 };

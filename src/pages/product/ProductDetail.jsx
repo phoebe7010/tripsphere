@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import ProductHeader from '../../components/detail/ProductHeader';
+import { useParams } from 'react-router-dom';
 import ProductGallery from '../../components/detail/ProductGallery';
-import ProductDetails from '../../components/detail/ProductDetails';
+import ProductHeader from '../../components/detail/ProductHeader';
 import ProductLocation from '../../components/detail/ProductLocation';
 import ProductReview from '../../components/detail/ProductReview';
 import { useAccomData } from '../../hooks/useProductData';
-import { useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const [productId, setProductId] = useState('RVkcAvy6ZzPgsCRBviKv');
+  const [productId, setProductId] = useState(id);
+  // const [productId, setProductId] = useState('fhxC2un7evQDrgz0wWuP');
 
   // useEffect(() => {
   //   setProductId(id);

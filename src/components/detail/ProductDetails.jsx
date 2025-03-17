@@ -1,10 +1,8 @@
 import React, { useMemo, useState } from 'react';
-import { formatNumber } from '../../utils/format';
-import PeopleSelector from '../../components/common/PeopleSelector';
-import { useNavigate } from 'react-router-dom';
-import ServiceIcon from '../common/ServiceIcon';
-import DateSelector from '../common/DateSelector';
 import { BiInfoCircle } from 'react-icons/bi';
+import PeopleSelector from '../../components/common/PeopleSelector';
+import { formatNumber } from '../../utils/format';
+import DateSelector from '../common/DateSelector';
 
 const typeMapping = {
   pension: '펜션',
