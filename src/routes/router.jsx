@@ -14,7 +14,6 @@ import Favorite from '../pages/user/Favorite';
 import MyPage from '../pages/user/MyPage';
 import PointHistory from '../pages/user/PointHistory';
 import Profile from '../pages/user/Profile';
-import UploadJSON from '../test/UploadJSON';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +30,6 @@ const router = createBrowserRouter([
       { path: 'orderconfirmation', element: <OrderConfirmation /> },
       { path: 'favorite', element: <Favorite /> },
       { path: 'pointhistory', element: <PointHistory /> },
-      { path: 'uploaddata', element: <UploadJSON /> },
     ],
   },
   {
