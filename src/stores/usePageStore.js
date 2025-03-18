@@ -7,13 +7,13 @@ import { create } from 'zustand';
 const usePageStore = create((set) => ({
   pageIndex: 1,
   setPageIndex: (index) =>
-    set(() => {
-      pageIndex: index;
-    }),
+    set(() => ({
+      pageIndex: index,
+    })),
   resetPageIndex: () =>
-    set(() => {
-      pageIndex: 1;
-    }),
+    set(() => ({
+      pageIndex: 1,
+    })),
 }));
 
 export default usePageStore;

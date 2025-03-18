@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 // import { fetchAccomListData } from '../../services/productListService';
+import { useSearchParams } from 'react-router-dom';
 import { getAllAccomData } from '../../services/productListService';
 import useFilterStore from '../../stores/useFilterStore';
 import usePageStore from '../../stores/usePageStore';
@@ -20,6 +21,8 @@ const ProductsPageList = () => {
 
   const { pageIndex } = usePageStore();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const { range, rangeLimit } = usePriceStore();
 
   const [loading, setLoading] = useState(true);
@@ -27,22 +30,29 @@ const ProductsPageList = () => {
 
   // 박세진
   const [list, setList] = useState([]);
+  /*
+  const { data, isLoaindg, error } = useAccomListData();
 
-  const [selectPageNum, setSelectPageNum] = useState(1);
+  // 박세진
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    console.log('상품 목록' + JSON.stringify(data));
+    setList(data);
+*/
 
   useEffect(() => {
     let listInfo = async () => {
       try {
-        console.log('데이터 로딩 시작');
+        // console.log('데이터 로딩 시작');
         setLoading(true);
         setError(null);
 
-        // const data = await fetchAccomListData();
         const data = await getAllAccomData(useFilterStore);
-        console.log('데이터 로딩 종료');
+        // console.log('데이터 로딩 종료');
         setList(data);
-        console.log(data);
-        console.log('데이터 삽입');
+        // console.log(data);
+        // console.log('데이터 삽입');
       } catch (error) {
         if (error !== null) console.error(error);
       } finally {
@@ -59,6 +69,7 @@ const ProductsPageList = () => {
     checkOut,
     range.min,
     range.max,
+    searchParams,
   ]);
 
   if (loading) return <div>로딩중입니다...</div>;
@@ -74,9 +85,8 @@ const ProductsPageList = () => {
 
   return (
     <>
-      {/* {list.length} */}
       <ul>
-        {/* {list
+        {list
           .filter(
             (_, index) => pageIndex <= index + 1 && index + 1 < pageIndex * 10,
           )
@@ -87,21 +97,7 @@ const ProductsPageList = () => {
               product={product}
               arrayLength={array.length}
             />
-          ))} */}
-        {list.map((product, index, array) => {
-          if (pageIndex <= index + 1 && index + 1 < pageIndex * 10) {
-            return (
-              <ProductCard
-                key={index}
-                index={index}
-                product={product}
-                arrayLength={array.length}
-              />
-            );
-          } else {
-            return null;
-          }
-        })}
+          ))}
       </ul>
       <Pagination data={list} />
     </>
