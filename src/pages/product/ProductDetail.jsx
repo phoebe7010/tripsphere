@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductDetails from '../../components/detail/ProductDetails';
 import ProductGallery from '../../components/detail/ProductGallery';
@@ -10,11 +10,10 @@ import { useAccomData } from '../../hooks/useProductData';
 const ProductDetail = () => {
   const { id } = useParams();
   const [productId, setProductId] = useState(id);
-  // const [productId, setProductId] = useState('fhxC2un7evQDrgz0wWuP');
 
-  // useEffect(() => {
-  //   setProductId(id);
-  // }, [id]);
+  useEffect(() => {
+    setProductId(id);
+  }, [id]);
 
   // 숙소 정보
   const {
