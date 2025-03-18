@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 
 // 여러 숙소들 정보 쿼리
@@ -54,11 +54,13 @@ export const getAllAccomData = async (filters) => {
 
     // 체크아웃 날짜 필터 적용
     // 클라이언트 측 필터링
-    if (checkOutTimestamp) {
-      results = results.filter(
-        (accom) => accom.check_out.toMillis() <= checkOutTimestamp.toMillis(),
-      );
-    }
+    // 임시 데이터의 시간들이 과거로 들어가있어서
+    // 필터링 중지후 일괄 호출.
+    // if (checkOutTimestamp) {
+    //   results = results.filter(
+    //     (accom) => accom.check_out.toMillis() <= checkOutTimestamp.toMillis(),
+    //   );
+    // }
 
     return results;
   } catch (error) {

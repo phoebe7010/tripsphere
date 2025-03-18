@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PageHeader from '../../components/common/PageHeader';
 import ProductsPageList from '../../components/productlist/ProductsPageList';
 import SideFilter from '../../components/productlist/SideFilter';
 import useFilterStore from '../../stores/useFilterStore';
+import usePageStore from '../../stores/usePageStore';
 import usePriceStore from '../../stores/usePriceStore';
 
 const products = [
@@ -51,18 +53,7 @@ const breadcrumb = [
   { link: '/products', text: '여행 검색 결과 목록' },
 ];
 
-/*
-const q = query(collection(db, "cities"), where("capital", "==", true));
-
-const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-});
-*/
-
 const ProductList = () => {
-  // 팀장님
   const {
     selectedCity,
     selectedSubCity,
@@ -71,28 +62,19 @@ const ProductList = () => {
     checkIn,
     checkOut,
   } = useFilterStore();
-  // 팀장님
-
-  // 박세진
-  const [list, setList] = useState([]);
 
   const { range, rangeLimit } = usePriceStore();
 
+  const { pageIndex } = usePageStore();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
   useEffect(() => {
-    // let listInfo = async () => {
-    //   try {
-    //     return await fetchAccomListData();
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-    // listInfo().then((ele) => {
-    //   setList(ele);
-    // });
-    // console.log('받음');
-    // let i = 3;
-    // console.log('list [', 3, ']=', list[i]);
-    // setList(products);
+    console.log(searchParams);
+    console.table(searchParams);
+    console.log(typeof searchParams);
+    console.log(Object.keys(searchParams));
+    console.log(Object.values(searchParams));
   }, [
     selectedCity,
     selectedSubCity,
@@ -102,8 +84,8 @@ const ProductList = () => {
     checkOut,
     range.min,
     range.max,
+    pageIndex,
   ]);
-  // 박세진
 
   return (
     <div className="max-w-[1200px] mx-auto py-[40px]">
@@ -125,6 +107,12 @@ const ProductList = () => {
         <br />
       </div>
 
+      <div className="inline-block py-4 px-4 bg-gray-100 rounded-md">
+        pageIndex: {pageIndex} <br />
+        searchParams : {searchParams}
+        <br />
+      </div>
+
       <PageHeader
         title="여행 숙소 검색 결과"
         breadcrumb={breadcrumb}
@@ -137,18 +125,6 @@ const ProductList = () => {
 
         <article className="content flex-1">
           <ProductsPageList />
-          {/* <ul>
-            {list.map((product, index, array) => (
-              <ProductCard
-                key={index}
-                index={index}
-                product={product}
-                arrayLength={array.length}
-              />
-            ))}
-          </ul>
-
-          <Pagination /> */}
         </article>
       </div>
     </div>

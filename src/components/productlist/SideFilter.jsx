@@ -1,37 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
-import useRegionStore from '../../stores/useRegionStore';
 import CitySelector from '../common/CitySelector';
 import DateSelector from '../common/DateSelector';
 import PeopleSelector from '../common/PeopleSelector';
 import PriceSlider from './PriceSlider.jsx';
-import regionList from './region.js';
 
 const SideFilter = () => {
-  // const [priceRange, setPriceRange] = useState(25);
-
   const [isFormOpen, setIsFormOpen] = useState(true);
-
-  const [showRegionInfo, setShowRegionsInfo] = useState({});
-
   const [openDate, setOpenDate] = useState(false);
-
-  const { region, showRegions, addRegion, delRegion } = useRegionStore();
 
   const toggleForm = () => {
     setIsFormOpen((prevState) => !prevState);
-    setIsFormOpen((prevState) => !prevState);
   };
-
-  useEffect(() => {
-    setShowRegionsInfo(regionList);
-    for (let key in showRegionInfo) {
-      console.log(key);
-      showRegionInfo[key].forEach((resionName) => {
-        console.log(resionName);
-      });
-    }
-  }, [region]);
 
   return (
     <aside

@@ -12,6 +12,12 @@ const ProductCard = ({ index, product, arrayLength }) => {
       case 'hotel':
         message = '호텔';
         break;
+      case 'motel':
+        message = '모텔';
+        break;
+      case 'resort':
+        message = '리조트';
+        break;
       case 'pension':
         message = '펜션';
         break;
@@ -30,7 +36,7 @@ const ProductCard = ({ index, product, arrayLength }) => {
   }
 
   return (
-    <Link to={`/product/${index}`}>
+    <Link to={`/product/${product.id}`}>
       <li
         className={`group card bg-base-100 transition-shadow grid grid-cols-[2fr_5fr] gap-[20px] ${
           index === 0 ? 'pb-[30px]' : 'py-[30px]'

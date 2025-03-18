@@ -6,8 +6,11 @@ import { getAllAccomData } from '../services/productListService';
 export const useAccomListData = (accomRegion, priceRange) => {
   return useQuery({
     queryKey: ['accommodation', accomRegion, priceRange],
-    // queryFn: () => fetchAccomListData(accomRegion, priceRange),
     queryFn: () => getAllAccomData(accomRegion, priceRange),
     enabled: [!!accomRegion, !!priceRange],
   });
+  // return useQuery({
+  //   queryKey: ['accommodations'],
+  //   queryFn: () => getAllAccomData(),
+  // });
 };
