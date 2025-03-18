@@ -34,7 +34,7 @@ const ProductDetails = ({ product }) => {
     <div className="flex space-y-6 gap-10 mt-[30px]">
       <div className="flex-1">
         <div className="px-4 sm:px-0">
-          <h3 className="text-2xl font-semibold text-gray-900">
+          <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">
             {product.name}
           </h3>
           <div className="mt-1 max-w-2xl text-sm/6 text-gray-500">
@@ -118,7 +118,7 @@ const ProductDetails = ({ product }) => {
         <div className="card bg-base-100 w-96 shadow-sm">
           <div className="card-body">
             <h2 className="card-title">예약 정보</h2>
-            <fieldset className="fieldset border border-base-300 p-4 rounded-box">
+            <fieldset className="fieldset border border-base-300 dark:border-gray-100 p-4 rounded-box">
               {/* 체크인 · 체크아웃 */}
               <DateSelector
                 stateType="reservation"

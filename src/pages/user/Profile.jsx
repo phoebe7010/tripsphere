@@ -134,11 +134,11 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-end gap-x-6">
+        <div className="mt-6 flex items-center justify-end gap-x-4">
           <button
             type="button"
             onClick={() => navigate('/mypage')}
-            className="text-sm/6 font-semibold text-gray-900">
+            className="rounded-md border border-gray-300 px-3 py-2 text-sm font-semibold shadow-xs">
             취소
           </button>
 

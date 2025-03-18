@@ -86,7 +86,7 @@ const CitySelector = ({ isGlobal }) => {
                   key={`${item} - ${index}`}
                   className={`flex items-center justify-center p-2 cursor-pointer rounded-sm border-1 ${
                     selectedCity === item.name
-                      ? 'border-blue-500 bg-blue-100'
+                      ? 'border-blue-500 bg-blue-100 dark:bg-gray-700'
                       : 'border-gray-300 hover:border-blue-300'
                   }`}>
                   <input
@@ -123,7 +123,7 @@ const CitySelector = ({ isGlobal }) => {
                   key={`${item} - ${index}`}
                   className={`flex items-center justify-center p-2 cursor-pointer rounded-sm border-1 ${
                     selectedSubCity === item
-                      ? 'border-blue-500 bg-blue-100'
+                      ? 'border-blue-500 bg-blue-100 dark:bg-gray-700'
                       : 'border-gray-300 hover:border-blue-300'
                   }`}>
                   <input

@@ -41,7 +41,7 @@ const ReviewForm = ({ handleNewReview, productId }) => {
     <>
       <fieldset className="flex flex-col gap-4 p-5 border rounded-xl mb-10 border-gray-200">
         <textarea
-          className="textarea h-28 p-3 border rounded-lg resize-none w-full text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 transition-all"
+          className="textarea h-28 p-3 border rounded-lg resize-none w-full text-gray-800 dark:text-gray-100 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 transition-all"
           placeholder="리뷰를 작성해 주세요."
           value={comment}
           onChange={(e) => setComment(e.target.value)}></textarea>
