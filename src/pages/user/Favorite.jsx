@@ -1,6 +1,10 @@
 import Pagination from '../../components/productlist/Pagination';
 import ProductCard from '../../components/favorite/ProductCard';
 import PageHeader from '../../components/common/PageHeader';
+import { useEffect, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useFavoriteAccommData } from '../../hooks/useFavoriteData';
+import { auth } from '../../firebase/firebaseConfig';
 
 // [250311] hrkim: firebase 사용하면, users 테이블의 wishlist에 있는 accommodation_id 리스트를 이용하여 아래 정보를 조회해주세요
 const favoriteInfo = [
@@ -72,6 +76,34 @@ const breadcrumb = [
 ];
 
 const Favorite = () => {
+  const [user, setUser] = useState(null);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleSearchInput = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSearchButton = () => {};
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const { data, isLoading, error } = useFavoriteAccommData(user?.uid);
+
+  useEffect(() => {
+    if (data) {
+      console.log('찜 목록 내역:', JSON.stringify(data));
+    }
+  }, [data]);
+
+  if (isLoading) return <>로딩 중..</>;
+  if (error) return <>오류</>;
+
   return (
     <div className="max-w-[1200px] mx-auto py-[40px]">
       <PageHeader
@@ -80,16 +112,32 @@ const Favorite = () => {
         hasBackButton={true}
       />
 
+      <div className="my-8 flex justify-end rounded-2xl">
+        <input
+          type="text"
+          placeholder="검색어를 입력하세요"
+          value={inputValue}
+          onChange={handleSearchInput}
+          className="input border   border-blue-400 p-4 rounded-l-2xl "
+        />
+        <button
+          type="submit"
+          onClick={handleSearchButton}
+          className="btn">
+          검색
+        </button>
+      </div>
+
       <div className="mb-10 grid grid-cols-4 gap-10">
-        {favoriteInfo.map(favorite => (
+        {favoriteInfo.map((favorite, index) => (
           <ProductCard
-            key={favorite.id}
+            key={index}
             favorite={favorite}
           />
         ))}
       </div>
 
-      <Pagination />
+      <Pagination data={data} />
     </div>
   );
 };

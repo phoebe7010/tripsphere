@@ -17,8 +17,10 @@ const PointHistory = ({ pointInfo }) => {
         </Link>
       </li>
 
-      {pointInfo.map(point => (
-        <li className="list-row flex-col flex">
+      {pointInfo.map((point, index) => (
+        <li
+          className="list-row flex-col flex"
+          key={index}>
           <div className="py-2 border-b border-stone-200 flex justify-between items-center">
             <div>{point.received_date}</div>
           </div>

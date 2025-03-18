@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BiCog } from 'react-icons/bi';
 
-const UserProfile = ({ userInfo }) => {
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+
+const UserProfile = () => {
   const navigate = useNavigate();
+
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const {
+          displayName = '회원',
+          email = '이메일 없음',
+          nickname = '회원',
+        } = user;
+        setUserInfo({ displayName, email, nickname });
+      } else {
+        // 로그아웃 상태: userInfo를 null로 설정
+        setUserInfo(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (!userInfo) return <></>;
 
   return (
     <div className="flex px-4 mb-8">
@@ -20,11 +44,12 @@ const UserProfile = ({ userInfo }) => {
           <div className="flex justify-between text-base font-medium ">
             <h3>
               <a href="#">
-                <strong>{userInfo.name}님</strong>
+                <strong>{userInfo.displayName}님</strong>
               </a>
             </h3>
           </div>
           <p className="mt-1 text-sm text-gray-500">{userInfo.nickname}</p>
+          <p>{userInfo.email}</p>
         </div>
       </div>
 

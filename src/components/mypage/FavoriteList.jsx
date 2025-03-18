@@ -24,8 +24,10 @@ const FavoriteList = ({ favoriteInfo }) => {
         </Link>
       </li>
 
-      {favoriteInfo.map(favorite => (
-        <li className="list-row flex-col flex">
+      {favoriteInfo.map((favorite, index) => (
+        <li
+          className="list-row flex-col flex"
+          key={index}>
           <div className="flex justify-between">
             <div className="flex gap-6">
               <img
