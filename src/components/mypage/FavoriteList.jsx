@@ -29,7 +29,7 @@ const FavoriteList = () => {
 
   useEffect(() => {
     if (data) {
-      console.log('찜 목록 내역:', JSON.stringify(data));
+      //console.log('찜 목록 내역:', JSON.stringify(data));
     }
   }, [data]);
 
@@ -39,8 +39,8 @@ const FavoriteList = () => {
   return (
     <div>
       <div className="my-8 p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
-        <h2 className="flex items-center gap-2 font-bold text-2xl">
-          <BiHeart size={30} /> 찜 목록
+        <h2 className="flex items-center gap-2 font-bold text-xl">
+          <BiHeart size={20} /> 찜 목록
         </h2>
 
         <Link

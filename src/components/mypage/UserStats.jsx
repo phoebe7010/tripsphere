@@ -26,8 +26,7 @@ const UserStats = () => {
   //포인트 정보
   useEffect(() => {
     if (data) {
-      console.log('포인트 내역: ', JSON.stringify(data));
-
+      // console.log('포인트 내역: ', JSON.stringify(data));
       setBalance(data[0].points);
     }
   }, [data]);
