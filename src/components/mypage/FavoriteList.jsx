@@ -29,8 +29,7 @@ const FavoriteList = () => {
 
   useEffect(() => {
     if (data) {
-      //console.log('찜 목록 내역:', JSON.stringify(data));
-      console.log(JSON.stringify(data));
+      console.log('찜 목록 내역:', JSON.stringify(data));
     }
   }, [data]);
 
@@ -62,7 +61,7 @@ const FavoriteList = () => {
                   <img
                     className="size-20 rounded-box"
                     src={favorite.images[1]}
-                    alt="서울 코리아나호텔"
+                    alt={favorite.name}
                   />
 
                   <div className="flex flex-col">
