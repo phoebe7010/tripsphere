@@ -22,6 +22,7 @@ const ProductsPageList = () => {
   const { pageIndex } = usePageStore();
 
   const [searchParams, setSearchParams] = useSearchParams();
+  const initPageNumber = Number(searchParams.get('page')) || 1;
 
   const { range, rangeLimit } = usePriceStore();
 
@@ -53,6 +54,9 @@ const ProductsPageList = () => {
         setList(data);
         // console.log(data);
         // console.log('데이터 삽입');
+
+        console.log((initPageNumber - 1) * 10);
+        console.log((initPageNumber - 1) * 10 + 10);
       } catch (error) {
         if (error !== null) console.error(error);
       } finally {
@@ -88,7 +92,9 @@ const ProductsPageList = () => {
       <ul>
         {list
           .filter(
-            (_, index) => pageIndex <= index + 1 && index + 1 < pageIndex * 10,
+            (_, index) =>
+              (initPageNumber - 1) * 10 <= index &&
+              index < (initPageNumber - 1) * 10 + 10,
           )
           .map((product, index, array) => (
             <ProductCard
