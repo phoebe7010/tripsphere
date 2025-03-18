@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 // import { fetchAccomListData } from '../../services/productListService';
 import { getAllAccomData } from '../../services/productListService';
 import useFilterStore from '../../stores/useFilterStore';
+import usePageStore from '../../stores/usePageStore';
 import usePriceStore from '../../stores/usePriceStore';
 import Pagination from './Pagination';
 import ProductCard from './ProductCard';
@@ -16,6 +17,8 @@ const ProductsPageList = () => {
     checkIn,
     checkOut,
   } = useFilterStore();
+
+  const { pageIndex } = usePageStore();
 
   const { range, rangeLimit } = usePriceStore();
 
@@ -35,7 +38,7 @@ const ProductsPageList = () => {
         setError(null);
 
         // const data = await fetchAccomListData();
-        const data = await getAllAccomData();
+        const data = await getAllAccomData(useFilterStore);
         console.log('데이터 로딩 종료');
         setList(data);
         console.log(data);
@@ -47,10 +50,6 @@ const ProductsPageList = () => {
       }
     };
     listInfo();
-
-    // listInfo().then((ele) => {
-    //   setList(ele);
-    // });
   }, [
     selectedCity,
     selectedSubCity,
@@ -71,21 +70,40 @@ const ProductsPageList = () => {
         <br /> {error.message}
       </div>
     );
+  if (list.length <= 0) return <div>조건에 맞는 숙소가 없습니다.</div>;
 
   return (
     <>
       {/* {list.length} */}
       <ul>
-        {list.map((product, index, array) => (
-          <ProductCard
-            key={index}
-            index={index}
-            product={product}
-            arrayLength={array.length}
-          />
-        ))}
+        {/* {list
+          .filter(
+            (_, index) => pageIndex <= index + 1 && index + 1 < pageIndex * 10,
+          )
+          .map((product, index, array) => (
+            <ProductCard
+              key={index}
+              index={index}
+              product={product}
+              arrayLength={array.length}
+            />
+          ))} */}
+        {list.map((product, index, array) => {
+          if (pageIndex <= index + 1 && index + 1 < pageIndex * 10) {
+            return (
+              <ProductCard
+                key={index}
+                index={index}
+                product={product}
+                arrayLength={array.length}
+              />
+            );
+          } else {
+            return null;
+          }
+        })}
       </ul>
-      <Pagination />
+      <Pagination data={list} />
     </>
   );
 };
