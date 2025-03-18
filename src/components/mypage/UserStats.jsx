@@ -4,15 +4,14 @@ import { HiOutlineTicket } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { LiaCoinsSolid } from 'react-icons/lia';
 import { usePointData } from '../../hooks/usePointData';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseConfig';
 import PointModal from './PointModal';
+import { auth } from '../../firebase/firebaseConfig';
 
 const UserStats = () => {
   //포인트 모달 열기
   const [isOpen, setIsOpen] = useState(false);
   const [balance, setBalance] = useState(0);
-  const [user, setUser] = useState(null);
+
   const handleOpen = () => {
     setIsOpen(true);
   };
@@ -21,24 +20,13 @@ const UserStats = () => {
     setIsOpen(false);
   };
 
-  //사용자 정보
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
+  const user = auth.currentUser;
   const { data, isLoading, error } = usePointData(user?.uid);
 
   //포인트 정보
   useEffect(() => {
     if (data) {
       console.log('포인트 내역: ', JSON.stringify(data));
-      data.map((item) => {
-        console.log(item.points);
-      });
 
       setBalance(data[0].points);
     }

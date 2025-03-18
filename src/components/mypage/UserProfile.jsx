@@ -1,33 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BiCog } from 'react-icons/bi';
-
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../firebase/firebaseConfig';
 
 const UserProfile = () => {
   const navigate = useNavigate();
 
-  const [userInfo, setUserInfo] = useState(null);
+  const user = auth.currentUser;
+  if (!user) return;
 
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const {
-          displayName = '회원',
-          email = '이메일 없음',
-          nickname = '회원',
-        } = user;
-        setUserInfo({ displayName, email, nickname });
-      } else {
-        // 로그아웃 상태: userInfo를 null로 설정
-        setUserInfo(null);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
-
-  if (!userInfo) return <></>;
+  //console.log(JSON.stringify(user));
 
   return (
     <div className="flex px-4 mb-8">
@@ -44,12 +26,12 @@ const UserProfile = () => {
           <div className="flex justify-between text-base font-medium ">
             <h3>
               <a href="#">
-                <strong>{userInfo.displayName}님</strong>
+                <strong>{user.displayName}님</strong>
               </a>
             </h3>
           </div>
-          <p className="mt-1 text-sm text-gray-500">{userInfo.nickname}</p>
-          <p>{userInfo.email}</p>
+          <p className="mt-1 text-sm text-gray-500">{user.nickname}</p>
+          <p>{user.email}</p>
         </div>
       </div>
 
