@@ -1,18 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
-import PeopleSelector from '../common/PeopleSelector';
+import useRegionStore from '../../stores/useRegionStore';
 import CitySelector from '../common/CitySelector';
 import DateSelector from '../common/DateSelector';
+import PeopleSelector from '../common/PeopleSelector';
+import PriceSlider from './PriceSlider.jsx';
+import regionList from './region.js';
 
 const SideFilter = () => {
-  const [priceRange, setPriceRange] = useState(25);
+  // const [priceRange, setPriceRange] = useState(25);
+
   const [isFormOpen, setIsFormOpen] = useState(true);
+
+  const [showRegionInfo, setShowRegionsInfo] = useState({});
 
   const [openDate, setOpenDate] = useState(false);
 
+  const { region, showRegions, addRegion, delRegion } = useRegionStore();
+
   const toggleForm = () => {
     setIsFormOpen((prevState) => !prevState);
+    setIsFormOpen((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    setShowRegionsInfo(regionList);
+    for (let key in showRegionInfo) {
+      console.log(key);
+      showRegionInfo[key].forEach((resionName) => {
+        console.log(resionName);
+      });
+    }
+  }, [region]);
 
   return (
     <aside
@@ -40,7 +59,7 @@ const SideFilter = () => {
             <legend className="fieldset-legend px-2 font-medium">
               여행 장소
             </legend>
-            <CitySelector />
+            <CitySelector isGlobal={true} />
           </fieldset>
 
           {/* 숙박 장소 선택 */}
@@ -68,28 +87,14 @@ const SideFilter = () => {
           </fieldset>
 
           {/* 예산 범위 선택 */}
-          <fieldset className="rounded-lg border border-gray-200 p-3">
+          <fieldset className="rounded-lg border border-gray-200 px-3">
             <legend className="fieldset-legend px-2 font-medium">가격</legend>
             <div className="flex items-center justify-between">
-              <div className="w-full max-w-xs">
-                <input
-                  type="range"
-                  min={0}
-                  max="30"
-                  value={priceRange}
-                  className="range"
-                  step="1"
-                  onChange={(e) => setPriceRange(Number(e.target.value))}
+              <div className="w-full p-3 max-w-xs">
+                <PriceSlider
+                  step={5}
+                  className="relative w-full p-4"
                 />
-                <div className="flex justify-between px-2.5 mt-2 text-xs">
-                  <span>0</span>
-                  <span>5만원</span>
-                  <span>10만원</span>
-                  <span>15만원</span>
-                  <span>20만원</span>
-                  <span>25만원</span>
-                  <span>30만원</span>
-                </div>
               </div>
             </div>
           </fieldset>
@@ -98,12 +103,13 @@ const SideFilter = () => {
             <legend className="fieldset-legend px-2 font-medium">일정</legend>
             {/* 체크인 · 체크아웃 */}
             <DateSelector
+              stateType="filter"
               openDate={openDate}
               setOpenDate={setOpenDate}
             />
 
             {/* 인원수 */}
-            <PeopleSelector />
+            <PeopleSelector stateType="filter" />
           </fieldset>
 
           <button

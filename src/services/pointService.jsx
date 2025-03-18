@@ -1,4 +1,5 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+
 import { db } from '../firebase/firebaseConfig';
 
 export const getPoints = async (userId) => {
@@ -11,6 +12,6 @@ export const getPoints = async (userId) => {
       ...doc.data(),
     }));
   } catch (error) {
-    console.error('포인트 데이터 조회 오류: ', error);
+    console.error('포인트 데이터 조회 오류:', error);
   }
 };
