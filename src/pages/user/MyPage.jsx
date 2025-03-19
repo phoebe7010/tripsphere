@@ -10,9 +10,9 @@ const breadcrumb = [
   { link: '/', text: '홈' },
   { link: '/mypage', text: '마이페이지' },
 ];
-
+/*
 // 유저 정보
-const userInfo = {
+ const userInfo = {
   name: '홍길동',
   nickname: '길동이',
 };
@@ -138,7 +138,7 @@ const pointInfo = [
     description: '신규 가입을 축하드립니다!',
     received_date: '2025.03.11',
   },
-];
+]; */
 
 const MyPage = () => {
   return (
@@ -149,19 +149,19 @@ const MyPage = () => {
       />
 
       {/* 유저 프로필 */}
-      <UserProfile userInfo={userInfo} />
+      <UserProfile />
 
       {/* 상태 */}
       <UserStats />
 
       {/* 포인트 내역 */}
-      <PointHistory pointInfo={pointInfo} />
+      <PointHistory />
 
       {/* 주문 내역 */}
-      <OrderHistory orderInfo={orderInfo} />
+      <OrderHistory />
 
       {/* 찜 목록 */}
-      <FavoriteList favoriteInfo={favoriteInfo} />
+      <FavoriteList />
     </div>
   );
 };

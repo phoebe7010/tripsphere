@@ -4,7 +4,7 @@ import PageHeader from '../../components/common/PageHeader';
 
 const orderInfo = [
   {
-    id: 'order1',
+    id: '1',
     user_id: 'user1',
     accommodation_id: '1',
     check_in: '2025.03.11',
