@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
+import { useSearchParams } from 'react-router-dom';
+import useFilterStore from '../../stores/useFilterStore.js';
+import usePriceStore from '../../stores/usePriceStore.js';
 import CitySelector from '../common/CitySelector';
 import DateSelector from '../common/DateSelector';
 import PeopleSelector from '../common/PeopleSelector';
@@ -9,9 +12,28 @@ const SideFilter = () => {
   const [isFormOpen, setIsFormOpen] = useState(true);
   const [openDate, setOpenDate] = useState(false);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const {
+    selectedCity,
+    selectedSubCity,
+    adultCount,
+    childrenCount,
+    checkIn,
+    checkOut,
+  } = useFilterStore();
+
+  const { range } = usePriceStore();
+
   const toggleForm = () => {
     setIsFormOpen((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    console.log('사이드 메뉴 옵션 변경');
+    searchParams.set('page', 1);
+    setSearchParams(searchParams);
+  }, [adultCount, childrenCount, range.min, range.max]);
 
   return (
     <aside

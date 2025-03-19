@@ -25,7 +25,12 @@ const Pagination = ({ data }) => {
   const handlePageChange = (page) => {
     if (page > 0 && page <= Math.ceil(data?.length / itemsPerPage)) {
       setCurrentPage(page);
-      setSearchParams({ page });
+      // setSearchParams({ page });
+      setSearchParams((prevParams) => {
+        const newParams = new URLSearchParams(prevParams);
+        newParams.set('page', newPage);
+        return newParams;
+      });
     }
   };
 

@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { getAllAccomData } from '../../services/productListService';
 import useFilterStore from '../../stores/useFilterStore';
 import usePriceStore from '../../stores/usePriceStore';
+import useProductListStore from '../../stores/useProductListStore';
 import Pagination from './Pagination';
 import ProductCard from './ProductCard';
 
@@ -20,29 +21,31 @@ const ProductsPageList = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const initPageNumber = Number(searchParams.get('page')) || 1;
-
   const { range, rangeLimit } = usePriceStore();
+  const { list, setList, resetList } = useProductListStore();
 
   const [loading, setLoading] = useState();
   const [error, setError] = useState(null);
 
-  // 박세진
-  const [list, setList] = useState([]);
-  /*
-  const { data, isLoaindg, error } = useAccomListData();
-
-  // 박세진
-  const [list, setList] = useState([]);
-
   useEffect(() => {
-    console.log('상품 목록' + JSON.stringify(data));
-    setList(data);
-*/
+    console.log('초기 로딩');
 
-  useEffect(() => {
-    console.log('선택 옵션이 바뀜.');
-    searchParams.delete('page');
-  }, [adultCount, childrenCount, range.min, range.max, searchParams]);
+    let listInfo = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const data = await getAllAccomData(useFilterStore);
+        setList(data);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    listInfo();
+  }, []);
 
   useEffect(() => {
     console.log('도시값이나 체크인,체크아웃 시간이 변경됨');
@@ -67,8 +70,6 @@ const ProductsPageList = () => {
         // 상품목록에서 상품의 리뷰 평점을 표출 해야하고. (별점 순으로 )
 
         // console.log('데이터 로딩 시작');
-
-        // if (list.length <= 0 || list == null) {
         setLoading(true);
         setError(null);
 
@@ -77,16 +78,15 @@ const ProductsPageList = () => {
         setList(data);
         // console.log(data);
         // console.log('데이터 삽입');
-        // }
-        console.log((initPageNumber - 1) * 10);
-        console.log((initPageNumber - 1) * 10 + 10);
       } catch (error) {
         if (error !== null) console.error(error);
       } finally {
         setLoading(false);
       }
     };
+    // if (list.length <= 0 || list === null) {
     listInfo();
+    // }
   }, [selectedCity, selectedSubCity, checkIn, checkOut]);
 
   if (loading) return <div>로딩중입니다...</div>;
