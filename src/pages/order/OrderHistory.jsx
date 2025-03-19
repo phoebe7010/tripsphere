@@ -45,6 +45,7 @@ const OrderHistory = () => {
         breadcrumb={breadcrumb}
         hasBackButton={true}
       />
+
       {/* 주문 내역 */}
       <OrderList orderInfo={orderInfo} />
     </div>
