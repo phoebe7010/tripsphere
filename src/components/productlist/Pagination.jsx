@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const Pagination = ({ data }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -9,26 +9,22 @@ const Pagination = ({ data }) => {
   const [itemsPerPage] = useState(10);
   const [currentItems, setCurrentItems] = useState([]);
 
-  const navigate = useNavigate();
-
   // 데이터 셋팅
-  useEffect(() => {
-    if (data && data.length) {
-      const startIdx = (currentPage - 1) * itemsPerPage;
-      const endIdx = startIdx + itemsPerPage;
+  // useEffect(() => {
+  //   if (data && data.length) {
+  //     const startIdx = (currentPage - 1) * itemsPerPage;
+  //     const endIdx = startIdx + itemsPerPage;
 
-      setCurrentItems(data.slice(startIdx, endIdx));
-    }
-  }, [currentPage, data]);
+  //     setCurrentItems(data.slice(startIdx, endIdx));
+  //   }
+  // }, [currentPage, data]);
 
   // 페이지 변경
   const handlePageChange = (page) => {
     if (page > 0 && page <= Math.ceil(data?.length / itemsPerPage)) {
-      setCurrentPage(page);
-      // setSearchParams({ page });
       setSearchParams((prevParams) => {
         const newParams = new URLSearchParams(prevParams);
-        newParams.set('page', newPage);
+        newParams.set('page', page);
         return newParams;
       });
     }

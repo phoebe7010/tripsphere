@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
-import { useSearchParams } from 'react-router-dom';
+import { getAllAccomData } from '../../services/productListService';
 import useFilterStore from '../../stores/useFilterStore.js';
 import usePriceStore from '../../stores/usePriceStore.js';
+import useProductListStore from '../../stores/useProductListStore.js';
+import useRoomType from '../../stores/useRoomType';
 import CitySelector from '../common/CitySelector';
 import DateSelector from '../common/DateSelector';
 import PeopleSelector from '../common/PeopleSelector';
 import PriceSlider from './PriceSlider.jsx';
 
-const SideFilter = () => {
+const SideFilter = ({ setLoading, setError }) => {
   const [isFormOpen, setIsFormOpen] = useState(true);
   const [openDate, setOpenDate] = useState(false);
-
-  const [searchParams, setSearchParams] = useSearchParams();
 
   const {
     selectedCity,
@@ -24,16 +24,48 @@ const SideFilter = () => {
   } = useFilterStore();
 
   const { range } = usePriceStore();
+  const { list, setList, resetList } = useProductListStore();
+  const {
+    roomTypes,
+    defaultOption,
+    addRoomTypes,
+    delRoomTypes,
+    resetRoomTypes,
+  } = useRoomType();
 
   const toggleForm = () => {
     setIsFormOpen((prevState) => !prevState);
   };
 
   useEffect(() => {
-    console.log('사이드 메뉴 옵션 변경');
-    searchParams.set('page', 1);
-    setSearchParams(searchParams);
-  }, [adultCount, childrenCount, range.min, range.max]);
+    console.log('쿼리요청이 필요한 옵션 변경');
+    resetList();
+
+    let listInfo = async () => {
+      setLoading(true);
+      try {
+        const data = await getAllAccomData(useFilterStore);
+        setList(data);
+      } catch (error) {
+        console.error('상품정보 로딩 중 오류 ', error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    listInfo();
+  }, [
+    selectedCity,
+    selectedSubCity,
+    adultCount,
+    childrenCount,
+    checkIn,
+    checkOut,
+  ]);
+
+  useEffect(() => {
+    console.log('저장된 결과를 필터링해야하는 옵션 변경');
+  }, [roomTypes, range.min, range.max]);
 
   return (
     <aside

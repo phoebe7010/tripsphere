@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PageHeader from '../../components/common/PageHeader';
 import ProductsPageList from '../../components/productlist/ProductsPageList';
@@ -64,9 +64,12 @@ const ProductList = () => {
 
   const { range, rangeLimit } = usePriceStore();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
-  useEffect(() => {}, []);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {}, [loading, error]);
 
   return (
     <div className="max-w-[1200px] mx-auto py-[40px]">
@@ -101,10 +104,16 @@ const ProductList = () => {
       <div
         id="container"
         className="flex items-start gap-10">
-        <SideFilter />
+        <SideFilter
+          setLoading={setLoading}
+          setError={setError}
+        />
 
         <article className="content flex-1">
-          <ProductsPageList />
+          <ProductsPageList
+            loading={loading}
+            error={error}
+          />
         </article>
       </div>
     </div>
