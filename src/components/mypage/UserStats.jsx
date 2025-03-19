@@ -8,6 +8,7 @@ import PointModal from './PointModal';
 import { auth } from '../../firebase/firebaseConfig';
 import { useUserData } from '../../hooks/useUserData';
 import { onAuthStateChanged } from 'firebase/auth';
+import { useUserOrders } from '../../hooks/useOrderData';
 const UserStats = () => {
   const [user, setUser] = useState(null);
   //포인트 모달 열기
@@ -30,6 +31,8 @@ const UserStats = () => {
     // 컴포넌트가 언마운트될 때 리스너를 정리
     return () => unsubscribe();
   }, []);
+
+  const { data: orderInfo } = useUserOrders(user?.uid);
 
   const { data, isLoading, error } = useUserData(user?.uid);
 
@@ -81,9 +84,7 @@ const UserStats = () => {
           <HiOutlineTicket size={30} />
           <div>주문 내역</div>
         </div>
-        <div className="stat-value text-secondary">
-          {data && data.orders.length}
-        </div>
+        <div className="stat-value text-secondary">{orderInfo?.length}</div>
       </Link>
 
       {/* 찜내역 박스  */}
