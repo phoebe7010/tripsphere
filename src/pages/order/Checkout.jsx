@@ -67,7 +67,7 @@ const serviceNames = {
 const Checkout = () => {
   const navigate = useNavigate();
   const [openDate, setOpenDate] = useState(false);
-  const { checkIn, checkOut, adultCount, childrenCount } =
+  const { checkIn, checkOut, adultCount, childrenCount, totalPrice } =
     useReservationStore();
   return (
     <div className="max-w-[1200px] mx-auto px-[20px] py-[40px] dark:text-gray-200">
@@ -77,7 +77,8 @@ const Checkout = () => {
         checkOut: {checkOut}
         <br />
         adultCount: {adultCount} <br />
-        childrenCount: {childrenCount}
+        childrenCount: {childrenCount} <br />
+        totalPrice: {totalPrice}
       </div>
       <div className="flex space-y-6 gap-10 py-[30px] max-lg:flex-col max-lg:items-center">
         {/* 주문 결제 정보 */}

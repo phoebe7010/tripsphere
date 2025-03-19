@@ -5,9 +5,8 @@ import { useParams } from 'react-router-dom';
 import Toast from '../common/Toast';
 import { auth } from '../../firebase/firebaseConfig';
 
-const ReviewForm = ({ handleNewReview }) => {
+const ReviewForm = ({ handleNewReview, productId }) => {
   const { id } = useParams();
-  const [productId, setProductId] = useState('14tTOq9EGJgmEBQHQ16c');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
   const user = auth.currentUser;
@@ -19,11 +18,7 @@ const ReviewForm = ({ handleNewReview }) => {
     setTimeout(() => setToast(null), 3000);
   };
 
-  // useEffect(() => {
-  //   setProductId(id);
-  // }, [id]);
-
-  const { mutate, isLoading, isError, error } = useAddReview(showToast);
+  const { mutate, isLoading, error } = useAddReview(showToast, handleNewReview);
 
   const handleAddReview = (e) => {
     if (e) e.preventDefault();
@@ -36,7 +31,6 @@ const ReviewForm = ({ handleNewReview }) => {
     };
 
     mutate(review);
-    handleNewReview();
 
     // 초기화
     setComment('');
@@ -47,7 +41,7 @@ const ReviewForm = ({ handleNewReview }) => {
     <>
       <fieldset className="flex flex-col gap-4 p-5 border rounded-xl mb-10 border-gray-200">
         <textarea
-          className="textarea h-28 p-3 border rounded-lg resize-none w-full text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 transition-all"
+          className="textarea h-28 p-3 border rounded-lg resize-none w-full text-gray-800 dark:text-gray-100 placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 transition-all"
           placeholder="리뷰를 작성해 주세요."
           value={comment}
           onChange={(e) => setComment(e.target.value)}></textarea>

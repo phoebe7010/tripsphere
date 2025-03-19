@@ -50,7 +50,7 @@ const SignIn = () => {
             </p>
           </Link>
 
-          <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900">
+          <h2 className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             로그인
           </h2>
         </div>

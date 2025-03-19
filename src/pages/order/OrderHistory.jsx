@@ -5,6 +5,7 @@ import { useUserOrders } from '../../hooks/useOrderData';
 import { auth } from '../../firebase/firebaseConfig';
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
+
 const breadcrumb = [
   { link: '/mypage', text: '마이페이지' },
   { link: '/orderhistory', text: '주문 내역' },

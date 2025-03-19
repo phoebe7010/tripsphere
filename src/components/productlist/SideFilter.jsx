@@ -1,18 +1,71 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BiChevronLeft } from 'react-icons/bi';
-import PeopleSelector from '../common/PeopleSelector';
+import { getAllAccomData } from '../../services/productListService';
+import useFilterStore from '../../stores/useFilterStore.js';
+import usePriceStore from '../../stores/usePriceStore.js';
+import useProductListStore from '../../stores/useProductListStore.js';
+import useRoomType from '../../stores/useRoomType';
 import CitySelector from '../common/CitySelector';
 import DateSelector from '../common/DateSelector';
+import PeopleSelector from '../common/PeopleSelector';
+import PriceSlider from './PriceSlider.jsx';
 
-const SideFilter = () => {
-  const [priceRange, setPriceRange] = useState(25);
+const SideFilter = ({ setLoading, setError }) => {
   const [isFormOpen, setIsFormOpen] = useState(true);
-
   const [openDate, setOpenDate] = useState(false);
+
+  const {
+    selectedCity,
+    selectedSubCity,
+    adultCount,
+    childrenCount,
+    checkIn,
+    checkOut,
+  } = useFilterStore();
+
+  const { range } = usePriceStore();
+  const { list, setList, resetList } = useProductListStore();
+  const {
+    roomTypes,
+    defaultOption,
+    addRoomTypes,
+    delRoomTypes,
+    resetRoomTypes,
+  } = useRoomType();
 
   const toggleForm = () => {
     setIsFormOpen((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    console.log('쿼리요청이 필요한 옵션 변경');
+    resetList();
+
+    let listInfo = async () => {
+      setLoading(true);
+      try {
+        const data = await getAllAccomData(useFilterStore);
+        setList(data);
+      } catch (error) {
+        console.error('상품정보 로딩 중 오류 ', error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    listInfo();
+  }, [
+    selectedCity,
+    selectedSubCity,
+    adultCount,
+    childrenCount,
+    checkIn,
+    checkOut,
+  ]);
+
+  useEffect(() => {
+    console.log('저장된 결과를 필터링해야하는 옵션 변경');
+  }, [roomTypes, range.min, range.max]);
 
   return (
     <aside
@@ -40,7 +93,7 @@ const SideFilter = () => {
             <legend className="fieldset-legend px-2 font-medium">
               여행 장소
             </legend>
-            <CitySelector />
+            <CitySelector isGlobal={true} />
           </fieldset>
 
           {/* 숙박 장소 선택 */}
@@ -68,28 +121,14 @@ const SideFilter = () => {
           </fieldset>
 
           {/* 예산 범위 선택 */}
-          <fieldset className="rounded-lg border border-gray-200 p-3">
+          <fieldset className="rounded-lg border border-gray-200 px-3">
             <legend className="fieldset-legend px-2 font-medium">가격</legend>
             <div className="flex items-center justify-between">
-              <div className="w-full max-w-xs">
-                <input
-                  type="range"
-                  min={0}
-                  max="30"
-                  value={priceRange}
-                  className="range"
-                  step="1"
-                  onChange={(e) => setPriceRange(Number(e.target.value))}
+              <div className="w-full p-3 max-w-xs">
+                <PriceSlider
+                  step={5}
+                  className="relative w-full p-4"
                 />
-                <div className="flex justify-between px-2.5 mt-2 text-xs">
-                  <span>0</span>
-                  <span>5만원</span>
-                  <span>10만원</span>
-                  <span>15만원</span>
-                  <span>20만원</span>
-                  <span>25만원</span>
-                  <span>30만원</span>
-                </div>
               </div>
             </div>
           </fieldset>
@@ -98,12 +137,13 @@ const SideFilter = () => {
             <legend className="fieldset-legend px-2 font-medium">일정</legend>
             {/* 체크인 · 체크아웃 */}
             <DateSelector
+              stateType="filter"
               openDate={openDate}
               setOpenDate={setOpenDate}
             />
 
             {/* 인원수 */}
-            <PeopleSelector />
+            <PeopleSelector stateType="filter" />
           </fieldset>
 
           <button

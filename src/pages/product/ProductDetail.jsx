@@ -1,19 +1,19 @@
-import { useState } from 'react';
-import ProductHeader from '../../components/detail/ProductHeader';
-import ProductGallery from '../../components/detail/ProductGallery';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import ProductDetails from '../../components/detail/ProductDetails';
+import ProductGallery from '../../components/detail/ProductGallery';
+import ProductHeader from '../../components/detail/ProductHeader';
 import ProductLocation from '../../components/detail/ProductLocation';
 import ProductReview from '../../components/detail/ProductReview';
 import { useAccomData } from '../../hooks/useProductData';
-import { useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const [productId, setProductId] = useState('14tTOq9EGJgmEBQHQ16c');
+  const [productId, setProductId] = useState(id);
 
-  // useEffect(() => {
-  //   setProductId(id);
-  // }, [id]);
+  useEffect(() => {
+    setProductId(id);
+  }, [id]);
 
   // 숙소 정보
   const {
@@ -37,7 +37,10 @@ const ProductDetail = () => {
       <ProductGallery product={accommodation} />
 
       {/* 상품 상세 정보 */}
-      <ProductDetails product={accommodation} />
+      <ProductDetails
+        product={accommodation}
+        productId={productId}
+      />
 
       {/* 위치 */}
       <ProductLocation product={accommodation} />

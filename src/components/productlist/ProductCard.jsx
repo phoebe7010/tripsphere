@@ -1,16 +1,22 @@
 import React from 'react';
-import { BiCalendarAlt, BiCart, BiHeart } from 'react-icons/bi';
+import { BiCalendarAlt, BiHeart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import { formatNumber } from '../../utils/format';
 import KakaoShareButton from '../common/KakaoShareButton';
 
-const ProductCard = ({ index, product }) => {
+const ProductCard = ({ index, product, arrayLength }) => {
   function bulidingType({ product }) {
     let message;
 
     switch (product.type) {
       case 'hotel':
         message = '호텔';
+        break;
+      case 'motel':
+        message = '모텔';
+        break;
+      case 'resort':
+        message = '리조트';
         break;
       case 'pension':
         message = '펜션';
@@ -30,11 +36,11 @@ const ProductCard = ({ index, product }) => {
   }
 
   return (
-    <Link to="/product/0">
-      <article
+    <Link to={`/product/${product.id}`}>
+      <li
         className={`group card bg-base-100 transition-shadow grid grid-cols-[2fr_5fr] gap-[20px] ${
           index === 0 ? 'pb-[30px]' : 'py-[30px]'
-        } ${index !== product.length - 1 ? 'border-b border-gray-200' : ''}`}>
+        } ${index !== arrayLength - 1 ? 'border-b border-gray-200' : ''}`}>
         <figure>
           <div className="h-full relative">
             <div className="h-[200px] rounded-md overflow-hidden">
@@ -73,17 +79,6 @@ const ProductCard = ({ index, product }) => {
                 <button
                   type="button"
                   className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
-                  <BiCart
-                    aria-hidden="true"
-                    className="size-5 text-gray-400"
-                  />
-                </button>
-              </span>
-
-              <span className="hidden sm:block">
-                <button
-                  type="button"
-                  className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
                   <BiHeart
                     aria-hidden="true"
                     className="size-5 text-gray-400"
@@ -105,7 +100,9 @@ const ProductCard = ({ index, product }) => {
                     <BiCalendarAlt className="text-base" />
                     <p className="font-bold">체크인</p>
                   </div>
-                  <time dateTime={product.check_in}>{product.check_in}</time>
+                  <time dateTime={product.check_in.toLocaleString()}>
+                    {product.check_in.toLocaleString()}
+                  </time>
                 </div>
 
                 <div className="flex gap-4 items-center">
@@ -113,7 +110,9 @@ const ProductCard = ({ index, product }) => {
                     <BiCalendarAlt className="text-base" />
                     <p className="font-bold">체크아웃</p>
                   </div>
-                  <time dateTime={product.check_out}>{product.check_out}</time>
+                  <time dateTime={product.check_out.toLocaleString()}>
+                    {product.check_out.toLocaleString()}
+                  </time>
                 </div>
               </div>
 
@@ -148,7 +147,7 @@ const ProductCard = ({ index, product }) => {
             </div>
           </div>
         </div>
-      </article>
+      </li>
     </Link>
   );
 };

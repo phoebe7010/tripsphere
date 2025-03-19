@@ -1,3 +1,4 @@
+
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { db } from '../firebase/firebaseConfig';
 import {
@@ -10,6 +11,7 @@ import {
   query,
   where,
 } from 'firebase/firestore';
+import { fetchOrderData } from '../services/orderService';
 
 // Timestamp 변환
 const formatDate = (timestamp) => {
@@ -109,5 +111,14 @@ export const useCancelOrder = () => {
     onSuccess: (_, { userId }) => {
       queryClient.invalidateQueries(['orders', userId]);
     },
+  });
+};
+
+// 숙소 정보 조회
+export const useOrderData = (userId) => {
+  return useQuery({
+    queryKey: ['orders', userId],
+    queryFn: () => fetchOrderData(userId),
+    enabled: !!userId,
   });
 };

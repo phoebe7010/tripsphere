@@ -3,7 +3,7 @@ import Counter from './Counter';
 import useFilterStore from '../../stores/useFilterStore';
 import useReservationStore from '../../stores/useReservationStore';
 
-const PeopleSelector = ({ stateType, setAdults }) => {
+const PeopleSelector = ({ stateType, setAdults, capacity }) => {
   const filterStore = useFilterStore();
   const reservationStore = useReservationStore();
   const [localAdultCount, setLocalAdultCount] = useState(0);
@@ -48,9 +48,12 @@ const PeopleSelector = ({ stateType, setAdults }) => {
   }, [adultCount, childrenCount]);
 
   const handlePeopleCount = (type, count) => {
-    if (type === 'adultCount') {
+    const maxAdults = capacity?.adults || 0;
+    const maxChildren = capacity?.children || 0;
+
+    if (type === 'adultCount' && count <= maxAdults) {
       setAdultCount(count);
-    } else if (type === 'childrenCount') {
+    } else if (type === 'childrenCount' && count <= maxChildren) {
       setChildrenCount(count);
     }
   };
@@ -79,12 +82,16 @@ const PeopleSelector = ({ stateType, setAdults }) => {
               type="adultCount"
               label="성인"
               handlePeopleCount={handlePeopleCount}
+              count={adultCount}
+              maxCount={capacity?.adults}
             />
 
             <Counter
               type="childrenCount"
               label="미성년자"
               handlePeopleCount={handlePeopleCount}
+              count={childrenCount}
+              maxCount={capacity?.children}
             />
           </div>
         </div>

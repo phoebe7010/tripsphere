@@ -1,26 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BiPlus, BiMinus } from 'react-icons/bi';
 
-const Counter = ({ type, label, handlePeopleCount }) => {
-  const [count, setCount] = useState(0);
-
+const Counter = ({ type, label, count, maxCount, handlePeopleCount }) => {
   const increase = () => {
-    setCount((prev) => {
-      const newCount = prev + 1;
-      handlePeopleCount(type, newCount);
-      return newCount;
-    });
+    if (count < maxCount) {
+      handlePeopleCount(type, count + 1);
+    }
   };
 
   const decrease = () => {
-    setCount((prev) => {
-      if (prev > 0) {
-        const newCount = prev - 1;
-        handlePeopleCount(type, newCount);
-        return newCount;
-      }
-      return prev;
-    });
+    if (count > 0) {
+      handlePeopleCount(type, count - 1);
+    }
   };
 
   return (
@@ -30,7 +21,8 @@ const Counter = ({ type, label, handlePeopleCount }) => {
         <button
           type="button"
           className="btn btn-circle"
-          onClick={decrease}>
+          onClick={decrease}
+          disabled={count === 0}>
           <BiMinus className="size-[1.2em]" />
         </button>
 
@@ -44,7 +36,8 @@ const Counter = ({ type, label, handlePeopleCount }) => {
         <button
           type="button"
           className="btn btn-circle"
-          onClick={increase}>
+          onClick={increase}
+          disabled={count >= maxCount}>
           <BiPlus className="size-[1.2em]" />
         </button>
       </div>
