@@ -55,7 +55,7 @@ const OrderHistory = () => {
                 <div className="flex gap-6">
                   <img
                     className="size-20 rounded-box"
-                    src={order.images[1]}
+                    src={order.images[0]}
                     alt={''}
                   />
 
