@@ -5,8 +5,8 @@ const Footer = () => {
     <footer className="footer sm:footer-horizontal footer-center bg-base-300 text-base-content p-4">
       <aside>
         <p>
-          Copyright © {new Date().getFullYear()} - All right reserved by 김혜란,
-          박세진, 형주희, 최승이, 전윤교
+          Copyright © {new Date().getFullYear()} - All right reserved by
+          김혜란, 박세진, 형주희, 최승이
         </p>
       </aside>
     </footer>

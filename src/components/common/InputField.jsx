@@ -9,12 +9,13 @@ const InputField = ({
   error,
   showPassword,
   onTogglePassword,
+  disabled,
 }) => {
   return (
     <div>
       <label
         htmlFor={label}
-        className="block text-sm font-medium text-gray-900">
+        className="dark:text-gray-400 block text-sm font-medium text-gray-900">
         {label}
       </label>
       <div className="mt-2 relative">
@@ -23,9 +24,10 @@ const InputField = ({
           value={value}
           placeholder={placeholder}
           onChange={onChange}
-          className={`block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm ${
+          disabled={disabled}
+          className={`dark:text-white block w-full rounded-md px-3 py-1.5 text-base text-gray-900 outline-1 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm ${
             error ? 'outline-red-600' : 'outline-gray-300 '
-          }`}
+          } ${disabled ? 'bg-gray-100 cursor-not-allowed dark:bg-gray-800' : ''}`}
         />
         {type === 'password' && (
           <div

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiCalendarAlt, BiCart, BiHeart } from 'react-icons/bi';
+import { BiCalendarAlt, BiHeart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import { formatNumber } from '../../utils/format';
 import KakaoShareButton from '../common/KakaoShareButton';
@@ -11,6 +11,12 @@ const ProductCard = ({ index, product, arrayLength }) => {
     switch (product.type) {
       case 'hotel':
         message = '호텔';
+        break;
+      case 'motel':
+        message = '모텔';
+        break;
+      case 'resort':
+        message = '리조트';
         break;
       case 'pension':
         message = '펜션';
@@ -30,7 +36,7 @@ const ProductCard = ({ index, product, arrayLength }) => {
   }
 
   return (
-    <Link to={`/product/${index}`}>
+    <Link to={`/product/${product.id}`}>
       <li
         className={`group card bg-base-100 transition-shadow grid grid-cols-[2fr_5fr] gap-[20px] ${
           index === 0 ? 'pb-[30px]' : 'py-[30px]'
@@ -67,17 +73,6 @@ const ProductCard = ({ index, product, arrayLength }) => {
                   imageUrl={product.images[0]}
                   pageUrl={window.location.origin + '/product/0'}
                 />
-              </span>
-
-              <span className="hidden sm:block">
-                <button
-                  type="button"
-                  className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
-                  <BiCart
-                    aria-hidden="true"
-                    className="size-5 text-gray-400"
-                  />
-                </button>
               </span>
 
               <span className="hidden sm:block">

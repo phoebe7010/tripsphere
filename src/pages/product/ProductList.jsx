@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import PageHeader from '../../components/common/PageHeader';
 import ProductsPageList from '../../components/productlist/ProductsPageList';
 import SideFilter from '../../components/productlist/SideFilter';
@@ -51,18 +52,7 @@ const breadcrumb = [
   { link: '/products', text: '여행 검색 결과 목록' },
 ];
 
-/*
-const q = query(collection(db, "cities"), where("capital", "==", true));
-
-const querySnapshot = await getDocs(q);
-querySnapshot.forEach((doc) => {
-  // doc.data() is never undefined for query doc snapshots
-  console.log(doc.id, " => ", doc.data());
-});
-*/
-
 const ProductList = () => {
-  // 팀장님
   const {
     selectedCity,
     selectedSubCity,
@@ -71,39 +61,15 @@ const ProductList = () => {
     checkIn,
     checkOut,
   } = useFilterStore();
-  // 팀장님
-
-  // 박세진
-  const [list, setList] = useState([]);
 
   const { range, rangeLimit } = usePriceStore();
 
-  useEffect(() => {
-    // let listInfo = async () => {
-    //   try {
-    //     return await fetchAccomListData();
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
-    // listInfo().then((ele) => {
-    //   setList(ele);
-    // });
-    // console.log('받음');
-    // let i = 3;
-    // console.log('list [', 3, ']=', list[i]);
-    // setList(products);
-  }, [
-    selectedCity,
-    selectedSubCity,
-    adultCount,
-    childrenCount,
-    checkIn,
-    checkOut,
-    range.min,
-    range.max,
-  ]);
-  // 박세진
+  const [searchParams] = useSearchParams();
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {}, [loading, error]);
 
   return (
     <div className="max-w-[1200px] mx-auto py-[40px]">
@@ -125,6 +91,11 @@ const ProductList = () => {
         <br />
       </div>
 
+      <div className="inline-block py-4 px-4 bg-gray-100 rounded-md">
+        searchParams : {searchParams}
+        <br />
+      </div>
+
       <PageHeader
         title="여행 숙소 검색 결과"
         breadcrumb={breadcrumb}
@@ -133,22 +104,16 @@ const ProductList = () => {
       <div
         id="container"
         className="flex items-start gap-10">
-        <SideFilter />
+        <SideFilter
+          setLoading={setLoading}
+          setError={setError}
+        />
 
         <article className="content flex-1">
-          <ProductsPageList />
-          {/* <ul>
-            {list.map((product, index, array) => (
-              <ProductCard
-                key={index}
-                index={index}
-                product={product}
-                arrayLength={array.length}
-              />
-            ))}
-          </ul>
-
-          <Pagination /> */}
+          <ProductsPageList
+            loading={loading}
+            error={error}
+          />
         </article>
       </div>
     </div>

@@ -1,25 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
+import { useSearchParams } from 'react-router-dom';
 
 const Pagination = ({ data }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initPageNumber = Number(searchParams.get('page')) || 1;
+  const [currentPage, setCurrentPage] = useState(initPageNumber);
   const [itemsPerPage] = useState(10);
   const [currentItems, setCurrentItems] = useState([]);
 
   // 데이터 셋팅
-  useEffect(() => {
-    if (data && data.length) {
-      const startIdx = (currentPage - 1) * itemsPerPage;
-      const endIdx = startIdx + itemsPerPage;
+  // useEffect(() => {
+  //   if (data && data.length) {
+  //     const startIdx = (currentPage - 1) * itemsPerPage;
+  //     const endIdx = startIdx + itemsPerPage;
 
-      setCurrentItems(data.slice(startIdx, endIdx));
-    }
-  }, [currentPage, data]);
+  //     setCurrentItems(data.slice(startIdx, endIdx));
+  //   }
+  // }, [currentPage, data]);
 
   // 페이지 변경
   const handlePageChange = (page) => {
     if (page > 0 && page <= Math.ceil(data?.length / itemsPerPage)) {
-      setCurrentPage(page);
+      setSearchParams((prevParams) => {
+        const newParams = new URLSearchParams(prevParams);
+        newParams.set('page', page);
+        return newParams;
+      });
     }
   };
 
@@ -33,13 +40,17 @@ const Pagination = ({ data }) => {
         <a
           href="#"
           className="relative inline-flex items-center rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-          onClick={() => handlePageChange(currentPage - 1)}>
+          onClick={() => {
+            handlePageChange(currentPage - 1);
+          }}>
           Previous
         </a>
         <a
           href="#"
           className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-          onClick={() => handlePageChange(currentPage + 1)}>
+          onClick={() => {
+            handlePageChange(currentPage + 1);
+          }}>
           Next
         </a>
       </div>
@@ -76,14 +87,16 @@ const Pagination = ({ data }) => {
                 const pageNumber = index + 1;
                 return (
                   <a
-                    href="#"
+                    href=""
                     key={pageNumber}
                     className={`relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 dark:text-gray-200 dark:hover:bg-gray-50 hover:bg-gray-300 hover:text-white dark:hover:text-black ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0 ${
                       currentPage === pageNumber
                         ? 'bg-indigo-600 text-white'
                         : ''
                     }`}
-                    onClick={() => handlePageChange(pageNumber)}>
+                    onClick={() => {
+                      handlePageChange(pageNumber);
+                    }}>
                     {pageNumber}
                   </a>
                 );

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ProductDetails from '../../components/detail/ProductDetails';
 import ProductGallery from '../../components/detail/ProductGallery';
 import ProductHeader from '../../components/detail/ProductHeader';
 import ProductLocation from '../../components/detail/ProductLocation';
@@ -9,11 +10,10 @@ import { useAccomData } from '../../hooks/useProductData';
 const ProductDetail = () => {
   const { id } = useParams();
   const [productId, setProductId] = useState(id);
-  // const [productId, setProductId] = useState('fhxC2un7evQDrgz0wWuP');
 
-  // useEffect(() => {
-  //   setProductId(id);
-  // }, [id]);
+  useEffect(() => {
+    setProductId(id);
+  }, [id]);
 
   // 숙소 정보
   const {
@@ -37,7 +37,10 @@ const ProductDetail = () => {
       <ProductGallery product={accommodation} />
 
       {/* 상품 상세 정보 */}
-      <ProductDetails product={accommodation} />
+      <ProductDetails
+        product={accommodation}
+        productId={productId}
+      />
 
       {/* 위치 */}
       <ProductLocation product={accommodation} />
