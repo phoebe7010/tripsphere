@@ -7,7 +7,7 @@ import { auth } from '../../firebase/firebaseConfig';
 
 const ReviewForm = ({ handleNewReview }) => {
   const { id } = useParams();
-  const [productId, setProductId] = useState('RVkcAvy6ZzPgsCRBviKv');
+  const [productId, setProductId] = useState('14tTOq9EGJgmEBQHQ16c');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
   const user = auth.currentUser;

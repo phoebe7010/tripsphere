@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const [productId, setProductId] = useState('RVkcAvy6ZzPgsCRBviKv');
+  const [productId, setProductId] = useState('14tTOq9EGJgmEBQHQ16c');
 
   // useEffect(() => {
   //   setProductId(id);
