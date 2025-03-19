@@ -1,4 +1,5 @@
 import { differenceInDays, parse } from 'date-fns';
+import { Timestamp } from 'firebase/firestore';
 
 // 숫자 3자리마다 콤마를 추가
 export const formatNumber = (input) => {
@@ -50,4 +51,10 @@ export const totalDays = (checkIn, checkOut) => {
   const days = differenceInDays(checkOutDate, checkInDate);
 
   return days;
+};
+
+// yyyy. M. d.형식을 Timestamp로 변환
+export const formatToTimestamp = (dateStr) => {
+  const parsedDate = parse(dateStr, 'yyyy. M. d.', new Date());
+  return Timestamp.fromDate(parsedDate);
 };

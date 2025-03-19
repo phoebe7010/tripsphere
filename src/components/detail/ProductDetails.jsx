@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PeopleSelector from '../../components/common/PeopleSelector';
-import { formatNumber, totalDays } from '../../utils/format';
+import { formatNumber, formatToTimestamp, totalDays } from '../../utils/format';
 import DateSelector from '../common/DateSelector';
 import ServiceIcon from '../common/ServiceIcon';
 import useReservationStore from '../../stores/useReservationStore';
@@ -49,8 +49,8 @@ const ProductDetails = ({ product, productId }) => {
     // 상태 업데이트
     mutate({
       accommodation_id: productId,
-      check_in: checkIn,
-      check_out: checkOut,
+      check_in: formatToTimestamp(checkIn),
+      check_out: formatToTimestamp(checkOut),
       guest_count: { adults: adultCount, children: childrenCount },
       cart_date: serverTimestamp(),
       user_id: user?.uid,
