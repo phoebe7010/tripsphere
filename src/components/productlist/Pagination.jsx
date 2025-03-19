@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import usePageStore from '../../stores/usePageStore';
 
 const Pagination = ({ data }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -9,8 +8,6 @@ const Pagination = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(initPageNumber);
   const [itemsPerPage] = useState(10);
   const [currentItems, setCurrentItems] = useState([]);
-
-  const { pageIndex, setPageIndex } = usePageStore();
 
   const navigate = useNavigate();
 
@@ -22,7 +19,7 @@ const Pagination = ({ data }) => {
 
       setCurrentItems(data.slice(startIdx, endIdx));
     }
-  }, [currentPage, data, pageIndex]);
+  }, [currentPage, data]);
 
   // 페이지 변경
   const handlePageChange = (page) => {
@@ -98,9 +95,6 @@ const Pagination = ({ data }) => {
                     }`}
                     onClick={() => {
                       handlePageChange(pageNumber);
-                      // console.log('PageIndex : ', index + 1);
-                      // setPageIndex(index + 1); //여기서 페이지인덱스 업데이트가 안됨
-                      // console.log('PageIndex : ', pageIndex);
                     }}>
                     {pageNumber}
                   </a>

@@ -4,7 +4,6 @@ import PageHeader from '../../components/common/PageHeader';
 import ProductsPageList from '../../components/productlist/ProductsPageList';
 import SideFilter from '../../components/productlist/SideFilter';
 import useFilterStore from '../../stores/useFilterStore';
-import usePageStore from '../../stores/usePageStore';
 import usePriceStore from '../../stores/usePriceStore';
 
 const products = [
@@ -65,8 +64,6 @@ const ProductList = () => {
 
   const { range, rangeLimit } = usePriceStore();
 
-  const { pageIndex } = usePageStore();
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
@@ -84,7 +81,6 @@ const ProductList = () => {
     checkOut,
     range.min,
     range.max,
-    pageIndex,
   ]);
 
   return (
@@ -108,7 +104,6 @@ const ProductList = () => {
       </div>
 
       <div className="inline-block py-4 px-4 bg-gray-100 rounded-md">
-        pageIndex: {pageIndex} <br />
         searchParams : {searchParams}
         <br />
       </div>
