@@ -5,6 +5,7 @@ const useReservationStore = create((set) => ({
   childrenCount: 0,
   checkIn: '',
   checkOut: '',
+  totalPrice: 0,
 
   // 어른 수 변경
   setAdultCount: (num) => set({ adultCount: num }),
@@ -17,6 +18,9 @@ const useReservationStore = create((set) => ({
 
   // 체크아웃 날짜 변경
   setCheckOut: (date) => set({ checkOut: date }),
+
+  // 총 예약 금액
+  setTotalPrice: (num) => set({ totalPrice: num }),
 }));
 
 export default useReservationStore;

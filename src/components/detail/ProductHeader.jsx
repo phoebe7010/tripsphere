@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import KakaoShareButton from '../../components/common/KakaoShareButton';
 import { BiCart, BiHeart, BiSolidHeart } from 'react-icons/bi';
-import { useAddCart } from '../../hooks/useCartData';
 import Toast from '../common/Toast';
 import {
   useCheckFavorite,
@@ -17,17 +16,9 @@ const ProductHeader = ({ product, productId }) => {
     setTimeout(() => setToast(null), 3000);
   };
 
-  const { mutate: cardMutation, isLoading, error } = useAddCart(showToast);
   const { mutate: favoriteMutation, isLoading: isFavoriteLoading } =
     useControlFavorite(showToast);
   const { data: isFavorite } = useCheckFavorite(productId);
-
-  // 장바구니 항목 추가
-  const handleAddCart = (e) => {
-    if (e) e.preventDefault();
-
-    cardMutation(productId);
-  };
 
   // 찜 버튼 핸들러
   const handleFavorite = (e) => {
@@ -57,22 +48,9 @@ const ProductHeader = ({ product, productId }) => {
 
           <span className="ml-3 hidden sm:block">
             <button
-              onClick={handleAddCart}
-              type="button"
-              className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
-              <BiCart
-                aria-hidden="true"
-                className="mr-1.5 -ml-0.5 size-5 text-gray-400"
-              />
-              장바구니
-            </button>
-          </span>
-
-          <span className="ml-3 hidden sm:block">
-            <button
               onClick={handleFavorite}
               type="button"
-              className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
+              className="dark:text-white inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
               {isFavorite ? (
                 <BiSolidHeart
                   aria-hidden="true"

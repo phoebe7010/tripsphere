@@ -22,7 +22,7 @@ const KakaoShareButton = ({
     document.head.appendChild(script);
   }, []);
 
-  const handleShareClick = e => {
+  const handleShareClick = (e) => {
     e.preventDefault();
 
     if (window.Kakao && isKakaoLoaded) {
@@ -61,7 +61,7 @@ const KakaoShareButton = ({
         aria-hidden="true"
         className="-ml-0.5 size-5 text-gray-400"
       />
-      {hasText && <span className="ml-1.5">공유하기</span>}
+      {hasText && <span className="ml-1.5 dark:text-white">공유하기</span>}
     </button>
   );
 };
