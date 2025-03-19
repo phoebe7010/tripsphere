@@ -66,22 +66,7 @@ const ProductList = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-    console.log(searchParams);
-    console.table(searchParams);
-    console.log(typeof searchParams);
-    console.log(Object.keys(searchParams));
-    console.log(Object.values(searchParams));
-  }, [
-    selectedCity,
-    selectedSubCity,
-    adultCount,
-    childrenCount,
-    checkIn,
-    checkOut,
-    range.min,
-    range.max,
-  ]);
+  useEffect(() => {}, []);
 
   return (
     <div className="max-w-[1200px] mx-auto py-[40px]">

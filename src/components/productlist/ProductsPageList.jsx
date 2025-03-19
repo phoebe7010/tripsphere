@@ -40,7 +40,13 @@ const ProductsPageList = () => {
 */
 
   useEffect(() => {
-    console.log('리렌더링됨.');
+    console.log('선택 옵션이 바뀜.');
+    searchParams.delete('page');
+  }, [adultCount, childrenCount, range.min, range.max, searchParams]);
+
+  useEffect(() => {
+    console.log('도시값이나 체크인,체크아웃 시간이 변경됨');
+
     console.log('로딩 여부 : ', loading);
     console.log('리스트 길이 : ', list.length);
     console.log('리스트 정보 : ', list);
@@ -81,17 +87,7 @@ const ProductsPageList = () => {
       }
     };
     listInfo();
-  }, [
-    selectedCity,
-    selectedSubCity,
-    adultCount,
-    childrenCount,
-    checkIn,
-    checkOut,
-    range.min,
-    range.max,
-    // searchParams,
-  ]);
+  }, [selectedCity, selectedSubCity, checkIn, checkOut]);
 
   if (loading) return <div>로딩중입니다...</div>;
   if (error)

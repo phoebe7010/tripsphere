@@ -8,6 +8,8 @@ const PriceSlider = ({ step = 5 }) => {
   const [maxInput, setMaxInput] = useState(range.max);
   const [message, setMessage] = useState('');
 
+  // const [values, setValues] = useState([range.min, range.max]);
+
   const updateByInput = (index, value) => {
     const numValue = Number(value);
     if (isNaN(numValue)) return;
@@ -46,14 +48,16 @@ const PriceSlider = ({ step = 5 }) => {
     [setRangeMin, setRangeMax, rangeLimit.max, step],
   );
 
+  // useEffect(() => {
+  //   if (range.max >= rangeLimit.max) {
+  //     setMaxInput('최대');
+  //   } else {
+  //     setMaxInput(range.max);
+  //   }
+  // }, [range.max, rangeLimit.max]);
   useEffect(() => {
-    if (range.max >= rangeLimit.max) {
-      setMaxInput('최대');
-    } else {
-      setMaxInput(range.max);
-    }
-  }, [range.max, rangeLimit.max]);
-
+    console.log('가격 범위 : ', range);
+  });
   return (
     <div className="w-full flex flex-col items-center">
       <div className="flex justify-between items-center mb-4 gap-4">
