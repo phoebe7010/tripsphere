@@ -37,7 +37,10 @@ const ProductDetail = () => {
       <ProductGallery product={accommodation} />
 
       {/* 상품 상세 정보 */}
-      <ProductDetails product={accommodation} />
+      <ProductDetails
+        product={accommodation}
+        productId={productId}
+      />
 
       {/* 위치 */}
       <ProductLocation product={accommodation} />
