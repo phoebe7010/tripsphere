@@ -7,8 +7,8 @@ import { useOrderData } from '../../hooks/useOrderData';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
 
-const OrderHistory = ({ orderInfo }) => {
-  /* const [user, setUser] = useState(null);
+const OrderHistory = () => {
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     // Firebase 인증 상태가 변경될 때마다 호출
@@ -29,7 +29,7 @@ const OrderHistory = ({ orderInfo }) => {
   }, [data]);
 
   if (isLoading) return <>로딩 중..</>;
-  if (error) return <>오류</>; */
+  if (error) return <>오류</>;
 
   return (
     <div>
@@ -46,28 +46,28 @@ const OrderHistory = ({ orderInfo }) => {
       </div>
 
       <ul className="mt-8 list bg-base-100 rounded-box shadow-md">
-        {orderInfo &&
-          orderInfo.map((order, index) => (
+        {data &&
+          data.map((order, index) => (
             <li
               className="list-row flex-col flex"
               key={index}>
-              <div className="py-2 border-b border-stone-200 flex justify-between items-center">
-                <div>{order.order_date}</div>
-              </div>
-
               <div className="flex justify-between">
                 <div className="flex gap-6">
                   <img
                     className="size-20 rounded-box"
-                    src={order.accommodation.images[0]}
-                    alt={order.accommodation.name}
+                    src={order.images[1]}
+                    alt={''}
                   />
 
                   <div className="flex flex-col">
-                    <h2 className="text-md font-bold">
-                      {order.accommodation.name}
+                    <h2 className="text-md opacity-60 ">
+                      {formatDate(order.order_date)}
+                      {order.payment_status === 'completed'
+                        ? '결제완료'
+                        : '취소'}
                     </h2>
-                    <div className="mb-4 text-xs uppercase opacity-60">
+
+                    <div className="mb-4 text-xs uppercase font-bold">
                       예약번호 : {order.id}
                     </div>
 
@@ -75,10 +75,9 @@ const OrderHistory = ({ orderInfo }) => {
                       <div className="flex items-center gap-2 text-xs">
                         <BiUser />
                         <div className="mr-1 text-xs">
-                          인원수 {order.guest_count}
-                        </div>
-                        <div>
-                          (성인: {order.adults}명 소아: {order.children}명)
+                          인원수 (성인: {order.guest_count.adults}명 소아:
+                          {order.guest_count.children}
+                          명)
                         </div>
                       </div>
 
@@ -88,7 +87,6 @@ const OrderHistory = ({ orderInfo }) => {
                           <span>체크인:</span>
                           <span>{formatDate(order.check_in)}</span>
                         </div>
-
                         <div className="flex items-center gap-2 text-xs">
                           <BiCalendarAlt />
                           <span>체크아웃:</span>
@@ -98,7 +96,6 @@ const OrderHistory = ({ orderInfo }) => {
                     </div>
                   </div>
                 </div>
-
                 <div>{formatNumber(order.total_price)}원</div>
               </div>
             </li>
