@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import usePageStore from '../../stores/usePageStore';
+import { useSearchParams } from 'react-router-dom';
 
 const Pagination = ({ data }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -10,25 +9,24 @@ const Pagination = ({ data }) => {
   const [itemsPerPage] = useState(10);
   const [currentItems, setCurrentItems] = useState([]);
 
-  const { pageIndex, setPageIndex } = usePageStore();
-
-  const navigate = useNavigate();
-
   // 데이터 셋팅
-  useEffect(() => {
-    if (data && data.length) {
-      const startIdx = (currentPage - 1) * itemsPerPage;
-      const endIdx = startIdx + itemsPerPage;
+  // useEffect(() => {
+  //   if (data && data.length) {
+  //     const startIdx = (currentPage - 1) * itemsPerPage;
+  //     const endIdx = startIdx + itemsPerPage;
 
-      setCurrentItems(data.slice(startIdx, endIdx));
-    }
-  }, [currentPage, data, pageIndex]);
+  //     setCurrentItems(data.slice(startIdx, endIdx));
+  //   }
+  // }, [currentPage, data]);
 
   // 페이지 변경
   const handlePageChange = (page) => {
     if (page > 0 && page <= Math.ceil(data?.length / itemsPerPage)) {
-      setCurrentPage(page);
-      setSearchParams({ page });
+      setSearchParams((prevParams) => {
+        const newParams = new URLSearchParams(prevParams);
+        newParams.set('page', page);
+        return newParams;
+      });
     }
   };
 
@@ -98,9 +96,6 @@ const Pagination = ({ data }) => {
                     }`}
                     onClick={() => {
                       handlePageChange(pageNumber);
-                      // console.log('PageIndex : ', index + 1);
-                      // setPageIndex(index + 1); //여기서 페이지인덱스 업데이트가 안됨
-                      // console.log('PageIndex : ', pageIndex);
                     }}>
                     {pageNumber}
                   </a>

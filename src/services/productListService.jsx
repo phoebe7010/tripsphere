@@ -18,7 +18,6 @@ import { db } from '../firebase/firebaseConfig';
 export const getAllAccomData = async (filters) => {
   const accomDoc = collection(db, 'accommodations');
   let constraints = [];
-
   // 성인 수 필터
   if (filters.adultCount > 0) {
     constraints.push(where('capacity.adults', '>=', filters.adultCount));

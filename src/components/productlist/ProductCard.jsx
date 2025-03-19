@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiCalendarAlt, BiCart, BiHeart } from 'react-icons/bi';
+import { BiCalendarAlt, BiHeart } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import { formatNumber } from '../../utils/format';
 import KakaoShareButton from '../common/KakaoShareButton';
@@ -73,17 +73,6 @@ const ProductCard = ({ index, product, arrayLength }) => {
                   imageUrl={product.images[0]}
                   pageUrl={window.location.origin + '/product/0'}
                 />
-              </span>
-
-              <span className="hidden sm:block">
-                <button
-                  type="button"
-                  className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">
-                  <BiCart
-                    aria-hidden="true"
-                    className="size-5 text-gray-400"
-                  />
-                </button>
               </span>
 
               <span className="hidden sm:block">

@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PageHeader from '../../components/common/PageHeader';
 import ProductsPageList from '../../components/productlist/ProductsPageList';
 import SideFilter from '../../components/productlist/SideFilter';
 import useFilterStore from '../../stores/useFilterStore';
-import usePageStore from '../../stores/usePageStore';
 import usePriceStore from '../../stores/usePriceStore';
 
 const products = [
@@ -65,27 +64,12 @@ const ProductList = () => {
 
   const { range, rangeLimit } = usePriceStore();
 
-  const { pageIndex } = usePageStore();
+  const [searchParams] = useSearchParams();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    console.log(searchParams);
-    console.table(searchParams);
-    console.log(typeof searchParams);
-    console.log(Object.keys(searchParams));
-    console.log(Object.values(searchParams));
-  }, [
-    selectedCity,
-    selectedSubCity,
-    adultCount,
-    childrenCount,
-    checkIn,
-    checkOut,
-    range.min,
-    range.max,
-    pageIndex,
-  ]);
+  useEffect(() => {}, [loading, error]);
 
   return (
     <div className="max-w-[1200px] mx-auto py-[40px]">
@@ -108,7 +92,6 @@ const ProductList = () => {
       </div>
 
       <div className="inline-block py-4 px-4 bg-gray-100 rounded-md">
-        pageIndex: {pageIndex} <br />
         searchParams : {searchParams}
         <br />
       </div>
@@ -121,10 +104,16 @@ const ProductList = () => {
       <div
         id="container"
         className="flex items-start gap-10">
-        <SideFilter />
+        <SideFilter
+          setLoading={setLoading}
+          setError={setError}
+        />
 
         <article className="content flex-1">
-          <ProductsPageList />
+          <ProductsPageList
+            loading={loading}
+            error={error}
+          />
         </article>
       </div>
     </div>
