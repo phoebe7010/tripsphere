@@ -1,3 +1,5 @@
+import { differenceInDays, parse } from 'date-fns';
+
 // 숫자 3자리마다 콤마를 추가
 export const formatNumber = (input) => {
   const number = Number(input);
@@ -36,4 +38,16 @@ export const formatTime = (seconds) => {
   const remainingSeconds = seconds % 60;
 
   return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+};
+
+// 총 숙박 일수
+export const totalDays = (checkIn, checkOut) => {
+  const format = 'yyyy. M. d.';
+  const checkInDate = parse(checkIn, format, new Date());
+  const checkOutDate = parse(checkOut, format, new Date());
+
+  // 총 숙박 일수 계산
+  const days = differenceInDays(checkOutDate, checkInDate);
+
+  return days;
 };

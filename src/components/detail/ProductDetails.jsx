@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PeopleSelector from '../../components/common/PeopleSelector';
-import { formatNumber } from '../../utils/format';
+import { formatNumber, totalDays } from '../../utils/format';
 import DateSelector from '../common/DateSelector';
 import ServiceIcon from '../common/ServiceIcon';
+import useReservationStore from '../../stores/useReservationStore';
 
 const typeMapping = {
   pension: '펜션',
@@ -23,12 +24,22 @@ const ProductDetails = ({ product }) => {
   const [openDate, setOpenDate] = useState(false);
   const navigate = useNavigate();
   const [adults, setAdults] = useState(0);
+  const { checkIn, checkOut, setTotalPrice } = useReservationStore();
 
-  const totalPrice = useMemo(() => {
-    return adults > 0 ? product.final_price * adults : product.final_price;
-  }, [adults, product.final_price]);
+  // 총 주문 금액
+  const totalPrice = useMemo(
+    () =>
+      (checkIn === checkOut ? 1 : totalDays(checkIn, checkOut)) *
+      product.final_price,
+    [checkIn, checkOut, product.final_price],
+  );
 
-  const formattedPrice = `${formatNumber(totalPrice)}원`;
+  // 예약하기
+  const handleReservation = (e) => {
+    e.preventDefault();
+    setTotalPrice(totalPrice);
+    navigate('/checkout');
+  };
 
   return (
     <div className="flex space-y-6 gap-10 mt-[30px]">
@@ -131,22 +142,33 @@ const ProductDetails = ({ product }) => {
                 adults={adults}
                 setAdults={setAdults}
                 stateType="reservation"
+                capacity={product.capacity}
               />
             </fieldset>
 
             <div className="flex items-center justify-between py-2">
-              <p>주문 금액</p>
+              {totalDays(checkIn, checkOut) !== 0 ? (
+                <p className="flex gap-2 text-xl font-bold">
+                  <span>{formatNumber(product.final_price)}</span>
+
+                  <>
+                    <span>X</span> <span>{totalDays(checkIn, checkOut)}박</span>
+                  </>
+                </p>
+              ) : (
+                <>총액</>
+              )}
               <p className="text-red-500 text-xl font-bold text-right">
-                {formattedPrice}
+                {formatNumber(totalPrice)}원
               </p>
             </div>
 
             <div className="card-actions justify-end">
               <button
                 type="submit"
-                onClick={() => navigate('/checkout')}
+                onClick={handleReservation}
                 className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
-                주문하기
+                예약하기
               </button>
             </div>
           </div>
