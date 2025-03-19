@@ -7,8 +7,8 @@ import { useOrderData } from '../../hooks/useOrderData';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
 
-const OrderHistory = () => {
-  const [user, setUser] = useState(null);
+const OrderHistory = ({ orderInfo }) => {
+  /* const [user, setUser] = useState(null);
 
   useEffect(() => {
     // Firebase 인증 상태가 변경될 때마다 호출
@@ -29,7 +29,7 @@ const OrderHistory = () => {
   }, [data]);
 
   if (isLoading) return <>로딩 중..</>;
-  if (error) return <>오류</>;
+  if (error) return <>오류</>; */
 
   return (
     <div>
@@ -46,8 +46,8 @@ const OrderHistory = () => {
       </div>
 
       <ul className="mt-8 list bg-base-100 rounded-box shadow-md">
-        {data &&
-          data.map((order, index) => (
+        {orderInfo &&
+          orderInfo.map((order, index) => (
             <li
               className="list-row flex-col flex"
               key={index}>

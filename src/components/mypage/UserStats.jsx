@@ -3,14 +3,15 @@ import { BiHeart } from 'react-icons/bi';
 import { HiOutlineTicket } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import { LiaCoinsSolid } from 'react-icons/lia';
-import { usePointData } from '../../hooks/usePointData';
+
 import PointModal from './PointModal';
 import { auth } from '../../firebase/firebaseConfig';
-
+import { useUserData } from '../../hooks/useUserData';
+import { onAuthStateChanged } from 'firebase/auth';
 const UserStats = () => {
+  const [user, setUser] = useState(null);
   //포인트 모달 열기
   const [isOpen, setIsOpen] = useState(false);
-  const [balance, setBalance] = useState(0);
 
   const handleOpen = () => {
     setIsOpen(true);
@@ -20,14 +21,21 @@ const UserStats = () => {
     setIsOpen(false);
   };
 
-  const user = auth.currentUser;
-  const { data, isLoading, error } = usePointData(user?.uid);
+  useEffect(() => {
+    // Firebase 인증 상태가 변경될 때마다 호출
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
 
-  //포인트 정보
+    // 컴포넌트가 언마운트될 때 리스너를 정리
+    return () => unsubscribe();
+  }, []);
+
+  const { data, isLoading, error } = useUserData(user?.uid);
+
   useEffect(() => {
     if (data) {
-      // console.log('포인트 내역: ', JSON.stringify(data));
-      setBalance(data[0].points);
+      console.log('사용자 정보:', JSON.stringify(data));
     }
   }, [data]);
 
@@ -46,7 +54,9 @@ const UserStats = () => {
             <div>포인트</div>
           </div>
           <div>
-            <strong className="stat-value text-primary">{balance}</strong>
+            <strong className="stat-value text-primary">
+              {data && data.points}
+            </strong>
             포인트
           </div>
         </Link>
@@ -71,7 +81,9 @@ const UserStats = () => {
           <HiOutlineTicket size={30} />
           <div>주문 내역</div>
         </div>
-        <div className="stat-value text-secondary">3</div>
+        <div className="stat-value text-secondary">
+          {data && data.orders.length}
+        </div>
       </Link>
 
       {/* 찜내역 박스  */}
@@ -83,7 +95,9 @@ const UserStats = () => {
           <div>찜</div>
         </div>
 
-        <div className="stat-value text-accent">25</div>
+        <div className="stat-value text-accent">
+          {data && data.wishlist.length}
+        </div>
       </Link>
     </div>
   );
