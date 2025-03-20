@@ -81,7 +81,7 @@ const UserProfile = () => {
             <h3 className="font-bold text-lg flex items-center gap-2">
               <BiLock /> 본인 인증
             </h3>
-            <p className="py-4">
+            <div className="py-4">
               <div className="mb-4">
                 개인정보 변경 전 본인 인증을 위해 비밀번호를 입력해주세요.
               </div>
@@ -99,7 +99,7 @@ const UserProfile = () => {
                 showPassword={showPassword}
                 onTogglePassword={() => setShowPassword(!showPassword)}
               />
-            </p>
+            </div>
             <div className="modal-action">
               <form method="dialog">
                 <button

@@ -75,7 +75,7 @@ const PointModal = ({ onClose }) => {
           <h2 className="text-2xl font-bold mb-12">포인트 충전</h2>
           <div className="w-full h-8 border-b-2 flex justify-between  items-center gap-1 mb-30">
             <label
-              htmlFor="poinCharge"
+              htmlFor="pointCharge"
               className="w-[90%]">
               <input
                 type="number"
