@@ -39,9 +39,9 @@ const FavoriteList = () => {
   return (
     <div>
       <div className="my-8 p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between">
-        <h2 className="flex items-center gap-2 font-bold text-xl">
+        <h3 className="flex items-center gap-2 font-bold text-xl">
           <BiHeart size={20} /> 찜 목록
-        </h2>
+        </h3>
 
         <Link
           to="/favorite"
@@ -65,7 +65,7 @@ const FavoriteList = () => {
                   />
 
                   <div className="flex flex-col">
-                    <h2 className="text-md font-bold mb-2">{favorite.name}</h2>
+                    <h4 className="text-md font-bold mb-2">{favorite.name}</h4>
                     <div className="flex gap-2">
                       <div className="badge badge-soft badge-primary text-xs">
                         {typeMapping[favorite.type]}

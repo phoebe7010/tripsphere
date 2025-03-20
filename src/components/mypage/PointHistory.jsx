@@ -33,9 +33,9 @@ const PointHistory = () => {
   return (
     <>
       <div className="mt-8 p-4 pb-2 text-xs opacity-60 tracking-wide flex justify-between ">
-        <h2 className="flex items-center gap-2 font-bold text-xl">
+        <h3 className="flex items-center gap-2 font-bold text-xl">
           <LiaCoinsSolid size={20} /> 포인트 내역
-        </h2>
+        </h3>
 
         <Link
           to="/pointhistory"
@@ -56,7 +56,7 @@ const PointHistory = () => {
               <div className="flex justify-between">
                 <div className="flex gap-6">
                   <div className="flex flex-col">
-                    <h2 className="text-md font-bold">{point.title}</h2>
+                    <h4 className="text-md font-bold">{point.title}</h4>
                     <div className="my-4 text-xs uppercase opacity-60">
                       {point.description}
                     </div>

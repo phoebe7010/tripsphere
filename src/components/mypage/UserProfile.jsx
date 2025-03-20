@@ -62,7 +62,9 @@ const UserProfile = () => {
                 </a>
               </h3>
             </div>
-            <p className="mt-1 text-sm text-gray-500">{userInfo?.nickname}</p>
+            <div className="mt-1 text-sm text-gray-500">
+              {userInfo?.nickname}
+            </div>
           </div>
         </div>
 
