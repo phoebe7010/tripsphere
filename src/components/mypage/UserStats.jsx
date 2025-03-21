@@ -46,28 +46,23 @@ const UserStats = () => {
   if (error) return <>에러</>;
 
   return (
-    <div className="flex divide-x-1 divide-solid divide-gray-300 border-t border-b border-gray-300 ">
+    <div className="stats bg-base-100 border border-base-300  flex justify-between">
       {/* 포인트 박스  */}
-      <div className="flex items-center gap-4 px-4">
-        <Link
-          to="/pointhistory"
-          className="flex-1 flex items-center gap-2 justify-around  py-4">
-          <div className="flex-none flex gap-2 items-center">
+      <div className="stat place-items-center">
+        <Link to="/pointhistory">
+          <div className="stat-title  flex-none flex gap-2 items-center">
             <LiaCoinsSolid size={30} />
             <div>포인트</div>
           </div>
-          <div>
-            <strong className="stat-value text-primary">
-              {data && data.points}
-            </strong>
-            포인트
-          </div>
+          <div className="stat-value text-center">{data && data.points}</div>
         </Link>
-        <button
-          onClick={handleOpen}
-          className="btn bg-green-500">
-          충전
-        </button>
+        <div className="stat-actions mt-2">
+          <button
+            onClick={handleOpen}
+            className="btn btn-soft btn-primary">
+            충전
+          </button>
+        </div>
         {isOpen && (
           <PointModal
             onClose={handleClose}
@@ -77,29 +72,28 @@ const UserStats = () => {
       </div>
 
       {/* 주문내역 박스  */}
-      <Link
-        to="/orderhistory"
-        className="flex-1 flex items-center gap-2 justify-around  py-4">
-        <div className="flex-none flex gap-2 items-center">
-          <HiOutlineTicket size={30} />
-          <div>주문 내역</div>
-        </div>
-        <div className="stat-value text-secondary">{orderInfo?.length}</div>
-      </Link>
-
+      <div className="stat place-items-center">
+        <Link to="/orderhistory">
+          <div className="stat-title flex-none flex gap-2 items-center">
+            <HiOutlineTicket size={30} />
+            <div>주문 내역</div>
+          </div>
+          <div className="stat-value text-center">{orderInfo?.length}</div>
+        </Link>
+      </div>
       {/* 찜내역 박스  */}
-      <Link
-        to="/favorite"
-        className="flex-1 flex items-center gap-2 justify-around  py-4">
-        <div className="flex-none flex gap-2 items-center">
-          <BiHeart size={30} />
-          <div>찜</div>
-        </div>
+      <div className="stat place-items-center">
+        <Link to="/favorite">
+          <div className="stat-title flex-none flex gap-2 items-center">
+            <BiHeart size={30} />
+            <div>찜</div>
+          </div>
 
-        <div className="stat-value text-accent">
-          {data && data.wishlist.length}
-        </div>
-      </Link>
+          <div className="stat-value text-center">
+            {data && data.wishlist.length}
+          </div>
+        </Link>
+      </div>
     </div>
   );
 };

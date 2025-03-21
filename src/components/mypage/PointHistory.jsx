@@ -62,7 +62,9 @@ const PointHistory = () => {
                     </div>
                   </div>
                 </div>
-                <div className="text-secondary">{point.points} 포인트</div>
+                <div className="text-xs uppercase font-semibold opacity-60">
+                  {point.points} 포인트
+                </div>
               </div>
             </li>
           ))}

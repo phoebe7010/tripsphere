@@ -70,7 +70,7 @@ const UserProfile = () => {
 
         {/* 개인정보 수정 설정 버튼 */}
         <button
-          className="btn"
+          className="btn btn-ghost"
           onClick={() => document.getElementById('my_modal_2').showModal()}>
           <BiCog size={24} />
         </button>
